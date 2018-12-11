@@ -56,7 +56,7 @@ Throughout this series you might see a similar design pattern known as a **Strat
 ### **Structure**
 
 ![ClassDiagram](Images/ClassDiagram.png)
-=======
+
 - **FB_Context** stores a reference to one of the FB_States and delegates to it all the specific state work. It does this by accessing the state via the state interface. The context also has a setter for passing it a new state object.
 
 - **ITF_State** interface describes the state specific methods, these methods should make sense for all your FB_State objects because you don't want useless methods laying around. In the examples for this series, I use them as transitional actions.
@@ -89,7 +89,7 @@ NOTE: Inside the TC3 Sample Code, there are some Simulation Timers inside FB_ATM
 
   The pattern suggests that you extract all state-specific code into a set of distinct classes. As a result, you can add new states or change existing ones independently of each other, reducing the maintenance cost.
 
-- **Use the pattern when you have a class polluted with massive conditionals that alter how the class behaves according to the current values of the class’s fields.**
+- **Use the pattern when you have a class polluted with massive conditionals that alter how the class behaves according to the current values of the classï¿½s fields.**
 
   The State pattern lets you extract branches of these conditionals into  methods of corresponding state classes. While doing so, you can also clean temporary fields and helper methods involved in state-specific code out of your main class.
 - **Use State when you have a lot of duplicate code across similar states and transitions of a condition-based state machine.**
