@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+
+
+
+
+>>>>>>> master
 # State
 
 ### **Description**
@@ -55,7 +62,11 @@ Throughout this series you might see a similar design pattern known as a **Strat
 
 ### **Structure**
 
+<<<<<<< HEAD
 ![ClassDiagram](./Images/ClassDiagram.png)
+=======
+![TC Pattern UML](./Images/ClassDiagram.bmp)
+>>>>>>> master
 
 - **FB_Context** stores a reference to one of the FB_States and delegates to it all the specific state work. It does this by accessing the state via the state interface. The context also has a setter for passing it a new state object.
 
@@ -96,7 +107,11 @@ NOTE: Inside the TC3 Sample Code, there are some Simulation Timers inside FB_ATM
 
 - **Use the pattern when you have a class polluted with massive conditionals**
   **that alter how the class behaves according to the current values of the**
+<<<<<<< HEAD
   **classâ€™s fields.**
+=======
+  **class�s fields.**
+>>>>>>> master
 
   The State pattern lets you extract branches of these conditionals into 
   methods of corresponding state classes. While doing so, you can also 

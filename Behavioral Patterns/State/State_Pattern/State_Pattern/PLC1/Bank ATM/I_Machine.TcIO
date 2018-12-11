@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <Itf Name="I_Machine" Id="{385b02b8-4c90-000e-1cc0-d2b7bcb5e7fd}">
+    <Declaration><![CDATA[INTERFACE I_Machine
+]]></Declaration>
+    <Property Name="IdleState" Id="{69b94608-4c85-0594-2f63-027d0ebff1dc}">
+      <Declaration><![CDATA[PROPERTY IdleState : I_State]]></Declaration>
+      <Get Name="Get" Id="{30b0b94c-321b-0a7f-12d9-e7efc35770cf}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="MaintenanceState" Id="{7ea3e2a0-a1cd-04e9-2fcc-b3f427d30be9}">
+      <Declaration><![CDATA[PROPERTY MaintenanceState : I_State]]></Declaration>
+      <Get Name="Get" Id="{bdc0e27d-8048-067e-3a1d-210a7d4363b1}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="OffState" Id="{9d44e6c8-76c2-0ed9-3c52-a444909bd103}">
+      <Declaration><![CDATA[PROPERTY OffState : I_State]]></Declaration>
+      <Get Name="Get" Id="{1cc1d7cd-94e0-0b4c-2a8a-d0a4a189fafb}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="OutOfServiceState" Id="{098329d7-47ec-065b-15cd-fb3438283417}">
+      <Declaration><![CDATA[PROPERTY OutOfServiceState : I_State]]></Declaration>
+      <Get Name="Get" Id="{e93e519f-caf1-0e58-13e1-ef0911d1bf9e}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="SelfTestState" Id="{764b3441-ddda-0c54-35a6-c7b74e7e70a5}">
+      <Declaration><![CDATA[PROPERTY SelfTestState : I_State]]></Declaration>
+      <Get Name="Get" Id="{5ecb258e-a5a4-0950-1ba5-48101b758a1f}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Property Name="ServingCustomerState" Id="{2a88a98c-ad0b-0838-1b96-9abe0eeeb986}">
+      <Declaration><![CDATA[PROPERTY ServingCustomerState : I_State]]></Declaration>
+      <Get Name="Get" Id="{6ec68022-8544-01e7-1935-3c2ec25c95bb}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+    <Method Name="SetState" Id="{46908751-132f-0880-358e-7ccbcdf64bd8}">
+      <Declaration><![CDATA[METHOD INTERNAL SetState : BOOL
+VAR_INPUT
+	// Set the new state to transition
+	newState : I_State;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
