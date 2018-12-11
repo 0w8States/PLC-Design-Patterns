@@ -1,11 +1,4 @@
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> master
-# State
+# **State**
 
 ### **Description**
 
@@ -16,7 +9,7 @@ The State design pattern is a behavioral pattern in where the object can alter i
 
 The State design pattern is very similar to what is known as a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine).
 
-![FSM](./Images/FSM.png)
+![FSM](Images/FSM.png)
 
 It's a simple concept; at any give moment, the machine has a finite number of states that it can transition into, or be currently in. Within any unique state, the program behaves differently, and the program can be switched from one state to another instantly. One of the key advantages is that depending on the current state, the program may or may not switch to a specific other state. The switching rules are called **transitions**, and are also finite.
 
@@ -62,12 +55,8 @@ Throughout this series you might see a similar design pattern known as a **Strat
 
 ### **Structure**
 
-<<<<<<< HEAD
-![ClassDiagram](./Images/ClassDiagram.png)
+![ClassDiagram](Images/ClassDiagram.png)
 =======
-![TC Pattern UML](./Images/ClassDiagram.bmp)
->>>>>>> master
-
 - **FB_Context** stores a reference to one of the FB_States and delegates to it all the specific state work. It does this by accessing the state via the state interface. The context also has a setter for passing it a new state object.
 
 - **ITF_State** interface describes the state specific methods, these methods should make sense for all your FB_State objects because you don't want useless methods laying around. In the examples for this series, I use them as transitional actions.
@@ -86,38 +75,23 @@ When using an ATM machine, the buttons and actions of the machine behave differe
 - When the machine is on and running, trying to use the machine with a fault occurrence will most likely transition to an Out of Service state from a multitude of other states.
 - When the machine is Out of Service, there are only a select few other states that you can select.
 
-```reStructuredText
+```bash
 NOTE: Inside the TC3 Sample Code, there are some Simulation Timers inside FB_ATM_Machine to simulate a process. The included sample is just the administrative section of the machine, sub-states can be added for Authentication and Transaction.
 ```
 
 
 
-![ATM Machine](./Images/StatePatternDiagram.png)
+![ATM Machine](Images/StatePatternDiagram.png)
 
 ### **Application Use Case**
 
-- **Use the State pattern when you have an object that behaves differently** 
-  **depending on its current state, the number of states is enormous, and** 
-  **the state-specific code changes frequently.**
+- **Use the State pattern when you have an object that behaves differently depending on its current state, the number of states is enormous, and the state-specific code changes frequently.**
 
-  The pattern suggests that you extract all state-specific code into a set
-  of distinct classes. As a result, you can add new states or change 
-  existing ones independently of each other, reducing the maintenance 
-  cost.
+  The pattern suggests that you extract all state-specific code into a set of distinct classes. As a result, you can add new states or change existing ones independently of each other, reducing the maintenance cost.
 
-- **Use the pattern when you have a class polluted with massive conditionals**
-  **that alter how the class behaves according to the current values of the**
-<<<<<<< HEAD
-  **classÃ¢â‚¬â„¢s fields.**
-=======
-  **class’s fields.**
->>>>>>> master
+- **Use the pattern when you have a class polluted with massive conditionals that alter how the class behaves according to the current values of the class’s fields.**
 
-  The State pattern lets you extract branches of these conditionals into 
-  methods of corresponding state classes. While doing so, you can also 
-  clean temporary fields and helper methods involved in state-specific 
-  code out of your main class.
-
+  The State pattern lets you extract branches of these conditionals into  methods of corresponding state classes. While doing so, you can also clean temporary fields and helper methods involved in state-specific code out of your main class.
 - **Use State when you have a lot of duplicate code across similar states and transitions of a condition-based state machine.**
 
   The State pattern lets you compose hierarchies of state classes and 
