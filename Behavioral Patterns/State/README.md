@@ -4,12 +4,12 @@
 
 # State
 
-### Description
+### **Description**
 
 The State design pattern is a behavioral pattern in where the object can alter it's behavior when it's internal state is changed.
 
 
-### Problem
+### **Problem**
 
 The State design pattern is very similar to what is known as a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine).
 
@@ -19,7 +19,7 @@ It's a simple concept; at any give moment, the machine has a finite number of st
 
 Even if you have never heard of a Finite State Machine, you've most likely implemented on in the past when working with PLCs. They are commonly made up of simple IF and CASE statements that transition the machine into specific states and execute some code.
 
-```reStructuredText
+```pascal
 CASE eState OF
 	Init:
 		//Set some values
@@ -45,7 +45,7 @@ The problem grows into a bigger issue as the project evolves over time, as it's 
 
 
 
-### Solution
+### **Solution**
 
 The State design pattern follows the concept of using a class for each possible state, each new state added to the program in the future will have it's own new class. We would extract all the state specific behaviors and implement them in their corresponding classes.
 
@@ -57,9 +57,9 @@ Throughout this series you might see a similar design pattern known as a **Strat
 
 
 
-### Structure
+### **Structure**
 
-![TC Pattern UML](Images/ClassDiagram.bmp)
+![TC Pattern UML](./Images/ClassDiagram.bmp)
 
 - **FB_Context** stores a reference to one of the FB_States and delegates to it all the specific state work. It does this by accessing the state via the state interface. The context also has a setter for passing it a new state object.
 
@@ -71,7 +71,7 @@ Throughout this series you might see a similar design pattern known as a **Strat
 
 
 
-### Example
+### **Example**
 
 When using an ATM machine, the buttons and actions of the machine behave differently depending on the  current state of the machine.
 
@@ -79,11 +79,15 @@ When using an ATM machine, the buttons and actions of the machine behave differe
 - When the machine is on and running, trying to use the machine with a fault occurrence will most likely transition to an Out of Service state from a multitude of other states.
 - When the machine is Out of Service, there are only a select few other states that you can select.
 
+```reStructuredText
+NOTE: Inside the TC3 Sample Code, there are some Simulation Timers inside FB_ATM_Machine to simulate a process. The included sample is just the administrative section of the machine, sub-states can be added for Authentication and Transaction.
+```
 
 
-![ATM Machine](Images/StatePatternDiagram.png)
 
-### Application Use Case
+![ATM Machine](./Images/StatePatternDiagram.png)
+
+### **Application Use Case**
 
 - **Use the State pattern when you have an object that behaves differently** 
   **depending on its current state, the number of states is enormous, and** 
