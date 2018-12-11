@@ -56,4 +56,8 @@ Follow the link to your desired design pattern type, inside there will be exampl
 - **Structural Design Patterns** *(COMING SOON....)*
   These patterns explain how to assemble objects and classes into larger structures while keeping this structures flexible and efficient.
 
+<<<<<<< HEAD
 - **[Behavioral Design Patterns](/Behavioral Patterns)** These patterns are concerned with algorithms and the assignment of responsibilities between objects.
+=======
+- **[Behavioral Design Patterns](../Behavioral Patterns)** These patterns are concerned with algorithms and the assignment of responsibilities between objects.
+>>>>>>> StatePattern
