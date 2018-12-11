@@ -13,7 +13,7 @@ The State design pattern is a behavioral pattern in where the object can alter i
 
 The State design pattern is very similar to what is known as a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine).
 
-![FSM](.\Images\FSM.png)
+![FSM](./Images/FSM.png)
 
 It's a simple concept; at any give moment, the machine has a finite number of states that it can transition into, or be currently in. Within any unique state, the program behaves differently, and the program can be switched from one state to another instantly. One of the key advantages is that depending on the current state, the program may or may not switch to a specific other state. The switching rules are called **transitions**, and are also finite.
 
@@ -100,7 +100,7 @@ NOTE: Inside the TC3 Sample Code, there are some Simulation Timers inside FB_ATM
 
 - **Use the pattern when you have a class polluted with massive conditionals**
   **that alter how the class behaves according to the current values of the**
-  **classâ€™s fields.**
+  **class’s fields.**
 
   The State pattern lets you extract branches of these conditionals into 
   methods of corresponding state classes. While doing so, you can also 
