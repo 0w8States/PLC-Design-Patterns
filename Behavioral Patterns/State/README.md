@@ -59,7 +59,7 @@ Throughout this series you might see a similar design pattern known as a **Strat
 
 ### Structure
 
-![TC Pattern UML](.\Images\ClassDiagram.bmp)
+![TC Pattern UML](Images/ClassDiagram.bmp)
 
 - **FB_Context** stores a reference to one of the FB_States and delegates to it all the specific state work. It does this by accessing the state via the state interface. The context also has a setter for passing it a new state object.
 
@@ -81,7 +81,7 @@ When using an ATM machine, the buttons and actions of the machine behave differe
 
 
 
-![ATM Machine](.\Images\StatePatternDiagram.png)
+![ATM Machine](Images/StatePatternDiagram.png)
 
 ### Application Use Case
 
