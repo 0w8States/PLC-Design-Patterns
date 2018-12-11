@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <POU Name="MAIN" Id="{7be32b7f-6126-44c4-a8f3-2ea9e08f62d5}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	ATM_Machine 			: FB_ATM_Machine;
+	
+	xOn						:	BOOL;
+	xOff					:	BOOL;
+	xCancel					:	BOOL;
+	xService				:	BOOL;
+	xCardInserted			:	BOOL;
+	xCardEjected			:	BOOL;
+	ipCurrentState			:	I_State;
+	CurrentStateDescription	:	STRING;
+
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ATM_Machine(
+	xOnButton:= xOn, 
+	xOffButton:= xOff, 
+	xCancelButton:= xCancel,
+	xServiceKey	:= xService, 
+	xCardInserted := xCardInserted,
+	xCardEjected := xCardEjected,
+	ipState=> ipCurrentState);
+	
+	
+xOn				:= FALSE;
+xOff			:= FALSE;
+xCancel			:= FALSE;
+xCardInserted	:= FALSE;
+xCardEjected	:= FALSE;
+
+
+CASE ipCurrentState.Description OF 
+	E_StateDescription.Undefined :
+						CurrentStateDescription := 'ATM is in undefined state, please contact the bank.';
+	E_StateDescription.Off :	
+						CurrentStateDescription := 'ATM is turned off.';
+	E_StateDescription.SelfTest :
+						CurrentStateDescription := CONCAT('ATM is in self test, current status: ', TIME_TO_STRING(ATM_Machine.Sim_TimerTester.ET));
+	E_StateDescription.Maintenance : 
+						CurrentStateDescription := 'Maintenance Mode';	
+	E_StateDescription.OutOfService : 	
+						CurrentStateDescription := 'ATM is out of service, please contact bank.';	
+	E_StateDescription.Idle :			
+						CurrentStateDescription := 'Please enter card or maintenance key.';	
+	E_StateDescription.ServingCustomer :
+						CurrentStateDescription := CONCAT('ATM is performing transaction, current status: ', TIME_TO_STRING(ATM_Machine.Sim_TimerTransaction.ET));
+END_CASE                                ]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="12" Count="4" />
+      <LineId Id="31" Count="1" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="81" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="58" Count="0" />
+      <LineId Id="60" Count="1" />
+      <LineId Id="79" Count="1" />
+      <LineId Id="78" Count="0" />
+      <LineId Id="84" Count="0" />
+      <LineId Id="90" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="91" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="92" Count="0" />
+      <LineId Id="87" Count="0" />
+      <LineId Id="93" Count="0" />
+      <LineId Id="88" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="89" Count="0" />
+      <LineId Id="95" Count="0" />
+      <LineId Id="82" Count="0" />
+      <LineId Id="96" Count="0" />
+      <LineId Id="83" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

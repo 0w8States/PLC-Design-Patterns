@@ -1,0 +1,148 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <POU Name="FB_OutOfService" Id="{723d3d50-c51c-08c6-01e3-ca5a3f6f5f5f}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_OutOfService IMPLEMENTS I_State
+VAR_INPUT
+	(* Pointer to the ATM Machine*)
+	pATM_Machine	: POINTER TO FB_ATM_Machine;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Cancel" Id="{9ffe729a-ed4e-0074-2a78-fee68c1f05b2}">
+      <Declaration><![CDATA[METHOD Cancel : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Card_Ejected" Id="{6c51b482-94c3-0ac6-388a-851186b19f5c}">
+      <Declaration><![CDATA[METHOD Card_Ejected : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Card_Inserted" Id="{56da786d-000b-02e7-17cf-16c9f8c4ec56}">
+      <Declaration><![CDATA[METHOD Card_Inserted : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Description" Id="{b4293c98-a8e6-0fdb-1621-a432f1054519}">
+      <Declaration><![CDATA[PROPERTY Description : E_StateDescription
+]]></Declaration>
+      <Get Name="Get" Id="{c4da1f8e-7da0-0f66-187d-a0b1bc68a431}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Description := E_StateDescription.OutOfService;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Failure" Id="{03454216-0922-0640-3f7d-0ed5f7654e0b}">
+      <Declaration><![CDATA[METHOD Failure : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_Init" Id="{fa6e6e68-dffe-0117-26d8-96e73a09489f}">
+      <Declaration><![CDATA[METHOD FB_Init : BOOL
+VAR_INPUT
+	(* if TRUE, the retain variables are initialized (warm start / cold start)*)
+	bInitRetains	: BOOL;
+	(* if TRUE, the instance afterwards gets moved into the copy code (online change)*)
+	bInCopyCode	: BOOL;
+	(* Pointer to the ATM Machine*)
+	pATM_Machine	: POINTER TO FB_ATM_Machine;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.pATM_Machine := pATM_Machine;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Op" Id="{ea83443f-7c7a-0814-0a64-8bc75d8f7a89}">
+      <Declaration><![CDATA[METHOD Op : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Service" Id="{f04780a3-6783-0dbc-266b-0f86bf43f3b3}">
+      <Declaration><![CDATA[METHOD Service : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(ADSLOG_MSGTYPE_LOG, 'Entering Service Mode...', '');
+pATM_Machine^.SetState(pATM_Machine^.MaintenanceState);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SystemTest_OK" Id="{da0693fd-4085-035f-3b0d-a3f82054f4ae}">
+      <Declaration><![CDATA[METHOD SystemTest_OK : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Turn_Off" Id="{edd42c42-d61c-0274-0331-67a0e8de7e58}">
+      <Declaration><![CDATA[METHOD Turn_Off : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(ADSLOG_MSGTYPE_LOG, 'Turning off machine...', '');
+pATM_Machine^.SetState(pATM_Machine^.OffState);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Turn_On" Id="{83b4a46b-df13-0cc0-140b-518fc5d203ec}">
+      <Declaration><![CDATA[METHOD Turn_On : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_OutOfService">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.Cancel">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.Card_Ejected">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.Card_Inserted">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.Description.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.Failure">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.FB_Init">
+      <LineId Id="12" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.Op">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.Service">
+      <LineId Id="7" Count="0" />
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.SystemTest_OK">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.Turn_Off">
+      <LineId Id="7" Count="0" />
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_OutOfService.Turn_On">
+      <LineId Id="4" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
