@@ -74,35 +74,38 @@ You've recently purchase a CANopen servo drive for a new machine application. Up
 - The **FB_BaseHandler** is an optional class where you would put all your boilerplate code that is common to all the handlers in the chain. The main use of this is to check if there is another handler in the chain; if one exists, it can pass to the next, or it can stop if it's the last in the chain.
 
 ```pascal
-  IF ADR(next) <> 0 THEN	//Check if there is another handler in the chain
-  	next.handle(request);
-  END_IF
-  
-  
+IF ADR(next) <> 0 THEN	//Check if there is another handler in the chain
+	next.handle(request);
+END_IF
+
+
 ```
 
 - Inside the **FB_StaticHandler** classes, you can add their specific handler code. The handler can then decide whether to process the request, or pass it to the next handler in the chain.
 
 ```pascal
-  IF canHandleRequest(request) THEN	//Check to see if the request can be handled
-  	//Do something
-  ELSE
-  	SUPER^.handle(request);
-  END_IF
-  
+IF canHandleRequest(request) THEN	//Check to see if the request can be handled
+	//Do something
+ELSE
+	SUPER^.handle(request);
+END_IF
+
+
 ```
 
 - To use this, you'll create some client side code in a POU or inside a base Function Block for the machine that's using the chain.
 
 ```pascal
 VAR
-    h1				:	FB_StaticHandler1;
-    h2				:	FB_StaticHandler2;
-    h3				:	FB_StaticHandler3;
-    h_n				:	FB_StaticHandler_n;
-    request 		:	STRING	:= 'Hello world!';
-    xStartProcess	: BOOL;
+	h1				:	FB_StaticHandler1;
+	h2				:	FB_StaticHandler2;
+	h3				:	FB_StaticHandler3;
+	h_n				:	FB_StaticHandler_n;
+	request 		:	STRING	:= 'Hello world!';
+	xStartProcess	: BOOL;
 END_VAR
+
+
 ```
 
 ```pascal
@@ -114,6 +117,8 @@ IF xStartProcess THEN
 	xStartProcess := FALSE;
 	h1.handle(request);
 END_IF
+
+
 ```
 
 
