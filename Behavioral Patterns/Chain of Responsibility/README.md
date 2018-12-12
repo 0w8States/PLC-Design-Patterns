@@ -135,12 +135,12 @@ There are one example in this repository:
 
 - **Use the Chain of Responsibility pattern when your program is expected to process different kinds of requests in various ways, but the exact types of requests and their sequences are unknown beforehand.**
 
-  The pattern lets you link several handlers into one chain and, upon receiving a request, “ask” each handler whether it can process it. This way all handlers get a chance to process the request.
+	The pattern lets you link several handlers into one chain and, upon receiving a request, “ask” each handler whether it can process it. This way all handlers get a chance to process the request.
 
 - **Use the pattern when it’s essential to execute several handlers in a particular order.**
 
-  Since you can link the handlers in the chain in any order, all requests will get through the chain exactly as you planned.
+	Since you can link the handlers in the chain in any order, all requests will get through the chain exactly as you planned.
 
 - **Use the CoR pattern when the set of handlers and their order are supposed to change at runtime.**
 
-  If you provide setters for a reference field inside the handler classes, you’ll be able to insert, remove or reorder handlers dynamically.
+	If you provide setters for a reference field inside the handler classes, you’ll be able to insert, remove or reorder handlers dynamically.
