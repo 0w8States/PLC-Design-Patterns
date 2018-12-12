@@ -6,7 +6,7 @@ Welcome to my series on software design patterns for PLC programming. This serie
 
 
 
-To start off the series, I will be going through the design patterns noted by the notorious **GoF** (Gang of Four) authors. In 1994, the book **Design Patterns: Elements of Reusable Object-Oriented Software** was published and set up most of the industry standards for OOP design theory and practice. The book's authors are [Erich Gamma](https://en.wikipedia.org/wiki/Erich_Gamma), Richard Helm, [Ralph Johnson](https://en.wikipedia.org/wiki/Ralph_Johnson_(computer_scientist)) and [John Vlissides](https://en.wikipedia.org/wiki/John_Vlissides) with a foreword by [Grady Booch](https://en.wikipedia.org/wiki/Grady_Booch). While the book shows examples in more mainstream languages, they can be adapted to almost any OOP based architecture, thus the can also be implemented in IEC 61131-3 3rd edition PLC environment.
+To start off the series, I will be going through the design patterns noted by the reputable **GoF** (Gang of Four) authors. In 1994, the book **Design Patterns: Elements of Reusable Object-Oriented Software** was published and set up most of the industry standards for OOP design theory and practice. The book's authors are [Erich Gamma](https://en.wikipedia.org/wiki/Erich_Gamma), Richard Helm, [Ralph Johnson](https://en.wikipedia.org/wiki/Ralph_Johnson_(computer_scientist)) and [John Vlissides](https://en.wikipedia.org/wiki/John_Vlissides) with a foreword by [Grady Booch](https://en.wikipedia.org/wiki/Grady_Booch). While the book shows examples in more mainstream languages, they can be adapted to almost any OOP based architecture, thus the can also be implemented in IEC 61131-3 3rd edition PLC environment.
 
 
 
@@ -46,8 +46,6 @@ Consider design patterns a toolkit, a tested and proved solution for many of the
 ## **Design Pattern Types**
 
 Follow the link to your desired design pattern type, inside there will be examples of the various design patterns.
-
-
 
 - **Creational Design Patterns** *(COMING SOON....)* These patterns provide various object creation mechanisms, which increase flexibility and reuse of existing code.
 
