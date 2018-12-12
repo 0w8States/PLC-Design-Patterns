@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <POU Name="FB_BaseHandler" Id="{3ae00098-d17f-469a-aef0-b67116337f46}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BaseHandler IMPLEMENTS I_Handler
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	next : I_Handler;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="handle" Id="{64045c98-ff7e-40a2-b09f-806cfc62cb65}">
+      <Declaration><![CDATA[METHOD handle : BOOL
+VAR_INPUT
+	request	:	STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ADR(next) <> 0 THEN
+	next.handle(request);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setNext" Id="{e3b151c6-e50b-4ee0-9310-85da45fb8e1d}">
+      <Declaration><![CDATA[METHOD setNext : BOOL
+VAR_INPUT
+	h	: I_Handler;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[next := h;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_BaseHandler">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BaseHandler.handle">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_BaseHandler.setNext">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

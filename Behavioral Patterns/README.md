@@ -16,8 +16,6 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 7. [**State Pattern**](State/) - Similar to a Finite-State machine. Lets and object alter its behavior when its internal state changes.
 
-    
-
 8. **Strategy **- *Coming Soon!*
 
 9. **Template Method** - *Coming Soon!*
