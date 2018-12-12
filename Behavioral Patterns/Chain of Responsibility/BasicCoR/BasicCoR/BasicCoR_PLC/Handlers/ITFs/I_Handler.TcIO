@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.16">
+  <Itf Name="I_Handler" Id="{18eaaea9-20f2-4f91-897c-e70ca8fc2ca3}">
+    <Declaration><![CDATA[INTERFACE I_Handler
+]]></Declaration>
+    <Method Name="handle" Id="{8b085a04-1a9f-414b-8214-044f728182fb}">
+      <Declaration><![CDATA[METHOD handle : BOOL
+VAR_INPUT
+	request	:	STRING;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="setNext" Id="{fb3f813b-e75b-4e33-90cb-c27f9b5355e1}">
+      <Declaration><![CDATA[METHOD setNext : BOOL
+VAR_INPUT
+	h	: I_Handler;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
