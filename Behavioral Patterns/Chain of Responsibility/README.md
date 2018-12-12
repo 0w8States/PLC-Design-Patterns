@@ -1,12 +1,12 @@
 # **Chain of Responsibility**
 
-### **Description**
+## **Description**
 
 **Chain of Responsibility** is a behavioral design pattern that lets you pass requests along a chain of handlers objects. Upon receiving a request, each handler object decides whether to process the request or to pass it to the next handler object in the chain.
 
 
 
-### **Problem**
+## **Problem**
 
 Let's pretend that you are working on the latest and greatest robotic assembly line. There are some 6-axis robots, AGVs roaming the floor, and also some overhead crane type bots. You now are required to setup a series of permissive to allow the full line to start running; encoders at home, batteries charged, watchdogs okay. If everything reports back OK, the system will start. However, if any of the checks fail, there is no reason to proceed with checking the other robots.
 
@@ -30,7 +30,7 @@ The system becomes very hard to comprehend and maintain. Imagine having to train
 
 
 
-### **Solution**
+## **Solution**
 
 As with other behavioral design patterns, the **Chain of Responsibilities** is based on the idea of transforming particular behaviors into stand-alone objects called ***handlers***. In this application, each check could be extracted into its own class with a single check method. The request to start can be passed, along with other relevant data, as an input argument to the check methods.
 
@@ -52,7 +52,7 @@ Not only is this possible with a **Chain of Responsibilities**, but you can also
 
 
 
-### **Analogy**
+## **Analogy**
 
 You've recently purchase a CANopen servo drive for a new machine application. Upon opening the box, you realize there is no information on where to find the datasheet or EDS file.
 
@@ -63,7 +63,7 @@ You've recently purchase a CANopen servo drive for a new machine application. Up
 
 
 
-### **Structure**
+## **Structure**
 
 
 
@@ -73,25 +73,29 @@ You've recently purchase a CANopen servo drive for a new machine application. Up
 
 - The **FB_BaseHandler** is an optional class where you would put all your boilerplate code that is common to all the handlers in the chain. The main use of this is to check if there is another handler in the chain; if one exists, it can pass to the next, or it can stop if it's the last in the chain.
 
-  ```c++
+  ```pascal
   IF ADR(next) <> 0 THEN	//Check if there is another handler in the chain
   	next.handle(request);
   END_IF
+  
+  
   ```
 
 - Inside the **FB_StaticHandler** classes, you can add their specific handler code. The handler can then decide whether to process the request, or pass it to the next handler in the chain.
 
-  ```C++
+  ```pascal
   IF canHandleRequest(request) THEN	//Check to see if the request can be handled
   	//Do something
   ELSE
   	SUPER^.handle(request);
   END_IF
+  
+  
   ```
 
 - To use this, you'll create some client side code in a POU or inside a base Function Block for the machine that's using the chain.
 
-  ```c++
+  ```pascal
   VAR
       h1				:	FB_StaticHandler1;
       h2				:	FB_StaticHandler2;
@@ -100,9 +104,11 @@ You've recently purchase a CANopen servo drive for a new machine application. Up
       request 		:	STRING	:= 'Hello world!';
       xStartProcess	: BOOL;
   END_VAR
+  
+  
   ```
 
-  ```c++
+  ```pascal
   h1.setNext(h2);
   h2.setNext(h3);
   h3.setNext(h_n);
@@ -111,18 +117,21 @@ You've recently purchase a CANopen servo drive for a new machine application. Up
   	xStartProcess := FALSE;
   	h1.handle(request);
   END_IF
+  
+  
   ```
 
 
 
-### **Example**
+## **Example**
 
 There are one example in this repository:
 
 - A basic implementation called **BasicCoR**, with a message box that is displayed along the way as the chain handles a request.
 
 
-### **Application Use Case**
+
+## **Application Use Case**
 
 - **Use the Chain of Responsibility pattern when your program is expected to process different kinds of requests in various ways, but the exact types of requests and their sequences are unknown beforehand.**
 

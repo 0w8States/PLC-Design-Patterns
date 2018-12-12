@@ -1,11 +1,11 @@
 # **State**
 
-### **Description**
+## **Description**
 
 The State design pattern is a behavioral pattern in where the object can alter it's behavior when it's internal state is changed.
 
 
-### **Problem**
+## **Problem**
 
 The State design pattern is very similar to what is known as a [Finite-State Machine](https://en.wikipedia.org/wiki/Finite-state_machine).
 
@@ -41,7 +41,7 @@ The problem grows into a bigger issue as the project evolves over time, as it's 
 
 
 
-### **Solution**
+## **Solution**
 
 The State design pattern follows the concept of using a class for each possible state, each new state added to the program in the future will have it's own new class. We would extract all the state specific behaviors and implement them in their corresponding classes.
 
@@ -53,7 +53,7 @@ Throughout this series you might see a similar design pattern known as a **Strat
 
 
 
-### **Structure**
+## **Structure**
 
 ![ClassDiagram](Images/ClassDiagram.png)
 
@@ -67,7 +67,7 @@ Throughout this series you might see a similar design pattern known as a **Strat
 
 
 
-### **Example**
+## **Example**
 
 When using an ATM machine, the buttons and actions of the machine behave differently depending on the  current state of the machine.
 
@@ -83,7 +83,7 @@ NOTE: Inside the TC3 Sample Code, there are some Simulation Timers inside FB_ATM
 
 ![ATM Machine](Images/StatePatternDiagram.png)
 
-### **Application Use Case**
+## **Application Use Case**
 
 - **Use the State pattern when you have an object that behaves differently depending on its current state, the number of states is enormous, and the state-specific code changes frequently.**
 

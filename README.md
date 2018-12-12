@@ -14,7 +14,7 @@ Starting off the series, I'd like to cover the question of **What?** and **Why?*
 
 
 
-### **What is a design pattern?**
+## **What is a design pattern?**
 
 A design pattern is a solution to commonly occurring problems in software design. The can be considered as a blueprint that you can tweak to fit a reoccurring problem in your code.
 
@@ -33,7 +33,7 @@ A pattern consists of the following:
 
 
 
-### **Why should I use or learn patterns?**
+## **Why should I use or learn patterns?**
 
 With the introduction of OOP in the IEC61131-3 3rd edition standard, this opened the doors to many of the features the software engineering industry already uses. Truth be told, both PLC and non-PLC programmers might go for many years without studying a single pattern. Some might even implement a pattern without even knowing. So why would you spend time studying patterns?
 
