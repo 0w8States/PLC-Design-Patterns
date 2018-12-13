@@ -2,7 +2,7 @@
 
 ## **Description**
 
-**Chain of Responsibility** is a behavioral design pattern that lets you pass requests along a chain of handlers objects. Upon receiving a request, each handler object decides whether to process the request, or to pass it to the next handler object in the chain.
+**Chain of Responsibility** is a behavioral design pattern that lets you pass requests along a chain of handlers objects. Upon receiving a request, each handler object decides whether to process the request, or to move it to the next handler object in the chain.
 
 
 
@@ -14,19 +14,17 @@ Let's imagine that you are working on the latest and greatest robotic assembly l
 
 ![Basic Chain](Images/SingleProcess.png)
 
-Over the next year, you install more robotic assembly lines, and you implement more of those sequential checks.
+Over the next year, you install more robotic assembly lines, and you implement more of those following checks.
 
-- The next customer would like 15 more additional robots in the line, so you add extra check code inside your POU to compensate.
-
-- Later, one of the engineers on your team discovers that there is a safety point that has been missed in the check routine. This is a critical point that needs to be checked before the system can go into RUN.
-
-- Next, your boss wants to add a feature that allows the system to recover from a power outage, a soft check on the robots is permissible. You can now use data that was previously checked and stored in persistent data, instead of scanning/homing each individual robot.
+- The next customer would like 15 more new robots in the line, so you add extra check code inside your POU to compensate.
+- Later, one of the engineers on your team discovers that there is a safety point in the check routine missing. The point is a critical one that needs checking before the system can go into RUN.
+- Next, your boss wants to add a feature that allows the system to recover from a power outage, a soft check on the robots is permissible. You can now use data that was previously checked and stored in persistent data, instead of scanning/homing each robot.
 
 ![Complex](Images/SingleProcessComplicated.png)
 
-You can see that the code of checks grows fairly messy over a short period of time. Adding more features might not be possible, or will create a headache and lengthy debug schedules. Changing one check might break another, and worst of all, the code is rendered almost unusable on other systems.
+You can see that the code of checks grows fairly messy over a short period. Adding more features might not be possible, or will create a headache, and lengthy debug schedules. Changing one check might break another, and worst of all, the code is rendered almost unusable on other systems.
 
-The system becomes very hard to comprehend and maintain. Imagine having to train the whole team on whom this complex section of code works, multiple times, and they need to pass on this tribal knowledge for the lifetime of the machine. How do we solve this? with a Chain of Responsibilities!
+The system becomes very hard to comprehend and maintain. Imagine having to train the whole team on whom this complex section of code works, multiple times, and they need to pass on this tribal knowledge for the lifetime of the machine. How do we solve this? With a Chain of Responsibilities!
 
 
 
@@ -42,13 +40,13 @@ The pattern is used by linking each handler into a chain. Each linked handler ha
 
 Now, imagine using this chain for not only fault checking, like the example above but also other request based items. With this structure, a handler object isn't limited to only reporting back in the case of a failure. The handler can also choose to process a request if it wants, this can be very advantageous. 
 
-For instance, your boss wants you to create a program to allow the first freely available robot to dock at home, while the system is running, and then allow some technicians to run routine diagnostics. To avoid doing a broadcast message and evaluating the data, let us assume that with a bit of planning you realize that the checks should be performed sequentially. 
+For instance, your boss wants you to create a program to allow the first freely available robot to dock at home, while the system is running, and then enable some technicians run routine diagnostics. To avoid doing a broadcast message and evaluating the data, let us assume that with a bit of planning you realize that the checks should be performed sequentially. 
 
 A technician should be able to use the HMI to send out a request. The request is passed from each robot until it finds the first available robot to process the request.
 
 ![Multiprocess](Images/MultiProcess.png)
 
-Not only is this possible with a **Chain of Responsibilities**, but you can also create a tree-type architecture for the handlers to process requests. Imagine not only having a **Generate Report and Home** command, but also a **Beep** command, or a **Lights On**/**Lights Off** command. To access those features, you simply change the request that you send to the handler chain. You are essentially creating a tree of commands, but because the handlers use the same interface they can be used in a chain.
+Not only is this possible with a **Chain of Responsibilities**, but you can also create a tree-type architecture for the handlers to process requests. Imagine not just having a **Generate Report and Home** command, but also a **Beep** command, or a **Lights On**/**Lights Off** command. To access those features, you easily change the request that you send to the handler chain. You are essentially creating a tree of commands, but because the handlers use the same interface they can be used in a chain.
 
 
 
@@ -146,11 +144,9 @@ There is one example in this repository:
 
 
 
-
 - **Use the pattern when it’s essential to execute several handlers in a particular order.**
 
   > Since you can link the handlers in the chain in any order, all requests will get through the chain exactly as you planned.
-
 
 
 
