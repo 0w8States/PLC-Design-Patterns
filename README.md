@@ -1,4 +1,4 @@
-- # Software Design Patterns for TwinCAT PLC
+# **Software Design Patterns for TwinCAT PLC**
 
 
 
@@ -14,7 +14,7 @@
 
 
 
-  ## **What is a design pattern?**
+## **What is a design pattern?**
 
   A design pattern is a solution to commonly occurring problems in software design. Consider them as a blueprint that you can tweak to fit a reoccurring problem in your code.
 
@@ -33,7 +33,7 @@
 
 
 
-  ## **Why should I use or learn patterns?**
+## **Why should I use or learn patterns?**
 
   With the introduction of OOP in the IEC61131-3 3rd edition standard, this opened the doors to many of the features the software engineering industry already uses. Both PLC and non-PLC programmers might go for many years without studying a single pattern. Some might even implement a design pattern without even knowing. So why would you spend time studying patterns?
 
@@ -43,7 +43,7 @@
 
 
 
-  ## **Design Pattern Types**
+## **Design Pattern Types**
 
   Follow the link to your desired design pattern type, inside there will be examples of the various design patterns.
 
