@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_FireOffCommand" Id="{714b9945-5f85-41e4-aa66-153e194c69f6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_FireOffCommand IMPLEMENTS I_Command
+VAR
+	refFlameCannon : REFERENCE TO FB_FlameCannon;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{869ebaf8-c59a-472e-9c7f-510b734fe6d0}">
+      <Declaration><![CDATA[METHOD Execute
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (__ISVALIDREF(THIS^.refFlameCannon)) THEN
+	THIS^.refFlameCannon.Off();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{203782f2-4140-4af5-9c6a-bc1bfe74a5e7}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains 	: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode 	: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	refFlameCannon 	: REFERENCE TO FB_FlameCannon;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (__ISVALIDREF(refFlameCannon)) THEN
+	THIS^.refFlameCannon REF= refFlameCannon;
+ELSE
+	THIS^.refFlameCannon REF= 0;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_FireOffCommand">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FireOffCommand.Execute">
+      <LineId Id="5" Count="1" />
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FireOffCommand.FB_init">
+      <LineId Id="8" Count="3" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
