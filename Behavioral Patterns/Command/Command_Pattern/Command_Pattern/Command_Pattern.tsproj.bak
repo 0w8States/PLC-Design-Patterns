@@ -1924,4 +1924,16 @@ External Setpoint Generation:
 			</Project>
 		</Plc>
 	</Project>
+	<Mappings>
+		<OwnerA Name="TIPC^PLC1^PLC1 Instance">
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^FlyingHoist_Rot">
+				<Link VarA="PlcTask Inputs^MAIN.fbFlyingHoist.FlyingHoist_Rot.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^MAIN.fbFlyingHoist.FlyingHoist_Rot.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+			<OwnerB Name="TINC^NC-Task 1 SAF^Axes^FlyingHoist_Vert">
+				<Link VarA="PlcTask Inputs^MAIN.fbFlyingHoist.FlyingHoist_Vert.NcToPlc" VarB="Outputs^ToPlc"/>
+				<Link VarA="PlcTask Outputs^MAIN.fbFlyingHoist.FlyingHoist_Vert.PlcToNc" VarB="Inputs^FromPlc"/>
+			</OwnerB>
+		</OwnerA>
+	</Mappings>
 </TcSmProject>

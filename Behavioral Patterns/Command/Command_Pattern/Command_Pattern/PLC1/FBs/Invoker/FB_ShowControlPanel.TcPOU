@@ -22,11 +22,7 @@ END_VAR
 		IF arrRtrig[nIndex].Q AND (aiCommand[nIndex] <> 0)THEN
 				aiCommand[nIndex].Execute();	
 		END_IF
-		
-		// Continuously update for Motion
-		IF nIndex <= 6 AND arrSwitch[nIndex] AND aiCommand[nIndex] <> 0 THEN
-			aiCommand[nIndex].Execute();	
-		END_IF		
+				
 	END_IF
 END_FOR
 
@@ -70,9 +66,6 @@ END_IF
       <LineId Id="21" Count="0" />
       <LineId Id="33" Count="0" />
       <LineId Id="57" Count="0" />
-      <LineId Id="63" Count="0" />
-      <LineId Id="58" Count="0" />
-      <LineId Id="61" Count="1" />
       <LineId Id="48" Count="0" />
       <LineId Id="24" Count="1" />
       <LineId Id="9" Count="0" />

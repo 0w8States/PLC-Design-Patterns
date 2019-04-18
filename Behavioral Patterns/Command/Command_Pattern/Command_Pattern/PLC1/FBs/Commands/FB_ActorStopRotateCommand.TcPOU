@@ -15,7 +15,6 @@ END_VAR
       <Implementation>
         <ST><![CDATA[IF (__ISVALIDREF(THIS^.refFlyingHoist)) THEN
 	THIS^.refFlyingHoist.StopRotateCommand();
-	THIS^.refFlyingHoist.StopRotateCommand();
 END_IF
 ]]></ST>
       </Implementation>
@@ -42,7 +41,7 @@ END_IF
     </LineIds>
     <LineIds Name="FB_ActorStopRotateCommand.Execute">
       <LineId Id="5" Count="0" />
-      <LineId Id="10" Count="1" />
+      <LineId Id="10" Count="0" />
       <LineId Id="8" Count="0" />
       <LineId Id="4" Count="0" />
     </LineIds>
