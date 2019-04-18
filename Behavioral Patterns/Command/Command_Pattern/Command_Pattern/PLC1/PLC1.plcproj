@@ -16,6 +16,9 @@
     <Released>true</Released>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="ClassDiagram.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FBs\Commands\FB_ActorDownCommand.TcPOU">
       <SubType>Code</SubType>
     </Compile>
