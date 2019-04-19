@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_PT1000" Id="{c0c66743-b10d-45bf-ad67-6e8c1b0f5e19}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PT1000 EXTENDS FB_TempSensor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	A							: REAL;
+	B							: REAL;
+	C							: REAL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[(*
+	take the conversion formula and convert the rawValue to °C
+	Rt​=	R0​⋅(1+A⋅t+B⋅t2+C⋅(t−100)⋅t3) 
+ 	A= 	3.9083⋅10−3
+	B= 	−5.7750⋅10−7
+	C=	−4.1830⋅10	for t​<​0°C
+		−120.0		for t​≥​0°C
+*)
+_degrees := rawValue + 1000.0;
+]]></ST>
+    </Implementation>
+    <LineIds Name="FB_PT1000">
+      <LineId Id="37" Count="8" />
+      <LineId Id="20" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
