@@ -18,6 +18,6 @@ Behavioral patterns are concerned with algorithms and the assignment of responsi
 
 8. [**Strategy**](Strategy/)- Lets you define a family of algorithms, put each of them into a separate class, and make their objects interchangeable.
 
-9. **Template Method** - *Coming Soon!*
+9. [**Template Method**](Template_Method/) - Defines the skeleton of an algorithm in the superclass but lets subclasses override specific steps of the algorithm without changing its structure.
 
 10. **Visitor** - *Coming Soon!*
