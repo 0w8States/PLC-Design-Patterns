@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="FB_Mediator" Id="{9da9c772-232d-4988-8017-ee328e3fdbeb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Mediator IMPLEMENTS I_Mediator
+VAR_INPUT
+	iColleague : ARRAY [1..Param.MAX_COLLEAGUES] OF I_Colleague; // Colleague Interface Array
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="notify" Id="{c2bd4c05-5ba7-41fe-928b-db76afe4fa0e}">
+      <Declaration><![CDATA[METHOD notify : BOOL
+VAR_INPUT
+	(* Colleague sending the notification*)
+	sender	: I_Colleague;
+	(* Some event the collegue is attempting*)
+	event	: STRING;
+END_VAR
+
+VAR
+	i: INT;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR i := 1 TO Param.MAX_COLLEAGUES DO
+		IF iColleague[i] <> 0 AND iColleague[i] = sender THEN
+			ADSLOGSTR(msgCtrlMask := ADSLOG_MSGTYPE_MSGBOX, msgFmtStr := CONCAT(CONCAT('User ', TO_STRING(i)), ' said: %s'), strArg := event);
+		END_IF
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Mediator">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Mediator.notify">
+      <LineId Id="12" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

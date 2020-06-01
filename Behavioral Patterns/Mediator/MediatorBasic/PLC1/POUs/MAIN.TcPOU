@@ -1,0 +1,63 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <POU Name="MAIN" Id="{d2846f60-a5b9-420e-9422-ce267f63bc31}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbChatWindow : FB_Mediator;
+	fbUsers	     : ARRAY[1..Param.MAX_COLLEAGUES] OF FB_Colleague;
+	
+	ChatWindow	 : I_Mediator;
+	Users		 : ARRAY[1..Param.MAX_COLLEAGUES] OF I_Colleague;
+	
+	// Task and Demo Control
+	bStartDemo	: BOOL := TRUE;
+	i: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Initialize Interface to Mediator
+ChatWindow := fbChatWindow;
+// Assign Users 
+fbChatWindow(iColleague := Users);
+FOR i := 1 TO Param.MAX_COLLEAGUES DO
+	// Initialize Interface to Colleagues
+	Users[i] := fbUsers[i];
+	// Assign Mediator to Colleagues
+	fbUsers[i](iMediator := ChatWindow);
+END_FOR
+
+
+IF bStartDemo THEN
+	bStartDemo := FALSE;
+	Users[1].operation('Hi! How is everyone?');
+	Users[2].operation('Good good..');
+	Users[4].operation('Doing fine');
+	Users[5].operation('Yup! All is well');
+	Users[3].operation('I need a beer right about now');
+	Users[6].operation('Had a long day?');	
+	Users[3].operation('Yuuup, very long...');
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="103" Count="0" />
+      <LineId Id="101" Count="0" />
+      <LineId Id="104" Count="0" />
+      <LineId Id="86" Count="0" />
+      <LineId Id="94" Count="0" />
+      <LineId Id="108" Count="0" />
+      <LineId Id="100" Count="0" />
+      <LineId Id="110" Count="0" />
+      <LineId Id="96" Count="1" />
+      <LineId Id="99" Count="0" />
+      <LineId Id="85" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="63" Count="0" />
+      <LineId Id="41" Count="4" />
+      <LineId Id="39" Count="0" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="40" Count="0" />
+      <LineId Id="26" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
