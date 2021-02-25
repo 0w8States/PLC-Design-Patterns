@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_ShowControlPanel" Id="{856921ab-341a-4bf4-ae97-d8ce6d9d2448}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ShowControlPanel
+VAR_INPUT
+	arrSwitch		: ARRAY[1..C_MAXCOMMANDS] OF BOOL;
+END_VAR
+VAR
+	aiCommand		: ARRAY[1..C_MAXCOMMANDS] OF I_Command;	
+	arrRtrig		: ARRAY[1..C_MAXCOMMANDS] OF R_TRIG;
+	nIndex			: INT;
+END_VAR
+VAR CONSTANT
+	C_MAXCOMMANDS	: INT := 12;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[FOR nIndex := 1 TO C_MAXCOMMANDS DO
+	arrRtrig[nIndex](CLK := arrSwitch[nIndex]);
+	IF aiCommand[nIndex] <> 0 THEN
+		
+		IF arrRtrig[nIndex].Q AND (aiCommand[nIndex] <> 0)THEN
+				aiCommand[nIndex].Execute();	
+		END_IF
+				
+	END_IF
+END_FOR
+
+]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{69122625-f844-40eb-802f-24c07b744651}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+END_VAR
+VAR
+	nIndex : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR nIndex := 1 TO C_MAXCOMMANDS DO
+	aiCommand[nIndex] := 0;
+END_FOR
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetCommand" Id="{7957bb33-29b3-4bd2-a13e-9fd2457c016f}">
+      <Declaration><![CDATA[METHOD SetCommand : BOOL
+VAR_INPUT
+	nPosition		: INT;
+	iCommand		: I_Command;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF ((nPosition >= 1) AND (nPosition <= C_MAXCOMMANDS) AND (iCommand <> 0)) THEN
+		THIS^.aiCommand[nPosition] := iCommand;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_ShowControlPanel">
+      <LineId Id="17" Count="1" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="60" Count="0" />
+      <LineId Id="19" Count="0" />
+      <LineId Id="21" Count="0" />
+      <LineId Id="33" Count="0" />
+      <LineId Id="57" Count="0" />
+      <LineId Id="48" Count="0" />
+      <LineId Id="24" Count="1" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ShowControlPanel.FB_init">
+      <LineId Id="11" Count="2" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ShowControlPanel.SetCommand">
+      <LineId Id="9" Count="2" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

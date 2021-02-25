@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <Itf Name="I_Visitor" Id="{ca293700-6744-4e91-b2aa-c10eff183998}">
+    <Declaration><![CDATA[INTERFACE I_Visitor
+]]></Declaration>
+    <Method Name="visitConveyor" Id="{674d8e4c-61e3-4817-b84b-3ea9ba4e51d1}">
+      <Declaration><![CDATA[METHOD visitConveyor
+VAR_INPUT
+	fbConveyor : FB_Conveyor;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="visitHeater" Id="{3c75bc6f-c2b0-4f18-aa1e-655777d0dd14}">
+      <Declaration><![CDATA[METHOD visitHeater
+VAR_INPUT
+	fbHeater : FB_Heater;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="visitIPC" Id="{85bdd0c6-6121-41ee-a678-4ee8c40079f0}">
+      <Declaration><![CDATA[METHOD visitIPC
+VAR_INPUT
+	fbIPC : FB_IPCDiagnostics;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

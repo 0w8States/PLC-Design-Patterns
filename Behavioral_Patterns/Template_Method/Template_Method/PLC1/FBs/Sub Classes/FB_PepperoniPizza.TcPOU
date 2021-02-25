@@ -1,0 +1,88 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_PepperoniPizza" Id="{0eb8e661-ef29-4055-9860-b4646f7eb3a1}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_PepperoniPizza EXTENDS FB_Pizza
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="addCheese" Id="{bcbcec8e-55a0-481b-aa1d-e1a090df105f}">
+      <Declaration><![CDATA[METHOD addCheese
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_WARN,
+        	msgFmtStr := 'Adding Mozzarella Cheese...', '');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="addMeat" Id="{411ea7c7-d2cd-45a6-9023-bc48d40ecf58}">
+      <Declaration><![CDATA[METHOD addMeat
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_WARN,
+        	msgFmtStr := 'Adding Pepperoni...', '');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="addVegetables" Id="{95337c26-1b6b-4834-a857-b0f543048b9e}">
+      <Declaration><![CDATA[METHOD addVegetables : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Nothing here because it's not used
+// Normally these Meat, Cheese, and Veg would be an Abstract Method]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="customerWantsCheese" Id="{59e799b7-c0fb-43f9-ad82-197750dcba5f}">
+      <Declaration><![CDATA[METHOD customerWantsCheese : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Cheese Hook
+customerWantsCheese := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="customerWantsMeat" Id="{19909c54-d593-42fe-8e86-9689eda1c885}">
+      <Declaration><![CDATA[METHOD customerWantsMeat : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Meat Hook
+customerWantsMeat := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_PepperoniPizza">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PepperoniPizza.addCheese">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PepperoniPizza.addMeat">
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PepperoniPizza.addVegetables">
+      <LineId Id="5" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_PepperoniPizza.customerWantsCheese">
+      <LineId Id="9" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_PepperoniPizza.customerWantsMeat">
+      <LineId Id="9" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

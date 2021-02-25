@@ -1,0 +1,100 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="NotificationIterator" Id="{d6413826-61c3-4c4f-a428-bb95e0e149a0}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK NotificationIterator IMPLEMENTS Iterator
+VAR
+	pNotificationList 	: ARRAY[0..Param.MAX_ITERABLE_ITEMS] OF POINTER TO Notification;
+	//pNotification 		: POINTER TO Notification; 
+	nPosition 			: INT := 0;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="current" Id="{de0d8d4f-a88b-47fb-ae95-f156b60e189f}">
+      <Declaration><![CDATA[METHOD current : Object
+VAR
+	pNotification 		: POINTER TO Notification; 
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pNotification := THIS^.pNotificationList[nPosition];
+current := pNotification^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{74440f01-e5bd-4487-8e42-8c49e9c9c386}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	pNotificationList : ARRAY[0..Param.MAX_ITERABLE_ITEMS] OF POINTER TO Notification;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[This^.pNotificationList := pNotificationList;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="hasNext" Id="{0e325456-d50f-42ae-97c1-cc521b11fb76}">
+      <Declaration><![CDATA[METHOD hasNext : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (THIS^.pNotificationList[nPosition + 1] <> 16#0000) THEN
+	hasNext := TRUE;
+ELSE
+	hasNext := FALSE;	
+END_IF
+	]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="next" Id="{fe8fab4f-1501-447a-926f-3896c3481b98}">
+      <Declaration><![CDATA[METHOD next : Object
+VAR
+	pNotification 		: POINTER TO Notification; 
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.nPosition := THIS^.nPosition + 1;
+
+pNotification := THIS^.pNotificationList[nPosition];
+next := pNotification^;
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="reset" Id="{339a6f97-1a8f-43f4-9ecf-7cf24e122f8f}">
+      <Declaration><![CDATA[METHOD reset : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[reset := FALSE;
+
+THIS^.nPosition := 0;
+reset := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="NotificationIterator">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="NotificationIterator.current">
+      <LineId Id="4" Count="0" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+    <LineIds Name="NotificationIterator.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="NotificationIterator.hasNext">
+      <LineId Id="11" Count="0" />
+      <LineId Id="17" Count="0" />
+      <LineId Id="19" Count="1" />
+      <LineId Id="18" Count="0" />
+      <LineId Id="16" Count="0" />
+    </LineIds>
+    <LineIds Name="NotificationIterator.next">
+      <LineId Id="17" Count="1" />
+      <LineId Id="11" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+    <LineIds Name="NotificationIterator.reset">
+      <LineId Id="6" Count="1" />
+      <LineId Id="4" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

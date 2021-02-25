@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <Itf Name="Object" Id="{0988eda9-9fad-447e-bc17-ba4b26c3e534}">
+    <Declaration><![CDATA[INTERFACE Object
+]]></Declaration>
+    <Method Name="getNotification" Id="{947495b9-1c2e-4a6c-ad55-07922478da92}">
+      <Declaration><![CDATA[METHOD getNotification : STRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

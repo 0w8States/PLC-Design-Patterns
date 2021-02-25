@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <Itf Name="I_SysModules" Id="{073f48fb-e2af-4b1a-a74f-362700c31e24}">
+    <Declaration><![CDATA[INTERFACE I_SysModules
+]]></Declaration>
+    <Method Name="accept" Id="{506d095f-0bbc-48c7-a516-c48bc525fbd6}">
+      <Declaration><![CDATA[METHOD accept
+VAR_INPUT
+	iVisitor : I_Visitor;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

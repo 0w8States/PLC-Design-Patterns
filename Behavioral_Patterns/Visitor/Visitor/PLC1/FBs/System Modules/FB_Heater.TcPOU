@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_Heater" Id="{1f9185b3-e3ce-4e45-a157-5f473ef16cdb}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'reflection'} 
+FUNCTION_BLOCK FB_Heater IMPLEMENTS I_SysModules
+VAR
+	lrCurrentTemp : LREAL := 72.0;
+	sStatus		  : STRING := 'Heating...';
+	
+	{attribute 'instance-path'} 
+    {attribute 'noinit'} 
+    sPath : STRING; 
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="accept" Id="{219d35d4-b079-4f05-9455-c0331a726c1f}">
+      <Declaration><![CDATA[METHOD accept
+VAR_INPUT
+	iVisitor : I_Visitor;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iVisitor.visitHeater(THIS^);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="pPath" Id="{c56d2ee8-fc14-4b91-b359-971aabafdd9d}">
+      <Declaration><![CDATA[PROPERTY pPath : STRING]]></Declaration>
+      <Get Name="Get" Id="{83602bde-edda-4d14-a40e-0792d3b73791}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pPath := THIS^.sPath;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="pStatus" Id="{dc6254ab-ed74-4917-a741-e37379d1bf61}">
+      <Declaration><![CDATA[PROPERTY pStatus : STRING]]></Declaration>
+      <Get Name="Get" Id="{9d847b6c-a219-476a-8d6e-049d01b68814}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pStatus := THIS^.sStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="pTemp" Id="{b9c50f6e-9cc5-4b5b-b278-c291c84a7d2b}">
+      <Declaration><![CDATA[PROPERTY pTemp : LREAL]]></Declaration>
+      <Get Name="Get" Id="{1d9ebdfa-04e5-4b57-9efe-a4de3f893017}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pTemp := THIS^.lrCurrentTemp;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FB_Heater">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Heater.accept">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Heater.pPath.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Heater.pStatus.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Heater.pTemp.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

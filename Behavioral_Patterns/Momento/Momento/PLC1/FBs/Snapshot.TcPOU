@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Snapshot" Id="{14f1b39a-6b83-4b3d-8c16-e8df624b3a28}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK Snapshot
+VAR
+	pEditor : POINTER TO RecipeEditor;
+	sTitle : STRING;
+	sRecipeSteps : ARRAY[1..5] OF STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_exit" Id="{6dcc51a9-78b0-448b-8b92-b57f979dcb32}">
+      <Declaration><![CDATA[METHOD FB_exit : BOOL
+VAR_INPUT
+	bInCopyCode : BOOL; // if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Clear the pointer on exit
+IF pEditor <> 16#0000 THEN
+	pEditor := 16#0000;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{06c666fa-9174-47c9-8d0d-ce8b18b1188d}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	pEditor : POINTER TO RecipeEditor;
+	sTitle : STRING;
+	sRecipeSteps : ARRAY[1..5] OF STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.pEditor := pEditor;
+THIS^.sTitle := sTitle;
+THIS^.sRecipeSteps := sRecipeSteps;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="restore" Id="{788b526b-1fd4-44a0-9ef2-d3ab3a33bd5f}">
+      <Declaration><![CDATA[METHOD restore
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pEditor^.setTitle(THIS^.sTitle);
+pEditor^.setRecipe(THIS^.sRecipeSteps);
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := 'PLC Msg.: %s', strArg := 'Snapshot restored...');
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="Snapshot">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Snapshot.FB_exit">
+      <LineId Id="9" Count="0" />
+      <LineId Id="6" Count="2" />
+    </LineIds>
+    <LineIds Name="Snapshot.FB_init">
+      <LineId Id="13" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="14" Count="0" />
+    </LineIds>
+    <LineIds Name="Snapshot.restore">
+      <LineId Id="17" Count="1" />
+      <LineId Id="15" Count="1" />
+      <LineId Id="10" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

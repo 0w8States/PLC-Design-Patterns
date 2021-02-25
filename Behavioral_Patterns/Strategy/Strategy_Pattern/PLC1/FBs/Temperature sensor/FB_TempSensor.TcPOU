@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_TempSensor" Id="{d20820a4-0d8a-43f0-b4e4-a3d10b2764cf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_TempSensor IMPLEMENTS I_TempSensor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	rawValue			AT %I*	: REAL;		// resistance measurement value of sensor
+	_degrees					: REAL;		// celcius
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="P_DegreesC" Id="{cc668bef-8853-461c-9e1d-9e2a4d945482}">
+      <Declaration><![CDATA[PROPERTY P_DegreesC : real]]></Declaration>
+      <Get Name="Get" Id="{f70f0de7-f5f8-487b-a84e-e13be9e28d78}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_DegreesC := _degrees;
+]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{6ce4b074-039f-4485-8b33-2e9a81b399a0}">
+        <Declaration><![CDATA[
+VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_degrees := P_DegreesC;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+    <Property Name="P_DegreesF" Id="{cfabb4a4-d863-4c51-958b-ee2d28da9778}">
+      <Declaration><![CDATA[PROPERTY P_DegreesF : real]]></Declaration>
+      <Get Name="Get" Id="{16a31073-cd42-4afc-bef6-682270f2c213}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_DegreesF := _degrees / 232566 * 2 + 32;
+
+]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FB_TempSensor">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TempSensor.P_DegreesC.Get">
+      <LineId Id="2" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TempSensor.P_DegreesC.Set">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_TempSensor.P_DegreesF.Get">
+      <LineId Id="2" Count="0" />
+      <LineId Id="6" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

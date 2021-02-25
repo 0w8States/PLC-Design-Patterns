@@ -1,0 +1,96 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{914787ad-b5b3-4caa-ac64-8fca5cb215c4}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>PLC1</Name>
+    <ProgramVersion>3.1.4024.12</ProgramVersion>
+    <Application>{a2e7dbc4-ab75-449a-9cf2-3c83129f5d18}</Application>
+    <TypeSystem>{e5e88b9e-16c7-4c56-abbe-ab40a861eb2f}</TypeSystem>
+    <Implicit_Task_Info>{596da151-13b7-4b3a-927c-43fb5178b1ff}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{7a80d285-62df-4e14-af92-bb1b4093031c}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{efeea9a0-dbb6-407d-8612-6c1731139d0c}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{f454677a-fda6-4a3c-9cb9-e3857a3c1c4a}</LibraryReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="FBs\Notification.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FBs\NotificationCollection.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FBs\NotificationIterator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FUNs\F_VerboseLogger.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITFs\Collection.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITFs\Iterator.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="ITFs\Object.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Param.TcGVL">
+      <SubType>Code</SubType>
+      <LinkAlways>true</LinkAlways>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FBs" />
+    <Folder Include="ITFs" />
+    <Folder Include="FUNs" />
+    <Folder Include="VISUs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="PLC1.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

@@ -1,0 +1,57 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="MAIN" Id="{1698814c-39e9-4892-a8e6-12db40cd7d4c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	// Recipe editor and backup object
+	pBackup : POINTER TO Snapshot;
+	editor : RecipeEditor;
+	
+	// Recipe settings
+	sTitle: STRING := 'Recipe 1';
+	sRecipeSteps : ARRAY[1..5] OF STRING := ['Move Home', 'Move To Station A', 'Heater On', 'Apply Heat', 'Heater Off'];
+	
+	// Demo program control values
+	bSetValues	: BOOL;
+	bMakeBackup : BOOL;
+	bRestore	: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Set the recipe values
+IF bSetValues THEN
+	bSetValues := FALSE;
+	editor.setRecipe(sRecipeSteps);
+	editor.setTitle(sTitle);
+END_IF
+
+// Make a backup at any time
+IF bMakeBackup THEN
+	bMakeBackup := FALSE;
+	pBackup := editor.createSnapshot();
+END_IF
+
+// Restore to the backup state
+IF bRestore AND (pBackup <> 0)THEN
+	bRestore := FALSE;
+	pBackup^.restore();
+END_IF]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="60" Count="0" />
+      <LineId Id="2" Count="0" />
+      <LineId Id="14" Count="2" />
+      <LineId Id="13" Count="0" />
+      <LineId Id="61" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="23" Count="0" />
+      <LineId Id="31" Count="0" />
+      <LineId Id="25" Count="1" />
+      <LineId Id="62" Count="0" />
+      <LineId Id="28" Count="0" />
+      <LineId Id="27" Count="0" />
+      <LineId Id="32" Count="0" />
+      <LineId Id="29" Count="1" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

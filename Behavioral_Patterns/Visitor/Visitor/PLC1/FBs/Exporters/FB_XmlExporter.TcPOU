@@ -1,0 +1,166 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_XmlExporter" Id="{d408ed05-7a03-4686-bc22-858828b6daea}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_XmlExporter IMPLEMENTS I_Visitor
+VAR
+	sFilePath 		: STRING;
+	sMachineName 	: STRING;	
+
+	fbXml			: FB_XmlDomParser;
+	objRoot 		: SXmlNode;
+	objMachines 	: SXmlNode;
+	objMachine		: SXmlNode;
+	objModules		: SXmlNode;
+	objModule		: SXmlNode;
+	objAttribute 	: SXmlAttribute;
+	sXmlString		: STRING(1000);
+	nLength   		: UDINT;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{15e38765-0cd2-4b17-be90-7ba5cc98ff8f}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains 	: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode 	: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	sFilePath 		: STRING;
+	sMachineName 	: STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.sFilePath := sFilePath;
+THIS^.sMachineName := sMachineName;
+
+(* Create an empty XML document *)
+objRoot := fbXml.GetDocumentNode();
+
+(* Create a new XML node 'Machines' and add to the empty document *)
+objMachines := fbXml.AppendNode(objRoot, 'Machines');
+
+(* Create a new XML node 'Machine' and add an attribute to this node. Append node to 'Machines' *)
+objMachine := fbXml.AppendNode(objMachines, 'Machine');
+objAttribute := fbXml.AppendAttribute(objMachine, 'Name', sMachineName);
+
+(* Create a new XML node 'Controllers' and add to the 'Machine' node *)
+objModules := fbXml.AppendNode(objMachine, sMachineName);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="saveDoc" Id="{4fc9e43a-ced5-41a4-bc3d-412d89a81282}">
+      <Declaration><![CDATA[METHOD saveDoc : BOOL
+VAR_INPUT
+	bExec : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[(* Retrieve XML document and store in a variable of data type STRING(1000) *)
+nLength := fbXml.CopyDocument(sXmlString, SIZEOF(sXmlString));
+
+SaveDoc := fbXml.SaveDocumentToFile(sFile := THIS^.sFilePath, bExec := bExec);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="visitConveyor" Id="{af97bba4-9f2e-4c00-856d-420f78bb4ce6}">
+      <Declaration><![CDATA[METHOD visitConveyor
+VAR_INPUT
+	fbConveyor : FB_Conveyor;
+END_VAR
+VAR
+	Path : STRING;
+	Position : STRING;
+	Velocity : STRING;
+	Status : STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Path := fbConveyor.pPath;
+Position := TO_STRING(fbConveyor.pPosition);
+Velocity := TO_STRING(fbConveyor.pVelocity);
+Status := fbConveyor.pStatus;
+
+objModule := fbXml.AppendChild(objModules, 'Conveyor', Path, FALSE);
+objAttribute := fbXml.AppendAttribute(objModule, 'Position', Position);
+objAttribute := fbXml.AppendAttribute(objModule, 'Velocity', Velocity);
+objAttribute := fbXml.AppendAttribute(objModule, 'Status', Status);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="visitHeater" Id="{68b548cf-8b07-42ac-9479-ceb46d8930d2}">
+      <Declaration><![CDATA[METHOD visitHeater
+VAR_INPUT
+	fbHeater : FB_Heater;
+END_VAR
+VAR
+	Path : STRING;
+	Temp : STRING;
+	Status : STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Path := fbHeater.pPath;
+Temp := TO_STRING(fbHeater.pTemp);
+Status := fbHeater.pStatus;
+
+objModule := fbXml.AppendChild(objModules, 'Heater', Path, FALSE);
+objAttribute := fbXml.AppendAttribute(objModule, 'Temperature', Temp);
+objAttribute := fbXml.AppendAttribute(objModule, 'Status', Status);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="visitIPC" Id="{4911e7a1-6792-4142-b475-3f5a98a66235}">
+      <Declaration><![CDATA[METHOD visitIPC
+VAR_INPUT
+	fbIPC : FB_IPCDiagnostics;
+END_VAR
+VAR
+	Path : STRING;
+	CPU_Temp : STRING;
+	CPU_Usage : STRING;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[Path := fbIPC.pPath;
+CPU_Temp := TO_STRING(fbIPC.pCPU_Temp);
+CPU_Usage := TO_STRING(fbIPC.pCPU_Usage);
+
+objModule := fbXml.AppendChild(objModules, 'IPC_Diagnostics', Path, FALSE);
+objAttribute := fbXml.AppendAttribute(objModule, 'CPU_Temperature', CPU_Temp);
+objAttribute := fbXml.AppendAttribute(objModule, 'CPU_Usage', CPU_Usage);]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_XmlExporter">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_XmlExporter.FB_init">
+      <LineId Id="7" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="24" Count="0" />
+      <LineId Id="13" Count="10" />
+      <LineId Id="11" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_XmlExporter.saveDoc">
+      <LineId Id="6" Count="1" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_XmlExporter.visitConveyor">
+      <LineId Id="23" Count="2" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="13" Count="1" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="15" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_XmlExporter.visitHeater">
+      <LineId Id="20" Count="1" />
+      <LineId Id="18" Count="1" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_XmlExporter.visitIPC">
+      <LineId Id="44" Count="1" />
+      <LineId Id="43" Count="0" />
+      <LineId Id="42" Count="0" />
+      <LineId Id="34" Count="0" />
+      <LineId Id="36" Count="0" />
+      <LineId Id="26" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

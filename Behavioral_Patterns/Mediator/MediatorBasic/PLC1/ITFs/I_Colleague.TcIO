@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <Itf Name="I_Colleague" Id="{0f49c02b-fca5-4a43-8d8f-e44ce45a3e83}">
+    <Declaration><![CDATA[INTERFACE I_Colleague
+]]></Declaration>
+    <Method Name="operation" Id="{df911ca8-2d22-4547-bcd9-63adfb09aa95}">
+      <Declaration><![CDATA[METHOD operation : BOOL
+VAR_INPUT
+	// Event string
+	event : STRING;
+END_VAR]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

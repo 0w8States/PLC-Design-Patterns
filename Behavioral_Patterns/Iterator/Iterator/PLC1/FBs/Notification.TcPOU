@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="Notification" Id="{eed2ee3d-6fd1-4636-bf5e-23c81a254f4a}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK Notification IMPLEMENTS Object
+VAR
+	sNotification : STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{ccd27d29-8515-4b75-9379-b5f629f9d933}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	sNotification : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.sNotification := sNotification;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="getNotification" Id="{fa7571e4-c8c8-4de4-8b52-f7469a8bf617}">
+      <Declaration><![CDATA[METHOD getNotification : STRING
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[getNotification := THIS^.sNotification;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="Notification">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="Notification.FB_init">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="Notification.getNotification">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

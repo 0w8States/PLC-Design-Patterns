@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_FlameCannon" Id="{e0c8f848-1784-4d41-b2ed-5a7bf2c4ca4b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_FlameCannon
+VAR
+	_Active : BOOL;
+	_Level  : LREAL;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="Active" Id="{622d1617-e0e5-47d4-8c53-b01331bc5e8f}">
+      <Declaration><![CDATA[PROPERTY Active : BOOL]]></Declaration>
+      <Get Name="Get" Id="{18b2bf04-4101-42df-87ce-c6a73e92e684}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Active := This^._Active;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Level" Id="{873ba544-8cd1-4372-8a10-ed0fef254f41}">
+      <Declaration><![CDATA[PROPERTY Level : LREAL]]></Declaration>
+      <Get Name="Get" Id="{b5541769-4efd-45f5-ae2f-b0865110b1b5}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Level := This^._Level;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="Off" Id="{70ce79ff-f68f-4508-bec5-6998f8f5977b}">
+      <Declaration><![CDATA[METHOD Off : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[This^._Active := FALSE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="On" Id="{f2e7260b-6b26-4802-a0b4-6bb42e04246f}">
+      <Declaration><![CDATA[METHOD On : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[This^._Active := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SetLevel" Id="{a5d325a6-d53c-4e33-9db0-d3ee0d3587aa}">
+      <Declaration><![CDATA[METHOD SetLevel : BOOL
+VAR_INPUT
+	Level  : LREAL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[This^._Level := Level;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_FlameCannon">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FlameCannon.Active.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FlameCannon.Level.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FlameCannon.Off">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FlameCannon.On">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_FlameCannon.SetLevel">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="F_VerboseLogger" Id="{cce0ef73-8c43-40aa-8ec6-b58911df9109}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION F_VerboseLogger : BOOL
+VAR_INPUT
+	Message : STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := 'Verbose Msg. : %s', strArg := Message);]]></ST>
+    </Implementation>
+    <LineIds Name="F_VerboseLogger">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

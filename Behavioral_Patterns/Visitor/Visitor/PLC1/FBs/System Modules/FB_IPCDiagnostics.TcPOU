@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_IPCDiagnostics" Id="{03aa6bb3-78ca-4569-b572-44f1a01ac209}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'reflection'} 
+FUNCTION_BLOCK FB_IPCDiagnostics IMPLEMENTS I_SysModules
+VAR
+	nCpuTemperature	: INT := 75;	// CPU temperature [°F]
+	nCpuUsage       : INT := 5;    // CPU usage [%]
+	
+	
+	{attribute 'instance-path'} 
+    {attribute 'noinit'} 
+    sPath : STRING; 
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="accept" Id="{dea57fa9-4cb0-49ab-b208-c1b1b2cddc11}">
+      <Declaration><![CDATA[METHOD accept
+VAR_INPUT
+	iVisitor : I_Visitor;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iVisitor.visitIPC(THIS^);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="pCPU_Temp" Id="{472bdcca-bfb7-47fc-a956-db1deb7ad691}">
+      <Declaration><![CDATA[PROPERTY pCPU_Temp : INT]]></Declaration>
+      <Get Name="Get" Id="{d9b06717-4643-4732-974c-328779b5900a}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pCPU_Temp := THIS^.nCpuTemperature;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="pCPU_Usage" Id="{2a4155f8-1d71-414c-bdd2-b4128803e0a8}">
+      <Declaration><![CDATA[PROPERTY pCPU_Usage : INT]]></Declaration>
+      <Get Name="Get" Id="{ff853849-7244-4797-a537-981cf8960313}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pCPU_Usage := THIS^.nCpuUsage;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="pPath" Id="{a7b72c3a-26f7-4006-8cf0-41ee057228c4}">
+      <Declaration><![CDATA[PROPERTY pPath : STRING]]></Declaration>
+      <Get Name="Get" Id="{aa052426-48ed-4e7a-b213-8a3e9a5f0b93}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pPath := THIS^.sPath;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FB_IPCDiagnostics">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_IPCDiagnostics.accept">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_IPCDiagnostics.pCPU_Temp.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_IPCDiagnostics.pCPU_Usage.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_IPCDiagnostics.pPath.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

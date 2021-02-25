@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_Publisher" Id="{ca1a5934-51b6-43f8-b9d0-3eecb1e2da99}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_Publisher IMPLEMENTS I_Publisher
+VAR	
+	fbDelay				: TON;
+	fbDrand				: DRAND;
+	_Value				: LREAL;
+	aSubscribers		: ARRAY [1..Param.MaxSubscribers] OF I_Subscriber;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// creates every sec a random value and invoke the update method
+fbDelay(IN := TRUE, PT := T#1S);
+IF (fbDelay.Q) THEN	
+	fbDelay(IN := FALSE);	
+	fbDrand(SEED := 0);
+	_Value := fbDrand.Num * 1234.5;
+	NotifySubscribers();
+END_IF]]></ST>
+    </Implementation>
+    <Property Name="ActualValue" Id="{965a95ab-3222-4556-b092-10eca8d71ba5}">
+      <Declaration><![CDATA[PROPERTY ActualValue : LREAL]]></Declaration>
+      <Get Name="Get" Id="{bce8c020-8c39-40fc-9ec9-bb7942710e4d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[ActualValue := THIS^._Value;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="AddSubscriber" Id="{f0060a5f-66e9-47a2-82f9-d9a36c2a08e9}">
+      <Declaration><![CDATA[METHOD PUBLIC AddSubscriber : BOOL
+VAR_INPUT
+	ipSubscriber	: I_Subscriber;
+END_VAR
+VAR
+	nIndex					: INT := 0;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[AddSubscriber := FALSE;
+IF (ipSubscriber = 0) THEN
+	RETURN;
+END_IF
+
+// is the observer already registered?
+FOR nIndex := 1 TO Param.MaxSubscribers DO	
+	IF (THIS^.aSubscribers[nIndex] = ipSubscriber) THEN
+		RETURN;
+	END_IF
+END_FOR
+
+// save the observer object into the array of observers and send the actual value
+FOR nIndex := 1 TO Param.MaxSubscribers DO
+	IF (THIS^.aSubscribers[nIndex] = 0) THEN
+		THIS^.aSubscribers[nIndex] := ipSubscriber;
+		THIS^.aSubscribers[nIndex].Update(THIS^._Value);
+		AddSubscriber := TRUE;
+		EXIT;					
+	END_IF
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="NotifySubscribers" Id="{dac65567-2911-4040-aa40-37d939ba993a}">
+      <Declaration><![CDATA[METHOD PRIVATE NotifySubscribers : BOOL
+VAR	
+	nIndex	: INT := 0;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[FOR nIndex := 1 TO Param.MaxSubscribers DO
+	IF (THIS^.aSubscribers[nIndex] <> 0) THEN
+		THIS^.aSubscribers[nIndex].Update(THIS^.ActualValue);
+	END_IF
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="RemoveSubscriber" Id="{813c32e8-adda-40cf-b613-8bd62e562b69}">
+      <Declaration><![CDATA[METHOD RemoveSubscriber : BOOL
+VAR_INPUT
+	ipSubscriber	: I_Subscriber;
+END_VAR
+VAR
+	nIndex			: INT := 0;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[RemoveSubscriber := FALSE;
+IF (ipSubscriber = 0) THEN
+	RETURN;
+END_IF
+
+FOR nIndex := 1 TO Param.MaxSubscribers DO
+	IF (THIS^.aSubscribers[nIndex] = ipSubscriber) THEN
+		THIS^.aSubscribers[nIndex] := 0;
+		RemoveSubscriber := TRUE;	
+	END_IF
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_Publisher">
+      <LineId Id="15" Count="6" />
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Publisher.ActualValue.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Publisher.AddSubscriber">
+      <LineId Id="10" Count="19" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Publisher.NotifySubscribers">
+      <LineId Id="8" Count="3" />
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Publisher.RemoveSubscriber">
+      <LineId Id="10" Count="9" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_SysLogExporter" Id="{0dee553f-9ccd-492f-99ce-bf5953c98bd3}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_SysLogExporter IMPLEMENTS I_Visitor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="visitConveyor" Id="{0484067d-9c5e-4b40-ab70-934765cdac38}">
+      <Declaration><![CDATA[METHOD visitConveyor
+VAR_INPUT
+	fbConveyor : FB_Conveyor;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := '', strArg := '');
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := 'PLC Msg. *** Printing Messages For: %s', strArg := fbConveyor.pPath);
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbConveyor.pPath,':: Status := %s'), strArg := TO_STRING(fbConveyor.pStatus));
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbConveyor.pPath,':: Velocity := %s'), strArg := TO_STRING(fbConveyor.pVelocity));
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbConveyor.pPath,':: Position := %s'), strArg := TO_STRING(fbConveyor.pPosition));]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="visitHeater" Id="{eb907004-7ed4-41c6-95f0-edd3c6e91274}">
+      <Declaration><![CDATA[METHOD visitHeater
+VAR_INPUT
+	fbHeater : FB_Heater;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := '', strArg := '');
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := 'PLC Msg. *** Printing Messages For: %s', strArg := fbHeater.pPath);
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbHeater.pPath,':: Status := %s'), strArg := TO_STRING(fbHeater.pStatus));
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbHeater.pPath,':: Temperature := %s'), strArg := TO_STRING(fbHeater.pTemp));
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="visitIPC" Id="{b9910925-b6f1-49cd-8635-32e88c1bc861}">
+      <Declaration><![CDATA[METHOD visitIPC
+VAR_INPUT
+	fbIPC : FB_IPCDiagnostics;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := '', strArg := '');
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := 'PLC Msg. *** Printing Messages For: %s', strArg := fbIPC.pPath);
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbIPC.pPath,':: CPU Usage := %s'), strArg := TO_STRING(fbIPC.pCPU_Usage));
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbIPC.pPath,':: CPU Temperature (F) := %s'), strArg := TO_STRING(fbIPC.pCPU_Temp));]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_SysLogExporter">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SysLogExporter.visitConveyor">
+      <LineId Id="15" Count="0" />
+      <LineId Id="7" Count="0" />
+      <LineId Id="14" Count="0" />
+      <LineId Id="11" Count="1" />
+    </LineIds>
+    <LineIds Name="FB_SysLogExporter.visitHeater">
+      <LineId Id="11" Count="0" />
+      <LineId Id="8" Count="2" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_SysLogExporter.visitIPC">
+      <LineId Id="14" Count="0" />
+      <LineId Id="12" Count="1" />
+      <LineId Id="8" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

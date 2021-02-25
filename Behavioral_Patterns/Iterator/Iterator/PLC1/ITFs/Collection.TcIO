@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <Itf Name="Collection" Id="{6730e63c-3da3-432d-8c54-aa42ffee9239}">
+    <Declaration><![CDATA[INTERFACE Collection
+]]></Declaration>
+    <Method Name="createIterator" Id="{89d6281e-62b2-4f2a-8e6f-4afeed93e2c0}">
+      <Declaration><![CDATA[METHOD createIterator : Iterator
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="FB_Conveyor" Id="{1f67fa7b-2adf-4297-b10d-34e2348c19bc}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'reflection'} 
+FUNCTION_BLOCK FB_Conveyor IMPLEMENTS I_SysModules
+VAR
+	lrVelocity 	: LREAL := 500.00;
+	lrPosition 	: LREAL := 127.00;
+	sStatus		: STRING := 'Running';
+	
+	{attribute 'instance-path'} 
+    {attribute 'noinit'} 
+    sPath : STRING; 
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="accept" Id="{ad644b27-f57e-48e9-8c13-9777963bd95d}">
+      <Declaration><![CDATA[METHOD accept
+VAR_INPUT
+	iVisitor : I_Visitor;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[iVisitor.visitConveyor(THIS^);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="pPath" Id="{b88b05de-b5ac-469c-900b-57ca27b7def2}">
+      <Declaration><![CDATA[PROPERTY pPath : STRING]]></Declaration>
+      <Get Name="Get" Id="{37b91d7f-f592-4842-b7d6-e48a33454b63}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pPath := THIS^.sPath;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="pPosition" Id="{526e0903-aef9-4bd7-b0de-d71d0bcc9aad}">
+      <Declaration><![CDATA[PROPERTY pPosition : LREAL]]></Declaration>
+      <Get Name="Get" Id="{1171ad54-729b-4c32-8a2d-260805486199}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pPosition := THIS^.lrPosition;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="pStatus" Id="{943cd835-d7c6-4a4a-ba91-5152ad7df583}">
+      <Declaration><![CDATA[PROPERTY pStatus : STRING]]></Declaration>
+      <Get Name="Get" Id="{8604199a-c086-47a7-95aa-5ad226d6312f}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pStatus := THIS^.sStatus;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="pVelocity" Id="{7571d87d-5b2c-4377-a28e-1c5f9068818e}">
+      <Declaration><![CDATA[PROPERTY pVelocity : LREAL]]></Declaration>
+      <Get Name="Get" Id="{41ed75b4-2a96-43ea-8aad-56bc33d64688}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[pVelocity := THIS^.lrPosition;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <LineIds Name="FB_Conveyor">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Conveyor.accept">
+      <LineId Id="7" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Conveyor.pPath.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Conveyor.pPosition.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Conveyor.pStatus.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_Conveyor.pVelocity.Get">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

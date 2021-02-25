@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <Itf Name="I_Publisher" Id="{f50d4c11-a399-4ef5-8b2a-7ec13cf25048}">
+    <Declaration><![CDATA[INTERFACE I_Publisher
+]]></Declaration>
+    <Method Name="AddSubscriber" Id="{ab6add66-a4a2-4400-ad3b-e6a24cb0baa0}">
+      <Declaration><![CDATA[METHOD AddSubscriber : BOOL
+VAR_INPUT
+	ipSubscriber : I_Subscriber;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="RemoveSubscriber" Id="{18773c0d-16da-4d52-8661-85c823230dc4}">
+      <Declaration><![CDATA[METHOD RemoveSubscriber : BOOL
+VAR_INPUT
+	ipSubscriber : I_Subscriber;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

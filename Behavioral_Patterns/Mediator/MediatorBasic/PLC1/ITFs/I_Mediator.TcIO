@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.3">
+  <Itf Name="I_Mediator" Id="{bdafaeae-011d-481a-9d42-ca799f98d128}">
+    <Declaration><![CDATA[INTERFACE I_Mediator
+]]></Declaration>
+    <Method Name="notify" Id="{22fcc692-7d51-4d94-b380-7ccd6f446c31}">
+      <Declaration><![CDATA[METHOD notify : BOOL
+VAR_INPUT
+	// Colleague sending the notification
+	sender : I_Colleague;
+	// Some event the collegue is attempting
+	event	  : STRING;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

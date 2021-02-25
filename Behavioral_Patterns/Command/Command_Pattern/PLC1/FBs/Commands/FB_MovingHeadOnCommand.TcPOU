@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_MovingHeadOnCommand" Id="{7968216d-3548-4918-ac22-4f07e36a3613}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_MovingHeadOnCommand IMPLEMENTS I_Command
+VAR
+	refMovingHead : REFERENCE TO FB_MovingHead;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{e6940612-6cee-412d-b5ae-daf79e7ef8f5}">
+      <Declaration><![CDATA[METHOD Execute
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (__ISVALIDREF(THIS^.refMovingHead)) THEN
+	THIS^.refMovingHead.On();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{c2540567-b370-44c2-869d-0602404cfd87}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains 	: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode 	: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	refMovingHead 	: REFERENCE TO FB_MovingHead;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (__ISVALIDREF(refMovingHead)) THEN
+	THIS^.refMovingHead REF= refMovingHead;
+ELSE
+	THIS^.refMovingHead REF= 0;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_MovingHeadOnCommand">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_MovingHeadOnCommand.Execute">
+      <LineId Id="5" Count="1" />
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_MovingHeadOnCommand.FB_init">
+      <LineId Id="8" Count="3" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

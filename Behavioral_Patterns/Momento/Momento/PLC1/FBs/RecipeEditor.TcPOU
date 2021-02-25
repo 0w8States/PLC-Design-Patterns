@@ -1,0 +1,86 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="RecipeEditor" Id="{83008406-df84-4944-bf2b-0f186c4ebe1d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK RecipeEditor
+VAR
+	sTitle : STRING;
+	sRecipeSteps : ARRAY[1..5] OF STRING;
+	pSnapshot : POINTER TO Snapshot;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="createSnapshot" Id="{18292ab5-73b2-4617-81fc-e4aabb59eb99}">
+      <Declaration><![CDATA[METHOD createSnapshot : POINTER TO Snapshot
+VAR
+
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF THIS^.pSnapshot <> 0 THEN
+	ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := 'PLC Msg.: %s', strArg := 'Snapshot exists, deleting the old...');
+	__DELETE(THIS^.pSnapshot);
+END_IF
+
+
+THIS^.pSnapshot := __NEW(Snapshot(pEditor := ADR(THIS^), sTitle := THIS^.sTitle, sRecipeSteps := THIS^.sRecipeSteps));
+createSnapshot := THIS^.pSnapshot;
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := 'PLC Msg.: %s', strArg := 'New snapshot generated...');
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_exit" Id="{8ff35537-a622-442a-a3fe-c602ae73497e}">
+      <Declaration><![CDATA[METHOD FB_exit : BOOL
+VAR_INPUT
+	bInCopyCode : BOOL; // if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[// Clear the pointer on exit
+IF THIS^.pSnapshot <> 0 THEN
+	__DELETE(pSnapshot);
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setRecipe" Id="{16ecc6b6-3771-497b-a83c-66283ef3b1d8}">
+      <Declaration><![CDATA[METHOD setRecipe
+VAR_INPUT
+	sRecipeSteps : ARRAY[1..5] OF STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.sRecipeSteps := sRecipeSteps;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setTitle" Id="{39806676-a3dd-40f8-bafc-61a631f38522}">
+      <Declaration><![CDATA[METHOD setTitle
+VAR_INPUT
+	sTitle : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.sTitle := sTitle;]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="RecipeEditor">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="RecipeEditor.createSnapshot">
+      <LineId Id="16" Count="0" />
+      <LineId Id="20" Count="0" />
+      <LineId Id="18" Count="1" />
+      <LineId Id="21" Count="1" />
+      <LineId Id="9" Count="3" />
+    </LineIds>
+    <LineIds Name="RecipeEditor.FB_exit">
+      <LineId Id="13" Count="0" />
+      <LineId Id="6" Count="2" />
+    </LineIds>
+    <LineIds Name="RecipeEditor.setRecipe">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+    <LineIds Name="RecipeEditor.setTitle">
+      <LineId Id="5" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

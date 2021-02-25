@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <Itf Name="Iterator" Id="{11e57a1b-5b87-41c6-8866-dab19c5cc778}">
+    <Declaration><![CDATA[INTERFACE Iterator
+]]></Declaration>
+    <Method Name="current" Id="{d60b1888-45a1-4719-b843-c166d488b64a}">
+      <Declaration><![CDATA[METHOD current : Object
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="hasNext" Id="{6e2d7f23-86d9-421b-a328-b7469453c32f}">
+      <Declaration><![CDATA[METHOD hasNext : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="next" Id="{a0f9df8b-6678-45f8-a11d-40ecbf79b0f8}">
+      <Declaration><![CDATA[METHOD next : Object
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="reset" Id="{3bba04f1-b69f-4a12-a25c-d55f8c90a503}">
+      <Declaration><![CDATA[METHOD reset : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

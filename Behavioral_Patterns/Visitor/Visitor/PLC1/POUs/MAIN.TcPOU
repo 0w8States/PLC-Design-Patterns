@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="MAIN" Id="{21a0115b-fd40-4499-9081-23e2d41ae653}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	// Program Objects
+	fbHeater			: ARRAY[0..2] OF FB_Heater;
+	fbConveyor 			: ARRAY[0..1] OF FB_Conveyor;
+	fbIPCDiagnostics 	: FB_IPCDiagnostics;
+	iModules 			: ARRAY[0..5] OF I_SysModules := [fbHeater[0], fbHeater[1], fbHeater[2], fbConveyor[0],  fbConveyor[1], fbIPCDiagnostics];
+	
+	// Visitor Object Control
+	exportVisitor 		: FB_SysLogExporter;
+	exportXML			: FB_XmlExporter('C:\TwinCAT\Visitor.xml', 'CX-12345');
+	
+	// Demo Program Control
+	bLogExport			: BOOL;
+	bXmlExport			: BOOL;
+	bExecSave			: BOOL;
+	i					: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// Export the Syslog
+IF bLogExport THEN
+	bLogExport := FALSE;
+	FOR i := 0 TO 5 DO
+		iModules[i].accept(exportVisitor);
+	END_FOR
+END_IF
+
+// Export for XML
+IF bXmlExport THEN
+	bXmlExport := FALSE;
+	FOR i := 0 TO 5 DO
+		iModules[i].accept(exportXML);
+	END_FOR
+	bExecSave := TRUE;
+END_IF
+
+IF exportXML.saveDoc(bExec := bExecSave) THEN
+	bExecSave := FALSE;
+END_IF
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="232" Count="0" />
+      <LineId Id="211" Count="18" />
+      <LineId Id="148" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

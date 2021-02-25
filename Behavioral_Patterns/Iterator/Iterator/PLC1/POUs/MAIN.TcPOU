@@ -1,0 +1,55 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+  <POU Name="MAIN" Id="{e6f2f43d-3006-4b61-a734-eb841ad749f8}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+    Notifications 	: NotificationCollection;
+	n			: Object;
+	iterator	  	: Iterator;
+
+	bInit			: BOOL;
+	bReset			: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF NOT bInit THEN
+	bInit := TRUE;
+	
+	Notifications.addItem(str := 'The');
+	Notifications.addItem(str := 'quick');
+	Notifications.addItem(str := 'brown');
+	Notifications.addItem(str := 'fox');
+	Notifications.addItem(str := 'jumps');
+	Notifications.addItem(str := 'over');
+	Notifications.addItem(str := 'the');
+	Notifications.addItem(str := 'lazy');
+	Notifications.addItem(str := 'dog');
+	
+	iterator := notifications.createIterator();	
+	n := Iterator.current();
+	F_VerboseLogger(n.getNotification());
+END_IF
+
+
+
+
+WHILE(Iterator.hasNext()) DO
+	n := Iterator.next();
+	F_VerboseLogger(n.getNotification());
+END_WHILE
+
+IF bReset THEN
+	iterator.reset();
+	n := Iterator.current();
+	F_VerboseLogger(n.getNotification());
+	bReset := FALSE;
+END_IF
+
+]]></ST>
+    </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="127" Count="32" />
+      <LineId Id="27" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>

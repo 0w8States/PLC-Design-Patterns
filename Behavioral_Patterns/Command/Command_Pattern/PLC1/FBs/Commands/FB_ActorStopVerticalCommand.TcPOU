@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+  <POU Name="FB_ActorStopVerticalCommand" Id="{25e706f3-ce24-4558-8364-8b63fd2cf54d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ActorStopVerticalCommand IMPLEMENTS I_Command
+VAR
+	refFlyingHoist : REFERENCE TO FB_FlyingHoist;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Execute" Id="{9e8c37f1-fd0f-4c4d-b262-cddfa75fb0f3}">
+      <Declaration><![CDATA[METHOD Execute
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (__ISVALIDREF(THIS^.refFlyingHoist)) THEN
+	THIS^.refFlyingHoist.StopVerticalCommand();
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{2ca43a7b-ddcc-4a1c-8c43-82e3087fb163}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains 	: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode 	: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	refFlyingHoist 	: REFERENCE TO FB_FlyingHoist;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (__ISVALIDREF(refFlyingHoist)) THEN
+	THIS^.refFlyingHoist REF= refFlyingHoist;
+ELSE
+	THIS^.refFlyingHoist REF= 0;
+END_IF
+]]></ST>
+      </Implementation>
+    </Method>
+    <LineIds Name="FB_ActorStopVerticalCommand">
+      <LineId Id="9" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ActorStopVerticalCommand.Execute">
+      <LineId Id="5" Count="0" />
+      <LineId Id="10" Count="0" />
+      <LineId Id="8" Count="0" />
+      <LineId Id="4" Count="0" />
+    </LineIds>
+    <LineIds Name="FB_ActorStopVerticalCommand.FB_init">
+      <LineId Id="9" Count="4" />
+      <LineId Id="7" Count="0" />
+    </LineIds>
+  </POU>
+</TcPlcObject>
