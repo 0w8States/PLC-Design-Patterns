@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{e743ebf7-0ea0-42cc-acbe-7bd5d8ba5726}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	//fbShapeCreator : FB_ShapeCreator;
+	fbShapeCreator : FB_ShapeCreatorEX;
+	eShape : E_Shape := E_Shape.init;
+	
+	iShape : I_Shape;
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[fbShapeCreator(eShape:= eShape);
+
+CASE eShape OF
+	E_Shape.Circle:
+		iShape := fbShapeCreator.M_GetShapeObject();
+		IF iShape <> 0 THEN
+			iShape.M_Draw();
+		END_IF	
+	
+		eShape := E_Shape.Rectangle;
+	
+	E_Shape.Rectangle:
+		iShape := fbShapeCreator.M_GetShapeObject();
+		IF iShape <> 0 THEN
+			iShape.M_Draw();
+		END_IF
+		
+		eShape := E_Shape.Sqaure;	
+		
+	E_Shape.Sqaure:
+		iShape := fbShapeCreator.M_GetShapeObject();
+		IF iShape <> 0 THEN
+			iShape.M_Draw();
+		END_IF	
+	
+		eShape := E_Shape.Star;	
+
+	E_Shape.Star:
+		iShape := fbShapeCreator.M_GetShapeObject();
+		IF iShape <> 0 THEN
+			iShape.M_Draw();
+		END_IF
+		
+		eShape := E_Shape.Triangle;	
+	
+	E_Shape.Triangle:
+		iShape := fbShapeCreator.M_GetShapeObject();
+		IF iShape <> 0 THEN
+			iShape.M_Draw();
+		END_IF	
+	
+		//eShape := E_Shape.end;	
+		eShape := E_Shape.Custom;	
+		
+	E_Shape.Custom:
+		iShape := fbShapeCreator.M_GetShapeObject();
+		IF iShape <> 0 THEN
+			iShape.M_Draw();
+		END_IF
+		
+		eShape := E_Shape.end;	
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

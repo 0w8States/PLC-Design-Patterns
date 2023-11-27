@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{04693e3b-1faf-4d0a-9dd6-887c1240b643}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>Design_Pattern_Factory_Method</Name>
+    <ProgramVersion>3.1.4023.0</ProgramVersion>
+    <Application>{4fd7d53c-98fe-4b6e-8815-b9ebfee26441}</Application>
+    <TypeSystem>{83a083e9-5924-4385-a7e1-fe6d29e43eae}</TypeSystem>
+    <Implicit_Task_Info>{74baad5b-f1d1-46f6-8dbe-5a890db66df8}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{925d0b63-7f95-4a6a-ac08-a110c341ee07}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{97fddd61-c1c5-44d5-bf43-ea7154de5743}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{dbf95de5-c45c-47d5-b54c-a64e35188db9}</LibraryReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="ClassDiagram.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Creator\FB_ShapeCreator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Creator\FB_ShapeCreatorEX.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\E_Shape.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\I_Shape.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shapes\FB_Circle.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shapes\FB_CustomShape.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shapes\FB_Rectangle.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shapes\FB_Square.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shapes\FB_Star.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Shapes\FB_Triangle.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Creator" />
+    <Folder Include="DUTs" />
+    <Folder Include="Interfaces" />
+    <Folder Include="POUs" />
+    <Folder Include="Shapes" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Untitled1.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Design_Pattern_Factory_Method.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="OptionKey">
+						<v n="Name">"&lt;ProjectRoot&gt;"</v>
+						<d n="SubKeys" t="Hashtable" />
+						<d n="Values" t="Hashtable" />
+					</o>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+          <Type n="String">System.String</Type>
+        </TypeList>
+      </XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

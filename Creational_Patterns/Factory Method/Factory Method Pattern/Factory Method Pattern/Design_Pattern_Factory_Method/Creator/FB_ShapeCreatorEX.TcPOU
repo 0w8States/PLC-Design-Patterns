@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_ShapeCreatorEX" Id="{50cbff52-7e2f-4d3e-ad76-ee4014257011}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_ShapeCreatorEX EXTENDS FB_ShapeCreator
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	pCustomShape : POINTER TO FB_CustomShape;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="M_GetShapeObject" Id="{1a8a6fe2-94ff-4408-9581-9645aebf1956}">
+      <Declaration><![CDATA[METHOD M_GetShapeObject : I_shape
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF eShape = E_Shape.Custom THEN
+	
+	//Dynamic instantiation  
+	pCustomShape := __NEW(FB_CustomShape);
+	iShape := pCustomShape^;
+	
+	//Return the object
+	IF iShape <> 0 THEN
+		M_GetShapeObject := iShape;
+	END_IF
+	
+	//Release the memory
+	IF (pCustomShape <> 0) THEN
+		__DELETE(pCustomShape);
+		pCustomShape := 0;
+	END_IF
+	
+	eShape := E_Shape.init;
+ELSE
+	M_GetShapeObject := SUPER^.M_GetShapeObject();
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
