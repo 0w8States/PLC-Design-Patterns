@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{f3894233-01d0-4f10-bb9f-a3d2750638b3}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbFactoryProducer : FB_FactoryProducer;
+	fbFactory : REFERENCE TO FB_AbstractFactory;
+	
+	iShape : I_Shape;
+	iColor : I_Color;
+	
+	eShape : E_Shape := E_Shape.Star;
+	eColor : E_Color := E_Color.Red;
+	
+	bStart1: BOOL;	
+	bStart2: BOOL;	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bStart1 THEN
+	//Draw
+	fbFactory REF= fbFactoryProducer.M_GetFactory(eFactory := E_Factory.Shape);
+	
+	IF __ISVALIDREF(fbFactory) THEN
+		iShape := fbFactory.M_GetShapeObject(eShape:=eShape);
+	END_IF
+	
+	IF iShape <> 0 THEN
+		iShape.M_Draw();
+	END_IF
+	
+	//Fill
+	fbFactory REF= fbFactoryProducer.M_GetFactory(eFactory := E_Factory.Color);
+	
+	IF __ISVALIDREF(fbFactory) THEN
+		iColor := fbFactory.M_GetColorObject(eColor:=eColor);
+	END_IF
+	
+	IF iColor <> 0 THEN
+		iColor.M_Fill();
+	END_IF
+	
+	//Release Memory
+	fbFactoryProducer.M_ReleaseMemory();
+	
+	bStart1 := FALSE;
+END_IF
+
+//Alternatively, you can chain the methods and get the same result: 
+IF bStart2 THEN
+	fbFactoryProducer.M_GetFactory(eFactory := E_Factory.Shape).M_GetShapeObject(eShape:=eShape).M_Draw();
+	fbFactoryProducer.M_GetFactory(eFactory := E_Factory.Color).M_GetColorObject(eColor:=eColor).M_Fill();
+	
+	//Release Memory
+	fbFactoryProducer.M_ReleaseMemory();
+	bStart2 := FALSE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

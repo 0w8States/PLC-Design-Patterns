@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Color" Id="{5c158fde-0479-4e0d-8bed-0812c766e8db}">
+    <Declaration><![CDATA[INTERFACE I_Color
+]]></Declaration>
+    <Method Name="M_Fill" Id="{b5d0011c-4148-42c3-bb9e-200daf9bc97a}">
+      <Declaration><![CDATA[METHOD M_Fill : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

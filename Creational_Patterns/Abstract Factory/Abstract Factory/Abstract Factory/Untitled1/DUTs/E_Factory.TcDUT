@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="E_Factory" Id="{e8225ab9-6d10-4e62-847c-87c982845f7e}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_Factory :
+(
+	init := 0,
+	Shape,
+	Color,
+	end
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

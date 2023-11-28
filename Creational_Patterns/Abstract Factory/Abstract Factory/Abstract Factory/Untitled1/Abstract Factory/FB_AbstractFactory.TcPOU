@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_AbstractFactory" Id="{7b35da90-6f2d-440c-8e0a-c1cc878589e6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT FB_AbstractFactory
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="M_GetColorObject" Id="{abc3931d-e852-4cd4-922d-47dd607a3800}">
+      <Declaration><![CDATA[METHOD M_GetColorObject : I_Color
+VAR_INPUT
+	eColor : E_Color;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_GetShapeObject" Id="{6bb60273-72dc-4375-937e-760f79af1d76}">
+      <Declaration><![CDATA[METHOD M_GetShapeObject : I_Shape
+VAR_INPUT
+	eShape : E_Shape;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_ReleaseMemory" Id="{00a9ec82-33e2-42b7-be4b-78d65ff64f1e}">
+      <Declaration><![CDATA[METHOD ABSTRACT M_ReleaseMemory : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

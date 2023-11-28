@@ -1,0 +1,124 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_ColorCreator" Id="{640015f4-bf7e-4686-8039-a93211b72856}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'hide_all_locals'}
+{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK FB_ColorCreator  EXTENDS FB_AbstractFactory
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	pBlack    	: POINTER TO FB_Black;
+    pRed 		: POINTER TO FB_Red;
+    pYellow 	: POINTER TO FB_Yellow;
+    iColor 		: I_Color;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_exit" Id="{d15df574-1582-4f38-8be2-5e77cae1395d}">
+      <Declaration><![CDATA[METHOD FB_exit : BOOL
+VAR_INPUT
+	bInCopyCode : BOOL; // if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Release the memory
+IF (pBlack <> 0) THEN
+	__DELETE(pBlack);
+	pBlack := 0;
+END_IF
+
+//Release the memory
+IF (pRed <> 0) THEN
+	__DELETE(pRed);
+	pRed := 0;
+END_IF
+
+//Release the memory
+IF (pYellow <> 0) THEN
+	__DELETE(pYellow);
+	pYellow := 0;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_GetColorObject" Id="{413ea5be-751a-4cf9-bf54-eeac7348be59}">
+      <Declaration><![CDATA[METHOD M_GetColorObject : I_Color
+VAR_INPUT
+	eColor : E_Color;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE eColor OF
+	E_Color.Black:
+		
+		//Dynamic instantiation  
+		pBlack := __NEW(FB_Black);
+		iColor := pBlack^;
+		
+		//Return the object
+		IF iColor <> 0 THEN
+			M_GetColorObject := iColor;
+		END_IF
+		
+		eColor := E_Color.init;
+	
+		
+	E_Color.Red:
+		
+		//Dynamic instantiation  
+		pRed := __NEW(FB_Red);
+		iColor := pRed^;
+		
+		//Return the object
+		IF iColor <> 0 THEN
+			M_GetColorObject := iColor;
+		END_IF
+
+		eColor := E_Color.init;
+	
+	E_Color.Yellow:
+		
+		//Dynamic instantiation  
+		pYellow := __NEW(FB_Yellow);
+		iColor := pYellow^;
+		
+		//Return the object
+		IF iColor <> 0 THEN
+			M_GetColorObject := iColor;
+		END_IF
+
+		eColor := E_Color.init;	
+		
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_ReleaseMemory" Id="{f8f074b1-ba57-48f8-b9ee-035dbb43d332}">
+      <Declaration><![CDATA[METHOD M_ReleaseMemory : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Release the memory
+IF (pBlack <> 0) THEN
+	__DELETE(pBlack);
+	pBlack := 0;
+END_IF
+
+//Release the memory
+IF (pRed <> 0) THEN
+	__DELETE(pRed);
+	pRed := 0;
+END_IF
+
+//Release the memory
+IF (pYellow <> 0) THEN
+	__DELETE(pYellow);
+	pYellow := 0;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
