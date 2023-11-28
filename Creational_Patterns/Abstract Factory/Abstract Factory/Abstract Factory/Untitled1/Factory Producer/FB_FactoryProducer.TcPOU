@@ -1,0 +1,82 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_FactoryProducer" Id="{0d12df5a-5750-4039-9b2e-51655fafb43a}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_FactoryProducer
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	pColorFactoy : POINTER TO FB_ColorCreator;
+	pShapeFactory : POINTER TO FB_ShapeCreator;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_exit" Id="{912cb74f-1bb8-40f6-9934-b5b6bb6ddf0f}">
+      <Declaration><![CDATA[METHOD FB_exit : BOOL
+VAR_INPUT
+	bInCopyCode : BOOL; // if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF pColorFactoy <> 0 THEN
+	__DELETE(pColorFactoy);
+	pColorFactoy := 0;
+END_IF
+
+IF pShapeFactory <> 0 THEN
+	__DELETE(pShapeFactory);
+	pShapeFactory := 0;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_GetFactory" Id="{9ffd77b8-38b9-4d21-8973-e7b32d42f7f1}">
+      <Declaration><![CDATA[METHOD M_GetFactory : REFERENCE TO FB_AbstractFactory
+VAR_INPUT
+	eFactory : E_Factory;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE eFactory OF
+	E_Factory.Color:
+	
+		pColorFactoy := __NEW(FB_ColorCreator);
+		IF pColorFactoy <> 0 THEN
+			M_GetFactory REF= (pColorFactoy^);
+		END_IF
+	
+		eFactory := E_Factory.init;
+	
+	E_Factory.Shape:
+	
+		pShapeFactory := __NEW(FB_ShapeCreator);
+		IF pShapeFactory <> 0 THEN
+			M_GetFactory REF= (pShapeFactory^);
+		END_IF
+
+		eFactory := E_Factory.init;
+	
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_ReleaseMemory" Id="{1d9073a1-ff77-434e-8755-f5229c32fe72}">
+      <Declaration><![CDATA[METHOD M_ReleaseMemory : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF pColorFactoy <> 0 THEN
+	__DELETE(pColorFactoy);
+	pColorFactoy := 0;
+END_IF
+
+IF pShapeFactory <> 0 THEN
+	__DELETE(pShapeFactory);
+	pShapeFactory := 0;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

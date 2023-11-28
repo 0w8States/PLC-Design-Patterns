@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="E_Color" Id="{f3e7cfd5-a5a2-43c5-bb14-5760c99b6686}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_Color :
+(
+	init :=0,
+	Black ,
+	Red,
+	Yellow,
+	end
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>
