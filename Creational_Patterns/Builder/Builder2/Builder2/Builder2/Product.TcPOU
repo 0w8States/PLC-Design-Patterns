@@ -1,0 +1,40 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Product" Id="{4a46e5f6-684f-4ae6-bb41-07238e530749}" SpecialFunc="None">
+    <Declaration><![CDATA[///The class Product is just a plain blueprint of the components of the object to be built.
+///The final Product may ot may not contain the all the Parts listed on the Product declaration
+/// rather only the parts in the specifications sent by the client.
+{attribute 'enable_dynamic_creation' := ''}
+FUNCTION_BLOCK Product
+VAR_INPUT
+	///List of possible parts to be build in a final Product object
+	mainPart: STRING;
+	part1: STRING;
+	part2: STRING;
+	part3: STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="toString" Id="{6caa2992-f39b-49cf-917c-ac32cffab965}">
+      <Declaration><![CDATA[///Method to be used in the visualization element for an easier String handling
+METHOD toString : STRING
+VAR
+	///Local variable to join together and store the pieces of String
+	tempString: STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//tempString joins together "Main Part" and "Part 1" of the Product object
+tempString := CONCAT(THIS^.mainPart , THIS^.part1);
+//tempString joins together its current value and "Part 2" of the Product object
+tempString := CONCAT(tempString , THIS^.part2);
+//tempString joins together its current value and "Part 3" of the Product object
+tempString := CONCAT(tempString , THIS^.part3);
+//The final result is sent as the output of this method
+toString := tempString;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

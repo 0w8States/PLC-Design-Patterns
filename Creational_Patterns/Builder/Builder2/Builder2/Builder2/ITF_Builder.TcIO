@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="ITF_Builder" Id="{ec08f9f6-3522-4911-95de-eedfe32aab78}">
+    <Declaration><![CDATA[///Builder interface to declare all needed parts to be built
+INTERFACE ITF_Builder
+]]></Declaration>
+    <Method Name="Set_Main_Part" Id="{9971832a-9fdd-43b0-ac60-9c6531e1c9f9}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to set the main part
+METHOD Set_Main_Part
+VAR_INPUT
+	///Illustrative value (object because it is a TRING) to be set as a product part
+	mainPart: STRING;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Set_Part1" Id="{49ccd5c4-3a86-4ab7-9a21-d8897aa5f3de}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to set the part1
+METHOD Set_Part1
+VAR_INPUT
+	///Illustrative value (object because it is a TRING) to be set as a product part
+	part1: STRING;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Set_Part2" Id="{a4e945fd-c8fe-40e0-a6d8-13a132374aa9}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to set the part2
+METHOD Set_Part2
+VAR_INPUT
+	///Illustrative value (object because it is a TRING) to be set as a product part
+	part2: STRING;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Set_Part3" Id="{0aef4919-875a-401d-b019-51aa37f29609}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to set the part3
+METHOD Set_Part3
+VAR_INPUT
+	///Illustrative value (object because it is a TRING) to be set as a product part
+	part3: STRING;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

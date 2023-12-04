@@ -47,9 +47,9 @@
 
   Follow the link to your desired design pattern type, inside there will be examples of the various design patterns.
 
-  - **Creational Design Patterns** *(COMING SOON....)* These patterns provide various object creation mechanisms, which increase flexibility and reuse of existing code.
+  - [**Creational Design Patterns**](Creational_Patterns/) These patterns provide various object creation mechanisms, which increase flexibility and reuse of existing code.
 
-  - **Structural Design Patterns** *(COMING SOON....)* These patterns explain how to assemble objects and classes into larger structures while keeping this structures flexible and efficient.
+  - [**Structural Design Patterns**](Structural_Patterns) These patterns explain how to assemble objects and classes into larger structures while keeping this structures flexible and efficient.
 
   - [**Behavioral Design Patterns**](Behavioral_Patterns/) These patterns are concerned with algorithms and the assignment of responsibilities between objects.
 
