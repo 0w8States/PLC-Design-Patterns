@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ConcreteBuilder" Id="{b8460dc0-86aa-4ac1-b552-70b1eb5e82d2}" SpecialFunc="None">
+    <Declaration><![CDATA[///This is the concrete builder class, reponsible for building the final product object
+FUNCTION_BLOCK ConcreteBuilder IMPLEMENTS ITF_Builder
+VAR
+	///Holds an internal reference to how the final product shoud be so the builder class can build it on the fly /// Contiene una referencia interna sobre cómo debe ser el producto final para que la clase constructora pueda construirlo sobre la marcha.
+	/// without any help from other classes exepting the Director class that is going to be passing the special /// sin ninguna ayuda de otras clases excepto la clase Director que va a pasar el especial
+	///specifications to the builder.///especificaciones para el constructor.
+	localProduct: Product;
+	///Stores the specifications, sent by the client, of the final product to be built.
+	///Almacena las especificaciones, enviadas por el cliente, del producto final a construir.
+	specifications: ARRAY[1..4] OF STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="fb_init" Id="{285337ea-f8ae-468f-a35e-d4c54afa691a}">
+      <Declaration><![CDATA[METHOD fb_init
+VAR_INPUT
+	/// TRUE: the Retain-variables are initialized (reset warm / reset cold)
+	bInitRetains: BOOL;
+	/// TRUE  the instance will be copied to the copy-code afterward (online change)	
+	bInCopyCode: BOOL;
+	///The constructor receives the specifications for this ConcreteBuilder instance 
+	///Just in case the concrete builder could change the specifications in the future, otherwise
+	/// this specifications should be constant.
+	specs: ARRAY[1..4] OF STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Stores the specifications on its own specifications field.
+THIS^.specifications := specs;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Get_Main_Part" Id="{0fcd98b9-6591-41a6-9227-07f56dc4fb36}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to get the main part
+METHOD Get_Main_Part : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Returns the object stored in the built product THIS^.localProduct.mainPart
+Get_Main_Part := THIS^.localProduct.mainPart;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Get_Part1" Id="{2e656caa-41fb-45e8-84ff-e2cc16f47d7a}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to get the part1
+METHOD Get_Part1 : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Returns the object stored in the built product THIS^.localProduct.part1
+Get_Part1 := THIS^.localProduct.part1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Get_Part2" Id="{4e20c2f9-50bc-415c-8015-1ee4a87f7c1a}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to get the part2
+METHOD Get_Part2 : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Returns the object stored in the built product THIS^.localProduct.part2
+Get_Part2 := THIS^.localProduct.part2;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Get_Part3" Id="{20ceee38-6ea3-4ac4-80d9-2f3ed38a41d4}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to get the part3
+METHOD Get_Part3 : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Returns the object stored in the built product THIS^.localProduct.part3
+Get_Part3 := THIS^.localProduct.part3;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Get_Result" Id="{9c876e7c-0afe-4fde-8c33-5679cc1096c2}">
+      <Declaration><![CDATA[///Illustrative method of the pattern
+METHOD Get_Result : Product
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//The concrete builder, after it builts the final object of class product, returns the 
+// final product object 
+Get_Result := THIS^.localProduct;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Set_Main_Part" Id="{47616bbe-e621-41a6-9c5a-d481a6eef8d4}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to set the main part
+METHOD Set_Main_Part
+VAR_INPUT
+	///Illustrative value (object because it is a TRING) to be set as a product part
+	mainPart: STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Sets the passed value to its corresponding field. 
+//We can say that the the final product is in process of being built.
+//So this is a step into building the final product done by the builder.
+THIS^.localProduct.mainPart := mainPart;
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Set_Part1" Id="{41b59a3a-a42d-460b-bf25-3d4c90d22be0}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to set the part1
+METHOD Set_Part1
+VAR_INPUT
+	///Illustrative value (object because it is a TRING) to be set as a product part
+	part1: STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Sets the passed value to its corresponding field. 
+//We can say that the the final product is in process of being built.
+//So this is a step into building the final product done by the builder.
+THIS^.localProduct.part1 := part1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Set_Part2" Id="{d3f29ad8-51d4-4463-82f1-675dbebcfe4a}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to set the part2
+METHOD Set_Part2
+VAR_INPUT
+	///Illustrative value (object because it is a TRING) to be set as a product part
+	part2: STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Sets the passed value to its corresponding field. 
+//We can say that the the final product is in process of being built.
+//So this is a step into building the final product done by the builder.
+THIS^.localProduct.part2 := part2;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Set_Part3" Id="{e1fb3aa5-8da4-4e2d-bac1-fc8a437ba7e2}">
+      <Declaration><![CDATA[///Illustrative method of the pattern to set the part3
+METHOD Set_Part3
+VAR_INPUT
+	///Illustrative value (object because it is a TRING) to be set as a product part
+	part3: STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Sets the passed value to its corresponding field. 
+//We can say that the the final product is in process of being built.
+//So this is a step into building the final product done by the builder.
+THIS^.localProduct.part3 := part3;  ]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

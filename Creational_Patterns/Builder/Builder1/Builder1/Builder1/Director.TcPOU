@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Director" Id="{4a39953a-3fcc-455a-aeed-2223e5fc8a6f}" SpecialFunc="None">
+    <Declaration><![CDATA[///The director class is responsible to delegate the construction of the final product object 
+/// to a concrete builder object.
+{attribute 'enable_dynamic_creation' := ''}
+FUNCTION_BLOCK Director
+VAR_INPUT
+	///Reference to the builder that is going to be building the final product object.
+	///Referencia al constructor que construirá el objeto del producto final.
+	{attribute 'old_input_assignments' := ''}
+	inputConcreteBuilder: ConcreteBuilder(specs := inputConcreteBuilder.specifications);
+END_VAR
+VAR
+	///Holds a reference to the concrete builder object to send the specifications of the final product to it.
+	/// Contiene una referencia al objeto constructor concreto para enviarle las especificaciones del producto final
+	{attribute 'old_input_assignments' := ''}
+	concreteBuilder: ConcreteBuilder(specs := THIS^.concreteBuilder.specifications);
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Stores the reference to which builder will be building the final product object in its own field THIS^.concreteBuilder
+//Almacena la referencia a qué constructor construirá el objeto del producto final en su propio campo THIS^.concreteBuilder
+THIS^.concreteBuilder := inputConcreteBuilder;]]></ST>
+    </Implementation>
+    <Method Name="Construct" Id="{d97b768c-51f3-48ff-9224-56991961062d}">
+      <Declaration><![CDATA[///This method is going to be called by the client when a new Product object must be built
+METHOD Construct : Product
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//The Director tells its concreteBuilder instance to build the final product step by step passing the specifications stored in the 
+// concreteBuilder array THIS^.specifications[1..4]
+
+//Step 1 "Main Part"
+THIS^.concreteBuilder.Set_Main_Part(THIS^.concreteBuilder.specifications[1]);
+//Step 2 "Part 1"
+THIS^.concreteBuilder.Set_Part1(THIS^.concreteBuilder.specifications[2]);
+//Step 3 "Part 2"
+THIS^.concreteBuilder.Set_Part2(THIS^.concreteBuilder.specifications[3]);
+//Step 4 "Part 3"
+THIS^.concreteBuilder.Set_Part3(THIS^.concreteBuilder.specifications[4]);
+
+//Finally the concreteBuilder instance in the Director object delivers the final result as a Product object
+//Finalmente, la instancia de concreteBuilder en el objeto Director entrega el resultado final como un objeto Producto
+Construct := THIS^.concreteBuilder.Get_Result();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="fb_init" Id="{7c138ef8-fc50-4b2f-b0e4-a2bb5709b6d5}">
+      <Declaration><![CDATA[///This constructor is called at instanciation it is necessary to instanciate the Director instance.
+///The specifications of the concreteBuilder instance stored in the Director instance should be set first by the client
+/// otherwise a Data Recursion error is caused
+METHOD fb_init
+VAR_INPUT
+	/// TRUE: the Retain-variables are initialized (reset warm / reset cold)
+	bInitRetains: BOOL;
+	/// TRUE  the instance will be copied to the copy-code afterward (online change)
+	bInCopyCode: BOOL;
+	///Reference a concreteBuilder instance to instanciate the Director.
+	{attribute 'old_input_assignments' := ''}
+	inputConcreteBuilder: ConcreteBuilder(specs := defaultArray);
+END_VAR
+VAR
+	///Variable to isntanciate the concreteBuilder instance on the input section. It does not affect the Directors instanciation.
+	defaultArray: ARRAY[1..4] OF STRING := ['Default', 'Default', 'Default', 'Default'];
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Creates the concreteBuilder instance that will be building the final product object in its own field THIS^.concreteBuilder
+//This instance is empty because we can not use Data Recursion with the inputConcreteInstance instanciation.
+//So this concreteBuilder instance should be changed by the client before a Construct() request is called on the Director for the first time only.
+THIS^.concreteBuilder := inputConcreteBuilder;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

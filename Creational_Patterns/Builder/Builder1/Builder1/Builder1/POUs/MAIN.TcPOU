@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{33e7be01-b643-4e42-9b4f-203a141f47f7}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	///Three specifications arrays to be used by the same Director
+	specsBuilder1: ARRAY[1..4] OF STRING := ['Red Chassis ', 'Sedan ', 'Motor 1.4cc ', 'Aluminium tires'];
+	specsBuilder2: ARRAY[1..4] OF STRING := ['Black Chassis ', 'Hatchback ', 'Motor 2.0cc ', 'Chrome plated tires'];
+	specsBuilder3: ARRAY[1..4] OF STRING := ['White Chassis ', 'Sport ', 'Motor 2.5cc ', 'Ligth aluminium tires'];
+	///Special array for the visualization element
+	tableArray: ARRAY[1..4, 1..3] OF STRING := ['Red Chassis', 'Black Chassis', 'White Chassis', 'Sedan', 'Hatchback', 'Sport', 'Motor 1.4cc', 'Motor 2.0cc', 'Motor 2.5cc', 'Aluminium tires', 'Chrome plated tires', 'Ligth aluminium tires'];
+	///String variable to interact and respond to the client in the visualization element
+	sMessageLog: STRING(500) := 'Waiting for your request';
+	///Boolean value to react to a clients request
+	bRequest: BOOL := FALSE;
+	///Boolean and integer values to receive data from the tables in the visualization element
+	///The boolean value validates if the client has chosen a valid option
+	bRow: BOOL := FALSE;
+	///The integer value hold the reference to the array of specifications
+	iRow: INT := 0;
+	///A pointer to Poduct to dynamically create and delete product objects at the clients requests
+	prod: POINTER TO Product;
+	///Three ConcreteBuilder instances to be passed to the Director and build the final Product objects
+	///Each ConcreteBuilder intance is initiated with its own specifications
+	{attribute 'old_input_assignments' := ''}
+	concreteBuilder1: ConcreteBuilder(specs := specsBuilder1);
+	{attribute 'old_input_assignments' := ''}
+	concreteBuilder2: ConcreteBuilder(specs := specsBuilder2);
+	{attribute 'old_input_assignments' := ''}
+	concreteBuilder3: ConcreteBuilder(specs := specsBuilder3);
+	///A Director instance that is instanciated with a ConcreteBuilder instance.
+	/// later on in the program the specific ConcreteBuilder instance could be changed dynamically
+	{attribute 'old_input_assignments' := ''}
+	aDirector: Director(inputConcreteBuilder := concreteBuilder1);	
+END_VAR
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//The visualization element lets the client chose an option blueprint to build a Car
+//Once the client has chosen his prefered option, he can then procede to make the request of construction.
+//The bottom rectangle will handle all possible responses from te application to the client.
+
+//If the client makes a request in the visualization element
+IF bRequest
+	THEN
+	//CASE instruction to handle all possible cases of the cleint's request
+	//The value to verify is iRow to specify which row the client has chosen
+	CASE iRow OF
+		//If the client has chosen the "Title" row from the visualization element we notify the client to chose a Car blueprint
+		0: 	sMessageLog := 'You must first select a Car to make a request. Waiting for your request';
+			//Once this reques has been handled, the reques flag is set to FALSE
+			bRequest := FALSE;
+		
+		//If the client has chosen the first option row, the builder notifies the client about the received request
+		1:	sMessageLog := 'Your red car is being built';
+			//A new product object is created on demand
+			prod := __NEW(Product);
+			//The director object receives the ConcreteBuilder object to be used based on the clients choice
+			aDirector(inputConcreteBuilder := concreteBuilder1);
+			//The Product object request the construction to the Director.
+			prod^ := aDirector.Construct();
+			//The Builder's response after the Director object has handled the proper request
+			sMessageLog := CONCAT( 'Your car has been built. It has ' , prod^.toString());
+			//Once this reques has been handled, the reques flag is set to FALSE
+			bRequest := FALSE;
+			//Once this reques has been handled, the Product object is deleted to free memory
+			__DELETE(prod);
+			
+		//If the client has chosen the second option row, the builder notifies the client about the received request	
+		2:	sMessageLog := 'Your black car is being built';
+			//A new product object is created on demand
+			prod := __NEW(Product);
+			//The director object receives the ConcreteBuilder object to be used based on the clients choice
+			aDirector(inputConcreteBuilder := concreteBuilder2);
+			//The Product object request the construction to the Director.
+			prod^ := aDirector.Construct();
+			//The Builder's response after the Director object has handled the proper request
+			sMessageLog := CONCAT( 'Your car has been built. It has ' , prod^.toString());
+			//Once this reques has been handled, the reques flag is set to FALSE
+			bRequest := FALSE;
+			//Once this reques has been handled, the Product object is deleted to free memory
+			__DELETE(prod);
+			
+		//If the client has chosen the third option row, the builder notifies the client about the received request	
+		3: sMessageLog := 'Your white car is being built';
+			//A new product object is created on demand
+			prod := __NEW(Product);
+			//The director object receives the ConcreteBuilder object to be used based on the clients choice
+			aDirector(inputConcreteBuilder := concreteBuilder3);
+			//The Product object request the construction to the Director.
+			prod^ := aDirector.Construct();
+			//The Builder's response after the Director object has handled the proper request
+			sMessageLog := CONCAT( 'Your car has been built. It has ' , prod^.toString());
+			//Once this reques has been handled, the reques flag is set to FALSE
+			bRequest := FALSE;
+			//Once this reques has been handled, the Product object is deleted to free memory
+			__DELETE(prod);
+			
+		//If the client makes any unrecognized request.	
+		ELSE
+			sMessageLog := 'That is not a valir selection. Waiting for your request';
+			//Once this reques has been handled, the reques flag is set to FALSE
+			bRequest := FALSE;
+
+	END_CASE
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

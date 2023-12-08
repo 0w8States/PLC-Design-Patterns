@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Director" Id="{60936e0a-7d72-4dde-818a-2656b969da4d}" SpecialFunc="None">
+    <Declaration><![CDATA[///The director class is responsible to delegate the construction of the final product object 
+/// to a concrete builder object.
+FUNCTION_BLOCK Director
+VAR_INPUT
+	///This variable is sent by the client as the specifications of the final product to be built.
+	spected: ARRAY[1..4] OF STRING;
+END_VAR
+VAR
+	///Holds a reference to the concrete builder object to send the specifications of the final product to it.
+	concreteBuilder: ConcreteBuilder;
+	///Stores the specifications, sent by the client, of the final product to be built.
+	specifications: ARRAY[1..4] OF STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//This dynamic constructor changes the previous specifications of the final product to be built
+THIS^.specifications := THIS^.spected;]]></ST>
+    </Implementation>
+    <Method Name="Construct" Id="{a3ecce91-5951-4c72-b21c-72a46f498ccf}">
+      <Declaration><![CDATA[///This method is going to be called by the client when a new Product object must be built
+METHOD Construct : Product
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//The Director tells its concreteBuilder instance to build the final product step by step passing the specifications stored in the 
+// array THIS^.specifications[1..4]
+
+//Step 1 "Main Part"
+THIS^.concreteBuilder.Set_Main_Part(THIS^.specifications[1]);
+//Step 2 "Part 1"
+THIS^.concreteBuilder.Set_Part1(THIS^.specifications[2]);
+//Step 3 "Part 2"
+THIS^.concreteBuilder.Set_Part2(THIS^.specifications[3]);
+//Step 4 "Part 3"
+THIS^.concreteBuilder.Set_Part3(THIS^.specifications[4]);
+
+//Finally the concreteBuilder instance in the Director object delivers the final result as a Product object
+Construct := THIS^.concreteBuilder.Get_Result();]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="fb_init" Id="{8269a1e4-211d-4498-aaf1-1b13eba924f1}">
+      <Declaration><![CDATA[///This constructor is called at instanciation to store the inital specifications of the product to be built and 
+/// the reference to the builder object.
+METHOD fb_init
+VAR_INPUT
+	/// TRUE: the Retain-variables are initialized (reset warm / reset cold)
+	bInitRetains: BOOL;
+	/// TRUE  the instance will be copied to the copy-code afterward (online change)
+	bInCopyCode: BOOL;
+	///Reference to the builder that is going to be building the final product object.
+	concreteBuilder: ConcreteBuilder;
+	///Specifications, sent by the client, to be built on the final product object
+	specifications: ARRAY[1..4] OF STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Stores the reference to which builder will be building the final product object in its own field THIS^.concreteBuilder
+THIS^.concreteBuilder := concreteBuilder;
+
+//Stores the specifications to build the final product object in its own field THIS^.specifications.
+THIS^.specifications := specifications;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

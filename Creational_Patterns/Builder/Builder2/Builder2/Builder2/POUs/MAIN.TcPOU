@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{10798435-1903-4f9e-a949-2e7c2ff1c848}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	///Arrays with the different specifications for the Client to choose
+	arrayChassis: ARRAY[1..3] OF STRING := ['Red Chassis ', 'Black Chassis ', 'White Chassis '];
+	arrayCarType: ARRAY[1..3] OF STRING := ['Sedan ', 'Hatchback ', 'Sport '];
+	arrayMotor: ARRAY[1..3] OF STRING := ['Motor 1.4cc ', 'Motor 2.0cc ', 'Motor 2.5cc '];
+	arrayTires: ARRAY[1..3] OF STRING := ['Aluminium tires ', 'Chrome plated tires ', 'Ligth aluminium tires '];
+	///Temporary array to have a reference to the clients choice
+	tempArray: ARRAY[1..4] OF STRING;
+	///Boolean and integer values to receive data from the tables in the visualization element
+	///The boolean value validates if the client has chosen a valid option
+	bChassis: BOOL := FALSE;
+	///The integer value hold the reference to the array of specifications
+	iChassis: INT := 0;
+	///Boolean and integer values to receive data from the tables in the visualization element
+	///The boolean value validates if the client has chosen a valid option
+	bCarType: BOOL := FALSE;
+	///The integer value hold the reference to the array of specifications
+	iCarType: INT := 0;
+	///Boolean and integer values to receive data from the tables in the visualization element
+	///The boolean value validates if the client has chosen a valid option
+	bMotor: BOOL := FALSE;
+	///The integer value hold the reference to the array of specifications
+	iMotor: INT := 0;
+	///Boolean and integer values to receive data from the tables in the visualization element
+	///The boolean value validates if the client has chosen a valid option
+	bTires: BOOL := FALSE;
+	///The integer value hold the reference to the array of specifications
+	iTires: INT := 0;
+	///Boolean value to verify and respond to a client's request
+	bRequest: BOOL := FALSE;
+	///String variable to interact and respond to the client in the visualization element
+	sMessageLog: STRING(500) := 'Waiting for your request';
+	///A pointer to Poduct to dynamically create and delete product objects at the clients requests
+	prod: POINTER TO Product;
+	///A ConcreteBuilder instance to be passed to the Director and build the final Product objects
+	aConcreteBuilder: ConcreteBuilder;
+	///A Director instance that is instanciated with a ConcreteBuilder instance and the first specifications.
+	/// later on in the program these specifications of the ConcreteBuilder instance will be changed dynamically
+	{attribute 'old_input_assignments' := ''}
+	aDirector: Director(concreteBuilder := aConcreteBuilder, specifications := tempArray);	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//The visualization element has 4 coloums in which the client must select an option from each coloum.
+//Once the client has made its choice, He can then procede to validate its request.
+//The bottom rectangle will handle all possible responses from the application to the client.
+
+//If the client makes a request in the visualization element
+IF bRequest
+	THEN
+	//We verify that the cliet has chosen all the required parts(All in this case)
+	IF bChassis AND bCarType AND bMotor AND bTires
+		THEN
+		//If the client has sent a valir request, the builder notifies the client about the received request
+		sMessageLog := 'Your red car is being built';
+		//A new product object is created on demand
+		prod := __NEW(Product);
+		//The tempArray is modified to the special characteristics demanded from the client on the visualization element
+		tempArray[1] := arrayChassis[iChassis];
+		tempArray[2] := arrayCarType[iCarType];
+		tempArray[3] := arrayMotor[iMotor];
+		tempArray[4] := arrayTires[iTires];
+
+		//The Director object receives the specifications for the new Product to be built
+		aDirector(spected := tempArray);
+		//The Product object request the construction to the Director.
+		prod^ := aDirector.Construct();
+		//The Builder's response after the Director object has handled the proper request
+		sMessageLog := CONCAT( 'Your car has been built. It has: ', prod^.toString());
+		//Once this reques has been handled, the request flag is set to FALSE
+		bRequest := FALSE;
+		//Once this reques has been handled, the Product object is deleted to free memory
+		__DELETE(prod);
+		
+		//If the client did not choose all the required parts
+		ELSE
+			
+		//The Builder responds
+		sMessageLog := 'You need to select all the parts for your car';
+		//Once this reques has been handled, the reques flag is set to FALSE
+		bRequest := FALSE;
+		
+	END_IF
+
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
