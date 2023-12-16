@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Circle" Id="{7bf41376-fe79-4fc9-9b0f-cc0bfa7817da}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK Circle IMPLEMENTS ITF_Shape
+VAR_INPUT
+	radius: INT;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Clone" Id="{40bc29e0-bf78-4d5d-8f5d-1f786394c013}">
+      <Declaration><![CDATA[
+METHOD  Clone : ITF_Shape
+VAR_INPUT
+END_VAR
+VAR_STAT
+ pClone : POINTER TO Circle;	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pClone := __NEW(Circle);
+pClone^.radius := radius;
+Clone := pClone^;
+__DELETE(pClone);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Draw" Id="{919be77b-1433-43bb-9e6d-ebea1c177f82}">
+      <Declaration><![CDATA[
+METHOD Draw
+
+VAR
+	str : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[str := TO_STRING(radius);
+
+ADSLOGSTR(msgCtrlMask :=ADSLOG_MSGTYPE_HINT, msgFmtStr :='Draw circle with radius: %s', strArg := str);]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
