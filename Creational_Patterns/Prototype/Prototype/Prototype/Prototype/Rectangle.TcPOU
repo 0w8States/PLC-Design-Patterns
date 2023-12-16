@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Rectangle" Id="{5fab8419-38ec-4aa0-8ae7-fe6ce34dda2e}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK Rectangle IMPLEMENTS ITF_Shape
+VAR_INPUT
+	width: INT;
+    height: INT;
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Clone" Id="{d393242f-6ae7-4dca-af0b-60b70a6eaa0e}">
+      <Declaration><![CDATA[
+METHOD Clone : ITF_Shape
+VAR_INPUT
+END_VAR
+VAR_STAT
+	clonedRectangle: Rectangle;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[clonedRectangle.width := width;
+clonedRectangle.height := height;
+
+Clone := clonedRectangle;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Draw" Id="{d8fa6ad4-ea28-4c15-ab4b-56aa068bd55b}">
+      <Declaration><![CDATA[
+METHOD Draw
+
+VAR
+	str_width : STRING;
+	str_height: STRING;
+	str : STRING;
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+str_width  := CONCAT(STR1:= 'width: ', STR2:=  TO_STRING(width));
+str_height := CONCAT(STR1:= ', height: ', STR2:=  TO_STRING(height));
+str :=  CONCAT(STR1:= str_width, STR2:=  str_height);
+
+ADSLOGSTR(msgCtrlMask :=ADSLOG_MSGTYPE_HINT, msgFmtStr :='Draw Rectangle with:  %s', strArg := str);]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

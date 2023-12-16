@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="ITF_Shape" Id="{845d4f0e-7686-422c-bfa9-9f7d44dcc274}">
+    <Declaration><![CDATA[INTERFACE ITF_Shape
+]]></Declaration>
+    <Method Name="Clone" Id="{267796f6-e282-4810-b929-b9e4e73721a4}">
+      <Declaration><![CDATA[
+METHOD Clone : ITF_Shape
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="Draw" Id="{5fc940af-ada7-4e36-a96a-1e791eebb941}">
+      <Declaration><![CDATA[METHOD Draw
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>
