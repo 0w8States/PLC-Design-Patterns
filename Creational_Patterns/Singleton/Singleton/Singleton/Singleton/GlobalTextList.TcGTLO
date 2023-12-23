@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <GlobalTextList Name="GlobalTextList" Id="{a7e89058-5487-4980-bcfc-768d8993d9ba}">
+    <XmlArchive>
+      <Data>
+        <o xml:space="preserve" t="GlobalTextListObject">
+          <l n="TextList" t="ArrayList" cet="TextListRow">
+            <o>
+              <v n="TextID">"715"</v>
+              <v n="TextDefault">"// ***********************************************************************************************************************************
+//The PLC_PRG handles the instanciation of the possible background colours and the ProxyToSingleton instances in order to be used by the Visualization element.
+//The visualization element (The client) handles the request for background change on the RealSingleton object through the ProxyToSinlgeton instances.
+//These request are first processed by the ProxyToSingleton object and then passed to the one and only RealSingleton instance.
+//The default background colour of the RealSingleton object is 'Blue' 
+// ***********************************************************************************************************************************
+// spanish
+//PLC_PRG maneja la instanciación de los posibles colores de fondo y las instancias de ProxyToSingleton para ser utilizados por el elemento de visualización.
+//El elemento de visualización (el cliente) maneja la solicitud de cambio de fondo en el objeto RealSingleton a través de las instancias de ProxyToSinlgeton.
+//Estas solicitudes son procesadas primero por el objeto ProxyToSingleton y luego pasadas a la única instancia de RealSingleton.
+//El color de fondo predeterminado del objeto RealSingleton es 'Azul'
+// ***********************************************************************************************************************************"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"630"</v>
+              <v n="TextDefault">"//The PLC_PRG handles the instanciation of the possible background colours and the ProxyToSingleton instances in order to be used by the Visualization element.
+//The viasualization element (The client) handles the request for background change on the RealSingleton object through the ProxyToSinlgeton instances.
+//These request are first processed by the ProxyToSingleton object and then passed to the one and only RealSingleton instance.
+//The default background colour of the RealSingleton object is 'Blue' "</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"622"</v>
+              <v n="TextDefault">"//The PLC_PRG handles the instanciation of the possible background colours and the ProxyToSingleton instances in order to be used by the Visualization element.
+//The visualization element (The client) handles the request for background change on the RealSingleton object through the ProxyToSinlgeton instances.
+//These request are first processed by the ProxyToSingleton object and then passed to the one and only RealSingleton instance.
+//The default background colour of the RealSingleton object is 'Blue' "</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"806"</v>
+              <v n="TextDefault">"//The PLC_PRG handles the instanciation of the possible background colours and the ProxyToSingleton instances in order to be used by the Visualization element.
+//The visualization element (The client) handles the request for background change on the RealSingleton object through the ProxyToSinlgeton instances.
+//These request are first processed by the ProxyToSingleton object and then passed to the one and only RealSingleton instance.
+//The default background colour of the RealSingleton object is 'Blue' 
+// spanish
+//PLC_PRG maneja la instanciación de los posibles colores de fondo y las instancias de ProxyToSingleton para ser utilizados por el elemento de visualización.
+//El elemento de visualización (el cliente) maneja la solicitud de cambio de fondo en el objeto RealSingleton a través de las instancias de ProxyToSinlgeton.
+//Estas solicitudes son procesadas primero por el objeto ProxyToSingleton y luego pasadas a la única instancia de RealSingleton.
+//El color de fondo predeterminado del objeto RealSingleton es 'Azul'"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"596"</v>
+              <v n="TextDefault">"instance1.realSingleton^.
+backgroundColor"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"621"</v>
+              <v n="TextDefault">"instance1.Set_Background(HEX color)"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"436"</v>
+              <v n="TextDefault">"instance2.realSingleton^.
+backgroundColor"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"534"</v>
+              <v n="TextDefault">"instance2.Set_Background(HEX color)"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"774"</v>
+              <v n="TextDefault">"instance3.realSingleton^.
+backgroundColor"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"50"</v>
+              <v n="TextDefault">"instance3.Set_Background(HEX color)"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+            <o>
+              <v n="TextID">"430"</v>
+              <v n="TextDefault">"The PLC_PRG handles the instanciation of the possible background colours and the ProxyToSingleton instances in order to be used by the Visualization element.
+"</v>
+              <l n="LanguageTexts" t="ArrayList" />
+            </o>
+          </l>
+          <l n="Languages" t="ArrayList" />
+          <v n="GuidInit">{822495f3-1835-44bc-8720-1882e3aa9287}</v>
+          <v n="GuidReInit">{004c59dc-6f4b-438d-b797-e720a4374ed8}</v>
+          <v n="GuidExitX">{c126f8b8-264d-4846-8da3-5e679baf0269}</v>
+        </o>
+      </Data>
+      <TypeList>
+        <Type n="ArrayList">System.Collections.ArrayList</Type>
+        <Type n="GlobalTextListObject">{63784cbb-9ba0-45e6-9d69-babf3f040511}</Type>
+        <Type n="Guid">System.Guid</Type>
+        <Type n="String">System.String</Type>
+        <Type n="TextListRow">{53da1be7-ad25-47c3-b0e8-e26286dad2e0}</Type>
+      </TypeList>
+    </XmlArchive>
+  </GlobalTextList>
+</TcPlcObject>

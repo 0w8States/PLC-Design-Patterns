@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PLC_PRG" Id="{ee8f0b82-eb89-4497-8659-92c0e02b251d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PLC_PRG
+VAR
+	///Blue, highly opaque
+	dwBlue: DWORD := 16#FF0000FF;
+	///Green, highly opaque
+	dwGreen: DWORD := 16#FF00FF00;
+	///Yellow, highly opaque
+	dwYellow: DWORD := 16#FFFFFF00;
+	///Creates 3 instances of the ProxyToSingleton class
+	instance1: ProxyToSingleton;
+	instance2: ProxyToSingleton;
+	instance3: ProxyToSingleton;
+	
+	eInstance1 : E_Color;
+	eInstance2 : E_Color;
+	eInstance3 : E_Color;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//*************************************************************************************************************************************************************
+//The PLC_PRG handles the instanciation of the possible background colours and the ProxyToSingleton instances in order to be used by the Visualization element.
+//The viasualization element (The client) handles the request for background change on the RealSingleton object through the ProxyToSinlgeton instances.
+//These request are first processed by the ProxyToSingleton object and then passed to the one and only RealSingleton instance.
+//The default background colour of the RealSingleton object is 'Blue' 
+//*************************************************************************************************************************************************************
+// spanish
+//PLC_PRG maneja la instanciación de los posibles colores de fondo y las instancias de ProxyToSingleton para ser utilizados por el elemento de visualización.
+//El elemento de visualización (el cliente) maneja la solicitud de cambio de fondo en el objeto RealSingleton a través de las instancias de ProxyToSinlgeton.
+//Estas solicitudes son procesadas primero por el objeto ProxyToSingleton y luego pasadas a la única instancia de RealSingleton.
+//El color de fondo predeterminado del objeto RealSingleton es 'Azul'
+//*************************************************************************************************************************************************************
+
+CASE eInstance1 OF
+	E_Color.Blue:
+		instance1.Set_Background(dwBlue);
+		eInstance1:=E_Color.NoColor;
+	E_Color.Green:
+		instance1.Set_Background(dwGreen);
+		eInstance1:=E_Color.NoColor;
+	E_Color.Yellow:
+		instance1.Set_Background(dwYellow);
+		eInstance1:=E_Color.NoColor;
+END_CASE
+
+CASE eInstance2 OF
+	E_Color.Blue:
+		instance2.Set_Background(dwBlue);
+		eInstance2:=E_Color.NoColor;	
+	E_Color.Green:
+		instance2.Set_Background(dwGreen);
+		eInstance2:=E_Color.NoColor;	
+	E_Color.Yellow:
+		instance2.Set_Background(dwYellow);
+		eInstance2:=E_Color.NoColor;	
+END_CASE
+
+CASE eInstance3 OF
+	E_Color.Blue:
+		instance3.Set_Background(dwBlue);
+		eInstance3:=E_Color.NoColor;	
+	E_Color.Green:
+		instance3.Set_Background(dwGreen);
+		eInstance3:=E_Color.NoColor;	
+	E_Color.Yellow:
+		instance3.Set_Background(dwYellow);
+		eInstance3:=E_Color.NoColor;	
+END_CASE]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
