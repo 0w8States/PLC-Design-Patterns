@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="Proxy_Interface" Id="{c09f41ed-8388-4fa5-846b-482111779151}">
+    <Declaration><![CDATA[INTERFACE Proxy_Interface
+]]></Declaration>
+    <Method Name="Set_Background" Id="{0b61ddc6-a83a-488f-9e3c-0f6b2e254ece}">
+      <Declaration><![CDATA[///Illustrative method of the pattern
+METHOD Set_Background
+VAR_INPUT
+	///HEX value to be set as background color
+	newBackground: DWORD;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

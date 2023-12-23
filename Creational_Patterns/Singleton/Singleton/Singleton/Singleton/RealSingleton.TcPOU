@@ -1,0 +1,58 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="RealSingleton" Id="{63f62198-a68d-4704-95f1-a4bf90c1e139}" SpecialFunc="None">
+    <Declaration><![CDATA[///*****************************************************************************************************************
+/// This class is called RealSingleton because it works as singleton.  
+/// As long as we only instanciate ProxyToSingleton objects, this class will work as a Singleton class should work.
+/// The global access point to this class is the field .realSingleton^ in every ProxyToSingleton object.
+///*****************************************************************************************************************
+/// Esta clase se llama RealSingleton porque funciona como singleton.
+/// Siempre que solo instanciamos objetos ProxyToSingleton, esta clase funcionará como debería funcionar una clase Singleton.
+/// El punto de acceso global a esta clase es el campo .realSingleton^ en cada objeto ProxyToSingleton.
+///*****************************************************************************************************************
+{attribute 'enable_dynamic_creation' := ''}
+FUNCTION_BLOCK RealSingleton IMPLEMENTS Proxy_Interface
+VAR
+	///Illustrative field of the pattern to store the HEX value for the background colour
+	///************************************************************************************
+	///Campo ilustrativo del patrón para almacenar el valor HEX para el color de fondo	
+	backgroundColour: DWORD;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="fb_init" Id="{0c763367-d442-4046-a44f-c91f95391b46}">
+      <Declaration><![CDATA[METHOD fb_init
+VAR_INPUT
+	/// TRUE: the Retain-variables are initialized (reset warm / reset cold)
+	bInitRetains: BOOL;
+	/// TRUE  the instance will be copied to the copy-code afterward (online change)
+	bInCopyCode: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//The default valur for the background is set
+//*********************************************
+//Se establece el valor predeterminado para el fondo
+THIS^.Set_Background(PLC_PRG.dwBlue);
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Set_Background" Id="{b54156f8-45dd-49da-875b-271f7909a23e}">
+      <Declaration><![CDATA[///Illustrative method of the pattern
+METHOD Set_Background
+VAR_INPUT
+	///HEX value to be set as background color
+	newBackground: DWORD;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Writes the backgroundColour field to the passed newBackground value
+//********************************************************************
+//Escribe el campo backgroundColor en el valor newBackground pasado
+THIS^.backgroundColour := newBackground;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
