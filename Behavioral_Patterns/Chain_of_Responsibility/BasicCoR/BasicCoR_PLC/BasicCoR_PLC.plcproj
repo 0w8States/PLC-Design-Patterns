@@ -13,7 +13,7 @@
     <Implicit_Jitter_Distribution>{3ebec725-2d56-4084-a489-3aa93fb80762}</Implicit_Jitter_Distribution>
     <LibraryReferences>{1a179e09-d107-49eb-b360-63ed2ec7291f}</LibraryReferences>
     <CombineIds>true</CombineIds>
-    <Released>true</Released>
+    <Released>false</Released>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Diagrams\ClassDiagram.TcCD">
@@ -45,14 +45,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DUTs" />
-    <Folder Include="GVLs" />
     <Folder Include="Handlers" />
     <Folder Include="Handlers\ITFs" />
     <Folder Include="Handlers\FBs" />
     <Folder Include="Diagrams" />
     <Folder Include="POUs\POUs" />
-    <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>

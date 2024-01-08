@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="NotificationIterator" Id="{d6413826-61c3-4c4f-a428-bb95e0e149a0}" SpecialFunc="None">
     <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
 FUNCTION_BLOCK NotificationIterator IMPLEMENTS Iterator
@@ -59,6 +59,17 @@ next := pNotification^;
 ]]></ST>
       </Implementation>
     </Method>
+    <Property Name="Position" Id="{1e16d1d3-ca17-451f-8512-cf2ae4cb9706}">
+      <Declaration><![CDATA[PROPERTY Position : INT]]></Declaration>
+      <Get Name="Get" Id="{f045d35f-7bb0-475a-bf46-dde5b36582ad}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Position := nPosition;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
     <Method Name="reset" Id="{339a6f97-1a8f-43f4-9ecf-7cf24e122f8f}">
       <Declaration><![CDATA[METHOD reset : BOOL
 ]]></Declaration>
@@ -69,32 +80,5 @@ THIS^.nPosition := 0;
 reset := TRUE;]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="NotificationIterator">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="NotificationIterator.current">
-      <LineId Id="4" Count="0" />
-      <LineId Id="8" Count="0" />
-    </LineIds>
-    <LineIds Name="NotificationIterator.FB_init">
-      <LineId Id="7" Count="0" />
-    </LineIds>
-    <LineIds Name="NotificationIterator.hasNext">
-      <LineId Id="11" Count="0" />
-      <LineId Id="17" Count="0" />
-      <LineId Id="19" Count="1" />
-      <LineId Id="18" Count="0" />
-      <LineId Id="16" Count="0" />
-    </LineIds>
-    <LineIds Name="NotificationIterator.next">
-      <LineId Id="17" Count="1" />
-      <LineId Id="11" Count="0" />
-      <LineId Id="8" Count="0" />
-      <LineId Id="10" Count="0" />
-    </LineIds>
-    <LineIds Name="NotificationIterator.reset">
-      <LineId Id="6" Count="1" />
-      <LineId Id="4" Count="1" />
-    </LineIds>
   </POU>
 </TcPlcObject>
