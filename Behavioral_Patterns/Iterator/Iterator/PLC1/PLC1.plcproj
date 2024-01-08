@@ -17,6 +17,9 @@
     <LibraryReferences>{f454677a-fda6-4a3c-9cb9-e3857a3c1c4a}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Class Diagram.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FBs\Notification.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -53,7 +56,6 @@
     <Folder Include="FBs" />
     <Folder Include="ITFs" />
     <Folder Include="FUNs" />
-    <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>

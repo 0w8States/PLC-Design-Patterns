@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.6">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <Itf Name="Iterator" Id="{11e57a1b-5b87-41c6-8866-dab19c5cc778}">
     <Declaration><![CDATA[INTERFACE Iterator
 ]]></Declaration>
@@ -21,6 +21,12 @@ VAR_INPUT
 END_VAR
 ]]></Declaration>
     </Method>
+    <Property Name="Position" Id="{b2d58fb3-5dc1-4b10-b185-0b3038c26065}">
+      <Declaration><![CDATA[PROPERTY Position : INT]]></Declaration>
+      <Get Name="Get" Id="{35a09d46-efa2-4701-858c-533b3fd2a835}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
     <Method Name="reset" Id="{3bba04f1-b69f-4a12-a25c-d55f8c90a503}">
       <Declaration><![CDATA[METHOD reset : BOOL
 VAR_INPUT
