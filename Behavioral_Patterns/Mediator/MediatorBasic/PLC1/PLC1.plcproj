@@ -44,11 +44,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DUTs" />
-    <Folder Include="GVLs" />
     <Folder Include="ITFs" />
     <Folder Include="FBs" />
-    <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
