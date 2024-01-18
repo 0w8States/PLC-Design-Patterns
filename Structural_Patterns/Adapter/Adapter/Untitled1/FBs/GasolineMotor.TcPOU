@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="GasolineMotor" Id="{2ddba2a9-c57d-4337-a725-f74b361c1c46}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK GasolineMotor EXTENDS Motor
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="LoadFuel" Id="{496ded0f-2372-4bf9-adcd-44b0d2a3e619}">
+      <Declaration><![CDATA[METHOD PUBLIC LoadFuel
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(    msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              msgFmtStr:='Loading fuel into the Gasoline motor..',
+              strArg:='');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="SpeedUp" Id="{fc2288e7-a842-4348-99e3-ef75ab71952a}">
+      <Declaration><![CDATA[METHOD PUBLIC SpeedUp
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(    msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              msgFmtStr:='Accelerating the Gasoline motor...',
+              strArg:='');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="StartUp" Id="{78539401-4b6c-4b49-a534-9d7a54f66669}">
+      <Declaration><![CDATA[METHOD PUBLIC StartUp
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(    msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              msgFmtStr:='Starting the Gasoline motor...',
+              strArg:='');]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Stop" Id="{d33a00f8-2969-4a17-9821-a289cbf74861}">
+      <Declaration><![CDATA[METHOD PUBLIC Stop
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(    msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              msgFmtStr:='Stopping the Gasoline motor...',
+              strArg:='');]]></ST>
+      </Implementation>
+    </Method>
+    <ObjectProperties>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="UMLStereoTypeContainerObject">
+            <v n="IsType" t="UMLType">BaseArea</v>
+            <v n="Stereotype">""</v>
+            <d n="Stereotypes" t="Hashtable" />
+          </o>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="String">System.String</Type>
+          <Type n="UMLStereoTypeContainerObject">{30250973-b110-4e31-b562-c102e042dca4}</Type>
+          <Type n="UMLType">{0197b136-405a-42ee-bb27-fd08b621d0cf}</Type>
+        </TypeList>
+      </XmlArchive>
+    </ObjectProperties>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{100a6bdd-6fa9-4057-9a82-ce9abf9b621d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	gasolineMotor 				: GasolineMotor;
+	dieselMotor 				: DieselMotor;
+	electricAdapterMotor 		: ElectricAdapterMotor;
+	
+	bGasolineMotor 				: BOOL;
+	bDieselMotor 				: BOOL;
+	bElectricAdapterMotor 		: BOOL;
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Gasoline motor
+IF bGasolineMotor THEN
+	bGasolineMotor := FALSE;
+	gasolineMotor.Startup();
+	gasolineMotor.Speedup();
+	gasolineMotor.Stop();
+	gasolineMotor.LoadFuel();
+END_IF
+
+
+//Diesel motor
+IF bDieselMotor THEN
+	bDieselMotor := FALSE;
+	dieselMotor.Startup();
+	dieselMotor.Speedup();
+	dieselMotor.Stop();
+	dieselMotor.LoadFuel();
+END_IF
+
+
+//Electric motor
+IF bElectricAdapterMotor THEN
+	bElectricAdapterMotor := FALSE;
+	electricAdapterMotor.Startup();
+	electricAdapterMotor.Speedup();
+	electricAdapterMotor.Stop();
+	electricAdapterMotor.LoadFuel();
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
