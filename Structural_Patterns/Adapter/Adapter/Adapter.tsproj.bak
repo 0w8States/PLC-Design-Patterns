@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35">
-	<Project ProjectGUID="{5D789C49-AF11-4AE4-8CED-4718B44546FB}" Target64Bit="true" ShowHideConfigurations="#x3c7">
+	<Project ProjectGUID="{209B836D-DD01-4956-A255-A263FB43C614}" Target64Bit="true" ShowHideConfigurations="#x3c7">
 		<System>
 			<Settings MaxCpus="8" NonWinCpus="2">
 				<Cpu CpuId="6"/>
@@ -12,9 +12,9 @@
 			</Tasks>
 		</System>
 		<Plc>
-			<Project GUID="{04693E3B-1FAF-4D0A-9DD6-887C1240B643}" Name="Design_Pattern_Factory_Method" PrjFilePath="Design_Pattern_Factory_Method\Design_Pattern_Factory_Method.plcproj" TmcFilePath="Design_Pattern_Factory_Method\Design_Pattern_Factory_Method.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Design_Pattern_Factory_Method\Design_Pattern_Factory_Method.tmc" TmcHash="{09F97497-0FF4-E399-A9EA-7F868F3B612E}">
-					<Name>Design_Pattern_Factory_Method Instance</Name>
+			<Project GUID="{27E315CD-E674-4844-B8E2-BD08237E7AB5}" Name="Untitled1" PrjFilePath="Untitled1\Untitled1.plcproj" TmcFilePath="Untitled1\Untitled1.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{5799DA56-0780-46D4-610A-245D17BFDA45}">
+					<Name>Untitled1 Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
 						<Context>

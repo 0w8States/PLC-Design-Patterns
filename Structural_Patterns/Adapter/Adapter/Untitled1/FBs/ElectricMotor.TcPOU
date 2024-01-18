@@ -1,0 +1,181 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="ElectricMotor" Id="{d2a00b04-496a-4722-8697-92a483ca10b7}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK ElectricMotor
+VAR
+	_bConnected : BOOL;
+	_bActivated : BOOL;
+	_bTraveling	: BOOL;
+	
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Activate" Id="{919712d6-a70e-4843-ae3b-0422bec14f2d}">
+      <Declaration><![CDATA[METHOD Activate
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT _bConnected THEN
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='Impossible to activate an electric motor already not connected!',
+              	strArg:='');
+			  
+ELSE
+	
+	_bActivated := TRUE;
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='electric motor activated!',
+              	strArg:='');
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Connect" Id="{f23918c7-75d6-455d-9062-b465a5eb99ae}">
+      <Declaration><![CDATA[METHOD Connect
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _bConnected THEN
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='Impossible to connect an electric motor already connected!',
+              	strArg:='');
+			  
+ELSE
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='electric motor connected!',
+              	strArg:='');
+				
+	_bConnected := TRUE;
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Deactivate" Id="{00715cc9-b67b-492d-957f-2c319a834874}">
+      <Declaration><![CDATA[METHOD Deactivate
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _bActivated THEN
+	
+	_bActivated := FALSE;
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='Electric motor deactivated!',
+              	strArg:='');
+ELSE
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='Impossible to deactivated an electric motor already connected!',
+              	strArg:='');
+				
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Disconnect" Id="{6876e10a-681f-4cfd-9d7a-b8c963cb60ec}">
+      <Declaration><![CDATA[METHOD Disconnect
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _bConnected THEN
+	
+	_bConnected := FALSE;
+		
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='electric motor disconnected...',
+              	strArg:='');
+ELSE
+		
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='Impossible to disconnect an electric motor that is connected!',
+              	strArg:='');
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Plug" Id="{bff3f290-2c22-4a2f-ada1-71d8739f308d}">
+      <Declaration><![CDATA[METHOD Plug
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF NOT _bActivated THEN
+	
+	_bActivated := FALSE;
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='Electric motor plugging bateries...',
+              	strArg:='');
+ELSE
+	
+
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='Impossible to plug an electric motor!',
+              	strArg:='');
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Stop" Id="{c9670926-500f-4560-a05c-d67b90954020}">
+      <Declaration><![CDATA[METHOD Stop
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF _bTraveling THEN
+	
+	_bTraveling := FALSE;
+
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='Stopping vehicle with electric motor...',
+              	strArg:='');
+ELSE
+	
+	_bActivated := TRUE;
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='Impossible to stop an electric motor that is not traveling!',
+              	strArg:='');
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Travel" Id="{88fc0069-7bf0-49f0-836e-e84ce685532f}">
+      <Declaration><![CDATA[METHOD Travel
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[IF (_bConnected AND _bActivated) THEN
+	
+	_bTraveling := TRUE;
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='Traveling vehicle with electric motor...',
+              	strArg:='');
+ELSE
+	
+	ADSLOGSTR(	msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              	msgFmtStr:='The electric motor must be connected and activated!',
+              	strArg:='');
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <ObjectProperties>
+      <XmlArchive>
+        <Data>
+          <o xml:space="preserve" t="UMLStereoTypeContainerObject">
+            <v n="IsType" t="UMLType">BaseArea</v>
+            <v n="Stereotype">""</v>
+            <d n="Stereotypes" t="Hashtable" />
+          </o>
+        </Data>
+        <TypeList>
+          <Type n="Hashtable">System.Collections.Hashtable</Type>
+          <Type n="String">System.String</Type>
+          <Type n="UMLStereoTypeContainerObject">{30250973-b110-4e31-b562-c102e042dca4}</Type>
+          <Type n="UMLType">{0197b136-405a-42ee-bb27-fd08b621d0cf}</Type>
+        </TypeList>
+      </XmlArchive>
+    </ObjectProperties>
+  </POU>
+</TcPlcObject>

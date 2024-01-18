@@ -1,0 +1,86 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{27e315cd-e674-4844-b8e2-bd08237e7ab5}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>Untitled1</Name>
+    <ProgramVersion>3.1.4023.0</ProgramVersion>
+    <Application>{f749a3d7-a3e7-4e3c-a281-ff411818eb5e}</Application>
+    <TypeSystem>{02e59e25-64e9-44eb-bf94-8859e5ae1c7b}</TypeSystem>
+    <Implicit_Task_Info>{9e771a8e-c53c-4995-8cf6-ed5c505b9bf2}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{4bdf75ae-9b4a-48f2-aa6b-0ef9c4828e2f}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{6067ddcb-4397-4bcb-985d-3093c2b0e0ca}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{1f546da0-a3a5-47f4-a975-8fb03e40f94a}</LibraryReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Class Diagram.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FBs\Motor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FBs\DieselMotor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FBs\ElectricMotor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FBs\ElectricAdapterMotor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="FBs\GasolineMotor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="FBs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Untitled1.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+  <Data>
+    <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+  </Data>
+  <TypeList>
+    <Type n="Hashtable">System.Collections.Hashtable</Type>
+    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+    <Type n="String">System.String</Type>
+  </TypeList>
+</XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>
