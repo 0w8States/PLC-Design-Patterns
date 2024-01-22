@@ -1,0 +1,90 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{1ebd82ec-6518-4668-8c3b-36c75c451c05}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>Bridge</Name>
+    <ProgramVersion>3.1.4023.0</ProgramVersion>
+    <Application>{1452f22d-dab4-462d-9064-14d39532e347}</Application>
+    <TypeSystem>{9ba10148-6bd2-4360-9b89-6a1692df8217}</TypeSystem>
+    <Implicit_Task_Info>{2cd32678-9e1d-4c28-8951-0554ae4fd6fc}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{10d2a404-0956-438a-8592-22cb48b96c26}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{02acee5c-33ed-4bf9-9b1a-ea1038c34e8a}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{20f9efa0-dfc9-4c93-a55c-480c8a495f27}</LibraryReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Class Diagram.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\FB_Shape.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\FB_RedColor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\FB_BlueColor.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\FB_Square.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\FB_Circle.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ITF_Color.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Interfaces" />
+    <Folder Include="Classes" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Bridge.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+  <Data>
+    <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+  </Data>
+  <TypeList>
+    <Type n="Hashtable">System.Collections.Hashtable</Type>
+    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+    <Type n="String">System.String</Type>
+  </TypeList>
+</XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

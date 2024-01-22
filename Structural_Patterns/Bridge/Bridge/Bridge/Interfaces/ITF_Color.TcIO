@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="ITF_Color" Id="{8dedefbb-c13c-4893-aa9f-6b9ec5c7c489}">
+    <Declaration><![CDATA[INTERFACE ITF_Color
+]]></Declaration>
+    <Method Name="applyColor" Id="{915f56a5-5524-43be-b073-8672042dbc3d}">
+      <Declaration><![CDATA[METHOD applyColor : STRING
+
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_RedColor" Id="{e01cb8a2-a3a4-4ebd-ae69-49d31664ab7c}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_RedColor IMPLEMENTS ITF_Color
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="applyColor" Id="{357c017a-3121-4992-af3f-056bb7babd1e}">
+      <Declaration><![CDATA[METHOD applyColor : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[applyColor := 'red';]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
