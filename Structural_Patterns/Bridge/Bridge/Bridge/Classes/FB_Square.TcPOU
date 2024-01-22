@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Square" Id="{7bc8aa77-dc79-4bf3-94e3-2968c498b2c6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Square EXTENDS FB_Shape
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Draw" Id="{bd4f7875-6af9-4c8e-b05c-62abd600c2b5}">
+      <Declaration><![CDATA[METHOD Draw : STRING
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(    msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              msgFmtStr:='Drawing a %s square',
+              strArg:= SUPER^._color.applyColor());]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

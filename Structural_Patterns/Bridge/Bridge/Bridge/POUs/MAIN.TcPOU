@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{1392cc94-1c79-40f6-929c-7566d1e6cfbf}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	
+     fbRedColor 		: FB_RedColor;
+	 fbBlueColor 		: FB_BlueColor;
+	 
+	 fbSquareRed 		: FB_Square(Color:= fbRedColor );
+	 fbSquareBlue 		: FB_Square(Color:= fbBlueColor );
+	 
+	 fbCircleRed 		: FB_Circle(Color:= fbRedColor );
+	 fbCircleBlue 		: FB_Circle(Color:= fbBlueColor );
+	 
+	 bstartDemo1		: BOOL;
+	 
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bstartDemo1 THEN
+	bstartDemo1 := FALSE;
+	
+	fbSquareRed.Draw();
+	fbSquareBlue.Draw();
+	
+	fbCircleRed.Draw();
+	fbCircleBlue.Draw();
+	
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

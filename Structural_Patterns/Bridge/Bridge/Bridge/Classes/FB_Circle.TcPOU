@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Circle" Id="{e9bbca66-4614-432d-b293-bbcc196b2130}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Circle EXTENDS FB_Shape
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Draw" Id="{9f53bee7-91ba-4278-9bbc-a2c57222b213}">
+      <Declaration><![CDATA[METHOD Draw : STRING
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(    msgCtrlMask:=ADSLOG_MSGTYPE_LOG,
+              msgFmtStr:='Drawing a %s circle',
+              strArg:= SUPER^._color.applyColor());]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

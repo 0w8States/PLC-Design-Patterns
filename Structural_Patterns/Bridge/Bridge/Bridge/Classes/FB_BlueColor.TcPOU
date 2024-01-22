@@ -1,0 +1,18 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_BlueColor" Id="{432a97f9-e25e-42cf-acbd-9c7a51e79fc6}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BlueColor IMPLEMENTS ITF_Color
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="applyColor" Id="{3a887440-f4bf-42e1-b147-1d5cbeade052}">
+      <Declaration><![CDATA[METHOD applyColor : STRING
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[applyColor := 'blue';]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
