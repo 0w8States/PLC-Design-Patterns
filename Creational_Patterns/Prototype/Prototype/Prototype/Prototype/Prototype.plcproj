@@ -17,13 +17,16 @@
     <LibraryReferences>{2002eda0-5104-4d17-87a8-7d1bb3095ec2}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="Circle.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
     <Compile Include="Class Diagram_3.TcCD">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="ITF_Shape.TcIO">
+    <Compile Include="Classes\Circle.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Classes\Rectangle.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Interfaces\ITF_Shape.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="PlcTask.TcTTO">
@@ -32,12 +35,10 @@
     <Compile Include="POUs\MAIN.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Rectangle.TcPOU">
-      <SubType>Code</SubType>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="VISUs" />
+    <Folder Include="Interfaces" />
+    <Folder Include="Classes" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>

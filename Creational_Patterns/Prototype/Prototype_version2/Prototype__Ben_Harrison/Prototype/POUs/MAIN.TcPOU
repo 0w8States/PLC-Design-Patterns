@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{6e781358-1f8a-4796-9164-36ac68c8106e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+    originalRectangle: Rectangle;
+    clonedRectangle: I_DrawableShape;
+	
+    originalCircle: Circle;
+    clonedCircle: I_DrawableShape;
+	
+	bRequest : BOOL;
+	counter: INT;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[// https://refactoring.guru/design-patterns/prototype
+
+// Recuerda que el patrón Prototipo permite crear nuevos objetos clonando un objeto existente, evitando así la necesidad de crear nuevas instancias desde cero.
+
+// porque salen varios mensajes:
+// https://github.com/tcunit/TcUnit/issues/92
+// solución temporal : Unload project...
+IF bRequest THEN
+	
+	// rectangle example 
+	originalRectangle.width := 10;
+	originalRectangle.height := 5;
+	originalRectangle.Draw();
+	clonedRectangle := originalRectangle.clone();
+	clonedRectangle.Draw();
+	clonedRectangle.Dispose(); 
+	
+	// circle example 
+	originalCircle.radius := 7;
+	originalCircle.Draw();
+	clonedCircle := originalCircle.clone();
+	clonedCircle.Draw();
+	clonedCircle.Dispose(); 
+	
+	// report request info
+	bRequest := FALSE;
+	counter := counter + 1;
+	ADSLOGSTR(msgCtrlMask :=ADSLOG_MSGTYPE_HINT, msgFmtStr :='test: %s', strArg := TO_STRING(counter));
+
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
