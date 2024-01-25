@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Disposable" Id="{f04eeb6d-b72f-43c2-a91c-3e3fca534c46}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Disposable
+VAR
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Dispose" Id="{afa659c0-7d26-4e8d-bb18-d763945e6dba}">
+      <Declaration><![CDATA[METHOD PUBLIC Dispose
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[__DELETE(THIS);]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

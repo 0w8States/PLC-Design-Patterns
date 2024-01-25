@@ -1,0 +1,56 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Circle" Id="{7bf41376-fe79-4fc9-9b0f-cc0bfa7817da}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK Circle EXTENDS Disposable IMPLEMENTS I_DrawableShape
+VAR
+	_radius: INT;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Clone" Id="{40bc29e0-bf78-4d5d-8f5d-1f786394c013}">
+      <Declaration><![CDATA[METHOD Clone : I_DrawableShape
+VAR
+	pCircle : POINTER TO Circle;	
+END_VAR]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[pCircle := __NEW(Circle);
+pCircle^.radius := radius;
+Clone := pCircle^;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Draw" Id="{919be77b-1433-43bb-9e6d-ebea1c177f82}">
+      <Declaration><![CDATA[
+METHOD Draw
+
+VAR
+	str : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[str := TO_STRING(radius);
+ADSLOGSTR(msgCtrlMask :=ADSLOG_MSGTYPE_HINT, msgFmtStr :='Draw circle with radius: %s', strArg := str);]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="Radius" Id="{a34de360-bafa-47b2-9b5a-87523dbf7965}">
+      <Declaration><![CDATA[PROPERTY Radius : INT]]></Declaration>
+      <Get Name="Get" Id="{b4b1e14d-2cb6-4d31-9d39-7bdd833041a6}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Radius := _radius;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{ad4d0cb0-75ea-4310-9847-518237d41bcb}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_radius := Radius;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

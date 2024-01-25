@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35">
-	<Project ProjectGUID="{66261BA9-AB62-4A97-9A34-B24A3A978D48}" Target64Bit="true" ShowHideConfigurations="#x3c7">
+	<Project ProjectGUID="{A09F6855-DC02-463C-BD86-F338F728A708}" Target64Bit="true" ShowHideConfigurations="#x3c7">
 		<System>
 			<Settings MaxCpus="8" NonWinCpus="2">
 				<Cpu CpuId="6"/>
@@ -13,7 +13,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{3B51A884-A6FA-4ADC-907B-B3C38FF940F6}" Name="Prototype" PrjFilePath="Prototype\Prototype.plcproj" TmcFilePath="Prototype\Prototype.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Prototype\Prototype.tmc" TmcHash="{792F5FBB-097B-6DF0-DBF8-242B04AC5712}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Ben_Harrison_Prototype\Ben_Harrison_Prototype.tmc" TmcHash="{E76BA86B-527A-2C7D-272A-9DE4A00C7712}">
 					<Name>Prototype Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
