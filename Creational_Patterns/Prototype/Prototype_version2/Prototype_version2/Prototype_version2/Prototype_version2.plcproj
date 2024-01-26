@@ -8,7 +8,7 @@
     <DownloadApplicationInfo>true</DownloadApplicationInfo>
     <WriteProductVersion>true</WriteProductVersion>
     <GenerateTpy>false</GenerateTpy>
-    <Name>Prototype</Name>
+    <Name>Prototype_version2</Name>
     <ProgramVersion>3.1.4024.0</ProgramVersion>
     <Application>{bfeba918-65a7-4f4d-a967-26ed486495da}</Application>
     <TypeSystem>{91c640c8-e89c-4576-ad6c-a9c75f7a4ec7}</TypeSystem>
@@ -27,10 +27,10 @@
     <Compile Include="Classes\Disposable.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\I_Disposable.TcIO">
+    <Compile Include="Classes\Rectangle.TcPOU">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\Rectangle.TcPOU">
+    <Compile Include="Interfaces\I_Disposable.TcIO">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Interfaces\I_DrawableShape.TcIO">
@@ -61,11 +61,6 @@
       <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
       <Namespace>Tc3_Module</Namespace>
     </PlaceholderReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Prototype.tmc">
-      <SubType>Content</SubType>
-    </None>
   </ItemGroup>
   <ProjectExtensions>
     <PlcProjectOptions>
