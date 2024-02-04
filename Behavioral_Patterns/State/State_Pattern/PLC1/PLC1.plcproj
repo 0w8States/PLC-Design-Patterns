@@ -13,7 +13,7 @@
     <Implicit_Jitter_Distribution>{c74edd63-bd01-43dc-87be-16d0f69c95a7}</Implicit_Jitter_Distribution>
     <LibraryReferences>{d7d5c586-9e50-45aa-8e89-3425553decbd}</LibraryReferences>
     <CombineIds>true</CombineIds>
-    <Released>true</Released>
+    <Released>false</Released>
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Bank ATM\DUTs\E_StateDescription.TcDUT">
@@ -60,10 +60,7 @@
     <Folder Include="Bank ATM\FBs" />
     <Folder Include="Bank ATM\ITFs" />
     <Folder Include="Bank ATM\DUTs" />
-    <Folder Include="DUTs" />
-    <Folder Include="GVLs" />
     <Folder Include="Bank ATM" />
-    <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>

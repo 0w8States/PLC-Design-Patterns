@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Archive" Id="{5d810e9c-c0b5-44ba-9d2a-66364c59cddb}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Archive EXTENDS Component
+VAR
+//	_name : STRING;
+	_size : INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{40a15667-0b65-4fc1-8a61-7083921573ca}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	name : STRING;
+	iSize : INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^._name := name;
+THIS^._size := iSize;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="GetSize" Id="{ff9423c4-8858-49c2-8227-c4fc29b0bf7d}">
+      <Declaration><![CDATA[PROPERTY GetSize : INT]]></Declaration>
+      <Get Name="Get" Id="{ade891ab-77fb-466a-af97-f278a6950768}">
+        <Declaration><![CDATA[
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[GetSize := _size;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>
