@@ -1,0 +1,72 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Directory" Id="{00d5b3f4-cd2a-48d7-a009-09c4bd5e016b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Directory EXTENDS Component
+VAR
+	_Children 	: ARRAY [1..Param.NumberOfChildren] OF I_Component;
+	i			: INT := 1;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="AddChild" Id="{742d5baf-9a6f-47dd-90fa-9711c41b74af}">
+      <Declaration><![CDATA[METHOD AddChild
+VAR_INPUT
+	fbcomponent: REFERENCE  TO Component;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_Children[i]:= fbcomponent;
+i := i + 1;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{b9d1aba5-5117-4625-bd40-d78b8618e48c}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	name : STRING;
+//	Children : ARRAY [1..Param.NumberOfChildren] OF POINTER TO Component;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//THIS^._Children := Children;]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="GetSize" Id="{277022a1-2ddc-485d-b014-e9d2bb317b28}">
+      <Declaration><![CDATA[PROPERTY GetSize : INT]]></Declaration>
+      <Get Name="Get" Id="{8798b121-fcac-450f-975a-514d46ada92d}">
+        <Declaration><![CDATA[VAR
+	iCounter : INT;
+	isize 		: INT;
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[isize := 0;
+
+IF i > 1 THEN
+	
+	FOR iCounter:= 1 TO i - 1  DO
+	
+		isize := isize + _Children[iCounter].GetSize;
+
+	END_FOR
+	
+END_IF
+
+GetSize := isize;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="ResetSize" Id="{95e8d98d-a920-4d8f-b1f5-89ba0cefb3ac}">
+      <Declaration><![CDATA[METHOD ResetSize
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[i:= 1;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

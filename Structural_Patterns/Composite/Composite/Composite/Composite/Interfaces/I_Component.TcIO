@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Component" Id="{317cf77d-fe68-475e-9ce3-3fca36253e36}">
+    <Declaration><![CDATA[INTERFACE I_Component
+]]></Declaration>
+    <Method Name="AddChild" Id="{8380aa88-8fcd-4ff4-8451-dd079d5864ab}">
+      <Declaration><![CDATA[METHOD AddChild
+VAR_INPUT
+	fbcomponent: REFERENCE  TO Component;
+END_VAR
+]]></Declaration>
+    </Method>
+    <Method Name="GetChildren" Id="{9b5cbc35-a5f4-4729-9385-019e7b8b28a6}">
+      <Declaration><![CDATA[METHOD GetChildren : ARRAY [1..Param.NumberOfChildren] OF I_Component;
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+    <Property Name="GetSize" Id="{2f131b1a-ac03-4b6f-9ce3-d5855561434c}">
+      <Declaration><![CDATA[PROPERTY GetSize : INT]]></Declaration>
+      <Get Name="Get" Id="{2bed0d92-cc0a-482a-bb6b-c91d420036f7}">
+        <Declaration><![CDATA[]]></Declaration>
+      </Get>
+    </Property>
+  </Itf>
+</TcPlcObject>

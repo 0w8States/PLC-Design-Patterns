@@ -1,0 +1,65 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{3d6c1cda-8968-4d01-8af4-51ef2b43d90c}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	root 		: Directory('root');
+	
+	archive1	: Archive('archivo1.txt', 10);			    
+    archive2  	: Archive('archivo2.txt', 30);
+    archive3 	: Archive('archivo3.txt', 120);
+    archive4 	: Archive('archivo4.txt', 800);
+    archive5 	: Archive('archivo5.txt', 340);
+
+    archive6 	: Archive('archivo6.txt', 122);
+    archive7 	: Archive('archivo7.txt', 391);
+
+    dir1 		: Directory('dir1');
+    dir2 		: Directory('dir2');
+    dir3 		: Directory('dir3');
+
+	bExecute	: BOOL;	
+	sMsg 		: STRING;
+
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[IF bExecute THEN
+	
+	bExecute := FALSE;
+	
+	dir1.ResetSize();
+	dir2.ResetSize();
+	dir3.ResetSize();
+	root.ResetSize();
+ 
+	dir1.AddChild(archive1);
+// 	dir1.AddChild(archive6);
+ 	dir2.AddChild(archive2);
+ 	dir3.AddChild(archive3);
+ 	dir3.AddChild(archive4);
+ 	dir1.AddChild(dir3);
+
+ 	root.AddChild(dir1);
+ 	root.AddChild(dir2);
+ 	root.AddChild(archive5);
+// 	root.AddChild(archive7);
+	
+	sMsg := CONCAT(STR1:= root.Name , STR2:= CONCAT(STR1:= ' is: ' , STR2:= TO_STRING(root.GetSize) ) );
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG, msgFmtStr:= 'The size of the directory %s ' , strArg:= sMsg);
+	
+	sMsg := CONCAT(STR1:= dir1.Name , STR2:= CONCAT(STR1:= ' is: ' , STR2:= TO_STRING(dir1.GetSize) ) );
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG, msgFmtStr:= 'The size of the directory %s ' , strArg:= sMsg);
+	
+	sMsg := CONCAT(STR1:= dir2.Name , STR2:= CONCAT(STR1:= ' is: ' , STR2:= TO_STRING(dir2.GetSize) ) );
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG, msgFmtStr:= 'The size of the directory %s ' , strArg:= sMsg);
+	
+	sMsg := CONCAT(STR1:= dir3.Name , STR2:= CONCAT(STR1:= ' is: ' , STR2:= TO_STRING(dir3.GetSize) ) );
+	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG, msgFmtStr:= 'The size of the directory %s ' , strArg:= sMsg);	
+	
+END_IF
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

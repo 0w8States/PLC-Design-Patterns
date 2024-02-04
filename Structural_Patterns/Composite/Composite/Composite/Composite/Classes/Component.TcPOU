@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Component" Id="{1ead6b77-19aa-467b-b936-a378fff952ec}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK Component IMPLEMENTS I_component
+VAR
+	_name : STRING;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="AddChild" Id="{a0a15808-63eb-49e1-972f-05f48a9eaa05}">
+      <Declaration><![CDATA[METHOD AddChild
+VAR_INPUT
+	fbcomponent: REFERENCE  TO Component;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="FB_init" Id="{dc4c4cd0-6bc3-4010-84db-466007a1a384}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	name : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^._name := name;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="GetChildren" Id="{95f81b15-2283-488e-a4c2-996da9ff683b}">
+      <Declaration><![CDATA[METHOD GetChildren : ARRAY [1..Param.NumberOfChildren] OF I_Component;
+VAR_INPUT
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="GetSize" Id="{5b159474-f3f4-4b12-9f7a-38cb677abfb4}">
+      <Declaration><![CDATA[PROPERTY GetSize : INT]]></Declaration>
+      <Get Name="Get" Id="{c7251ea9-d405-4ea8-8514-fe0e6a2be71d}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="Name" Id="{b0736d98-5438-461b-8c06-4715dbca3db8}">
+      <Declaration><![CDATA[PROPERTY Name : STRING]]></Declaration>
+      <Get Name="Get" Id="{ad93624a-8350-4550-8c8f-9718e37e1793}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[Name := THIS^._name;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+  </POU>
+</TcPlcObject>
