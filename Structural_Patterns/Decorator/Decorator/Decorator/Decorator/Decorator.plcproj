@@ -1,0 +1,96 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <FileVersion>1.0.0.0</FileVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2ab9bc9f-8aad-4936-8aed-2d7212ed2517}</ProjectGuid>
+    <SubObjectsSortedByName>True</SubObjectsSortedByName>
+    <DownloadApplicationInfo>true</DownloadApplicationInfo>
+    <WriteProductVersion>true</WriteProductVersion>
+    <GenerateTpy>false</GenerateTpy>
+    <Name>Decorator</Name>
+    <ProgramVersion>3.1.4023.0</ProgramVersion>
+    <Application>{a911e849-612b-4e38-8c19-ea8830bf8ca2}</Application>
+    <TypeSystem>{2b74d380-2f63-4e6b-b35c-02669d29aca7}</TypeSystem>
+    <Implicit_Task_Info>{05ac2493-1dde-4f9c-8344-899617bf9a4f}</Implicit_Task_Info>
+    <Implicit_KindOfTask>{7d81c5bc-89a4-466b-943c-a7fdb8e65136}</Implicit_KindOfTask>
+    <Implicit_Jitter_Distribution>{d291be9e-7af3-4369-b1a6-cfcbcb95e391}</Implicit_Jitter_Distribution>
+    <LibraryReferences>{e707be5d-fd46-4266-9a57-12ba77467bde}</LibraryReferences>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Class Diagram.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Component\I_Shape.TcIO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete Components\FB_Circle.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete Components\FB_Square.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete Decorators\FB_BorderDashTypeDecorator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Concrete Decorators\FB_GreenShapeDecorator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Decorator\FB_ShapeDecorator.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="DUTs\E_BorderDashType.TcDUT">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="PlcTask.TcTTO">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="POUs\MAIN.TcPOU">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Component" />
+    <Folder Include="Concrete Components" />
+    <Folder Include="Concrete Decorators" />
+    <Folder Include="Decorator" />
+    <Folder Include="DUTs" />
+    <Folder Include="POUs" />
+  </ItemGroup>
+  <ItemGroup>
+    <PlaceholderReference Include="Tc2_Standard">
+      <DefaultResolution>Tc2_Standard, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_Standard</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc2_System">
+      <DefaultResolution>Tc2_System, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc2_System</Namespace>
+    </PlaceholderReference>
+    <PlaceholderReference Include="Tc3_Module">
+      <DefaultResolution>Tc3_Module, * (Beckhoff Automation GmbH)</DefaultResolution>
+      <Namespace>Tc3_Module</Namespace>
+    </PlaceholderReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Decorator.tmc">
+      <SubType>Content</SubType>
+    </None>
+  </ItemGroup>
+  <ProjectExtensions>
+    <PlcProjectOptions>
+      <XmlArchive>
+  <Data>
+    <o xml:space="preserve" t="OptionKey">
+      <v n="Name">"&lt;ProjectRoot&gt;"</v>
+      <d n="SubKeys" t="Hashtable" />
+      <d n="Values" t="Hashtable" />
+    </o>
+  </Data>
+  <TypeList>
+    <Type n="Hashtable">System.Collections.Hashtable</Type>
+    <Type n="OptionKey">{54dd0eac-a6d8-46f2-8c27-2f43c7e49861}</Type>
+    <Type n="String">System.String</Type>
+  </TypeList>
+</XmlArchive>
+    </PlcProjectOptions>
+  </ProjectExtensions>
+</Project>

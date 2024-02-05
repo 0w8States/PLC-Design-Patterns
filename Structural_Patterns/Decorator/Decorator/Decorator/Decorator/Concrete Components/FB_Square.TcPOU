@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Square" Id="{6850b2a4-8187-4978-aaec-3d3752789de4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Square IMPLEMENTS I_Shape
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="M_Draw" Id="{e315df57-dcd2-4e04-a747-7cbc334673e3}">
+      <Declaration><![CDATA[
+METHOD M_Draw : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(ADSLOG_MSGTYPE_HINT, 'Draw Square', '');
+M_Draw := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

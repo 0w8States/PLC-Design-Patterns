@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_Circle" Id="{0215dbf9-630e-4954-9413-5e7f95e5d02d}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_Circle IMPLEMENTS I_Shape
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="M_Draw" Id="{df589dcd-5658-42dc-9482-89bc0a40ce29}">
+      <Declaration><![CDATA[
+METHOD M_Draw : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(ADSLOG_MSGTYPE_HINT, 'Draw circle', '');
+M_Draw := TRUE;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
