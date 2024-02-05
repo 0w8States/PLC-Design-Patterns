@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <DUT Name="E_BorderDashType" Id="{52d7deba-4850-4e05-a3d3-e6836065ade5}">
+    <Declaration><![CDATA[{attribute 'qualified_only'}
+{attribute 'strict'}
+TYPE E_BorderDashType :
+(
+	Solid := 0,
+	RoundDot,
+	SquareDot,
+	Dash,
+	LongDashDot
+);
+END_TYPE
+]]></Declaration>
+  </DUT>
+</TcPlcObject>

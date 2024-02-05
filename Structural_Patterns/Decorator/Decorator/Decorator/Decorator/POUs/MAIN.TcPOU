@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{6fe1dd67-29d5-4d6b-b525-e0ff86671bb2}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	fbCircle : FB_Circle;
+	fbGreenCircle : FB_GreenShapeDecorator(fbCircle);
+	fbRoundDotBorderGreenCircle : FB_BorderDashTypeDecorator(fbGreenCircle,E_BorderDashType.RoundDot);
+	
+	fbSquare : FB_Square;
+	fbGreenSquare : FB_GreenShapeDecorator(fbSquare);
+	fbDashBorderGreenSquare : FB_BorderDashTypeDecorator(fbGreenSquare,E_BorderDashType.Dash);
+	
+	bDemoStart: BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF bDemoStart THEN
+	
+	bDemoStart := FALSE;
+	
+	fbRoundDotBorderGreenCircle.M_Draw();
+
+	fbDashBorderGreenSquare.M_Draw();
+
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

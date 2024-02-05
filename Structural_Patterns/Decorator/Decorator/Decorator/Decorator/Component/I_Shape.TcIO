@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Shape" Id="{d5de4d98-43d8-4f90-8e57-2ecf6d2eb8ad}">
+    <Declaration><![CDATA[INTERFACE I_Shape
+]]></Declaration>
+    <Method Name="M_Draw" Id="{516a28e5-b94a-498b-abc3-bd7f5a666382}">
+      <Declaration><![CDATA[METHOD M_Draw : BOOL
+VAR_INPUT
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

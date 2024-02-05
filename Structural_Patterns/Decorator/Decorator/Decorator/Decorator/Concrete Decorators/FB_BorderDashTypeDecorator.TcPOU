@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_BorderDashTypeDecorator" Id="{2476e6e8-66fd-4d8f-ab10-9145fc51de29}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_BorderDashTypeDecorator EXTENDS FB_ShapeDecorator
+
+VAR
+	_eBorderDashType : E_BorderDashType;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{159b12a5-2f46-4365-b5ec-0794110acff7}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	iDecoratedShape : I_Shape;
+	eBorderDashType : E_BorderDashType;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SUPER^._iDecoratedShape := iDecoratedShape;
+_eBorderDashType := eBorderDashType;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Draw" Id="{8d396d68-81ad-4167-a561-e5ab236d12d9}">
+      <Declaration><![CDATA[
+METHOD  M_Draw : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_Draw := SUPER^._iDecoratedShape.M_Draw();
+M_SetBorderDashType(SUPER^._iDecoratedShape);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_SetBorderDashType" Id="{932c4790-1b12-4ce1-a2fc-deaead234ab1}">
+      <Declaration><![CDATA[METHOD M_SetBorderDashType
+VAR_INPUT
+	iDecoratedShape : I_Shape;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[CASE _eBorderDashType OF
+	E_BorderDashType.Solid:
+		ADSLOGSTR(ADSLOG_MSGTYPE_HINT, 'Border Dash Type : Solid', '');
+		
+	E_BorderDashType.SquareDot:
+		ADSLOGSTR(ADSLOG_MSGTYPE_HINT, 'Border Dash Type : Square Dot', '');
+
+	E_BorderDashType.RoundDot:
+		ADSLOGSTR(ADSLOG_MSGTYPE_HINT, 'Border Dash Type : Round Dot', '');
+	
+	E_BorderDashType.Dash:
+		ADSLOGSTR(ADSLOG_MSGTYPE_HINT, 'Border Dash Type : Dash', '');
+
+	E_BorderDashType.LongDashDot:
+		ADSLOGSTR(ADSLOG_MSGTYPE_HINT, 'Border Dash Type :Long Dash Dot', '');
+	
+ELSE
+	ADSLOGSTR(ADSLOG_MSGTYPE_HINT, 'Border Dash Type :Unkown', '');
+END_CASE]]></ST>
+      </Implementation>
+    </Method>
+    <Property Name="P_GS_BorderDashType" Id="{1385cee8-757e-4459-8a86-46e897531aea}">
+      <Declaration><![CDATA[PROPERTY P_GS_BorderDashType : E_BorderDashType]]></Declaration>
+      <Get Name="Get" Id="{91b9fa50-cdd2-472f-8caf-93c832b30083}">
+        <Declaration><![CDATA[
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[P_GS_BorderDashType := _eBorderDashType;]]></ST>
+        </Implementation>
+      </Get>
+      <Set Name="Set" Id="{b0b5322f-2017-4564-8852-71da759a1054}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[_eBorderDashType := P_GS_BorderDashType;]]></ST>
+        </Implementation>
+      </Set>
+    </Property>
+  </POU>
+</TcPlcObject>

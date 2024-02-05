@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_GreenShapeDecorator" Id="{8abeb9b3-ec91-4cf7-8b94-e5b7769828bf}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK FB_GreenShapeDecorator EXTENDS FB_ShapeDecorator
+
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{20565dae-26ed-4aaa-af6c-db8ef8b86b3c}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	iDecoratedShape : I_Shape;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[SUPER^._iDecoratedShape := iDecoratedShape;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Draw" Id="{62b890bb-b0ca-4b36-8611-51ce89e030da}">
+      <Declaration><![CDATA[
+METHOD  M_Draw : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[M_Draw := SUPER^._iDecoratedShape.M_Draw();
+M_SetGreenBorder(SUPER^._iDecoratedShape);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_SetGreenBorder" Id="{2703fbca-b3cd-46af-a0e5-31f446bc0af8}">
+      <Declaration><![CDATA[METHOD PRIVATE M_SetGreenBorder
+VAR_INPUT
+	iDecoratedShape : I_Shape;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ADSLOGSTR(ADSLOG_MSGTYPE_HINT, 'Border Color : Green', '');]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

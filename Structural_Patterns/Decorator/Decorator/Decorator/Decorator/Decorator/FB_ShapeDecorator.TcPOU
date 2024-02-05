@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FB_ShapeDecorator" Id="{b50439ab-ead7-48f7-9067-265d8e430227}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK ABSTRACT FB_ShapeDecorator IMPLEMENTS I_Shape
+VAR
+	_iDecoratedShape: I_Shape;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{3510c160-9da0-4a5d-bae0-cc766fedd0c5}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	iDecoratedShape : I_Shape;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[_iDecoratedShape := iDecoratedShape;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="M_Draw" Id="{500aee08-9f31-4a62-a84c-2b5663385250}">
+      <Declaration><![CDATA[
+METHOD ABSTRACT M_Draw : BOOL
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
