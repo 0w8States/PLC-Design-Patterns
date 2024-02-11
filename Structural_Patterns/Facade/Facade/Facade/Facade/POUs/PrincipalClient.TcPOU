@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PrincipalClient" Id="{8f57f288-20f8-4f82-8f19-e3734b25163f}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PrincipalClient
+VAR
+	i1 : Printer;	
+	i2 : Printer;
+	i3 : Printer;
+	
+	startdemo : BOOL;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//Se trata de una ejemplo sencillo que imprime documentos en uno u otro formato. 
+//El código nos ayudará a entender mejor su funcionamiento.
+
+//This is a simple example that prints documents in one format or another.
+//The code will help us better understand how it works.
+
+(*
+Como podemos ver la clase cliente se encarga de invocar a la impresora, y configurarla para después imprimir varios documentos .
+Ahora bien prácticamente todos los documentos que escribimos tienen la misma estructura (formato A4, Color , PDF). Estamos continuamente repitiendo código. 
+Vamos a construir una nueva clase FachadaImpresoraNormal que simplifique la impresión de documentos que sean los más habituales.
+*)
+
+IF  startdemo THEN
+	
+	startdemo := FALSE;
+	
+	i1.setSheet('a1');
+  	i1.setColor(TRUE);
+  	i1.setdocumentType('pdf');
+  	i1.setText('text 1');
+  	i1.printDocument();
+  	 
+  	
+  	i2.setSheet('a2');
+  	i2.setColor(FALSE);
+  	i2.setdocumentType('rtf');
+  	i2.setText('text 2');
+  	i2.printDocument();
+  	 
+  	
+  	i3.setSheet('a3');
+  	i3.setColor(TRUE);
+  	i3.setdocumentType('excel');
+  	i3.setText('text 3');
+  	i3.printDocument();	
+END_IF
+   
+ ]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
