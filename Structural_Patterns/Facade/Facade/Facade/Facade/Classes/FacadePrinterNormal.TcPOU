@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FacadePrinterNormal" Id="{52c24485-e01b-4331-8859-a3576c7ec019}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FacadePrinterNormal
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	printer :  Printer;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_init" Id="{7b799386-3fd5-476f-b8cb-3301efd26b63}">
+      <Declaration><![CDATA[METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains : BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode : BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	text : STRING;
+	color : BOOL;
+	sheet : STRING;
+	documentType : STRING;
+	
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+printer.setColor(color);
+printer.setSheet(sheet);
+printer.setdocumentType(documentType);
+printer.setText(text);]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="print" Id="{35024de5-e274-42d1-962d-b021b9a478b5}">
+      <Declaration><![CDATA[METHOD print
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[printer.printDocument();]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,119 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Printer" Id="{387825cd-43cd-4313-84cc-61b0fbf546d4}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC Printer
+VAR
+	 documentType: STRING ;
+     sheet: STRING ;
+     color : BOOL ;
+     text: STRING ;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Property Name="getDocumentType" Id="{5c1e1859-bb1d-48bb-9345-c0e7db31e48f}">
+      <Declaration><![CDATA[PROPERTY PUBLIC getDocumentType : STRING]]></Declaration>
+      <Get Name="Get" Id="{e1cf4236-15da-48ec-a9fb-0b97781c3e0c}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[getDocumentType := documentType;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="getSheet" Id="{0776cd8f-29b0-4d04-8357-e5b6dd51118f}">
+      <Declaration><![CDATA[PROPERTY PUBLIC getSheet : STRING]]></Declaration>
+      <Get Name="Get" Id="{a0942d40-adde-485e-924f-e0c1c4ef37b5}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[getSheet := sheet;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="getText" Id="{d2aa370f-1bf0-4ce7-86c2-5a7f48b420e1}">
+      <Declaration><![CDATA[PROPERTY PUBLIC getText : STRING]]></Declaration>
+      <Get Name="Get" Id="{7f8c68b5-947c-4f93-97ae-4cb59042fa9e}">
+        <Declaration><![CDATA[]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[getText := text;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Property Name="isColor" Id="{260c4854-474f-45d2-87f8-41d36de4859d}">
+      <Declaration><![CDATA[PROPERTY PUBLIC isColor : BOOL]]></Declaration>
+      <Get Name="Get" Id="{2e2c986a-828a-4dc7-873c-8c42e5247795}">
+        <Declaration><![CDATA[VAR
+END_VAR
+]]></Declaration>
+        <Implementation>
+          <ST><![CDATA[isColor := color;]]></ST>
+        </Implementation>
+      </Get>
+    </Property>
+    <Method Name="printDocument" Id="{bc84cfcc-1995-4d28-8554-ab0463361273}">
+      <Declaration><![CDATA[METHOD PUBLIC printDocument
+VAR
+	stext1 : STRING;
+	stext2 : STRING;
+	stext3 : STRING;
+	stext4 : STRING;
+	stext : STRING;
+	strSFCErrorStep : STRING:='';
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//    System.out.println("printing:"+ text+ ",color:"
+//        + color+",type:"+DocumentType+",sheet :"+sheet);
+		
+stext1 := CONCAT(STR1:='printing: ' , STR2:= text);
+stext2 := CONCAT(STR1:=', color: ' , STR2:= TO_STRING(color));
+stext3 := CONCAT(STR1:=', type: ' , STR2:= DocumentType);
+stext4 := CONCAT(STR1:=', sheet: ' , STR2:= sheet);
+stext :=  CONCAT(STR1:=stext1 , STR2:=CONCAT(STR1:=stext2 , STR2:=CONCAT(STR1:=stext3 , STR2:=stext4)));
+		
+ ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := stext, strArg := strSFCErrorStep);		]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setColor" Id="{0826e445-6054-430b-9928-a71926c5d035}">
+      <Declaration><![CDATA[METHOD PUBLIC setColor
+VAR_INPUT
+	color : BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.color := color;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setDocumentType" Id="{18dc93e2-08bc-4aa0-81b5-d04ff55f4bba}">
+      <Declaration><![CDATA[METHOD PUBLIC setDocumentType
+VAR_INPUT
+	documentType :STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.documentType := documentType;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setSheet" Id="{392a0520-49f7-4240-bf11-3d53aebe630c}">
+      <Declaration><![CDATA[METHOD PUBLIC setSheet
+VAR_INPUT
+	sheet: STRING ;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.sheet := sheet;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setText" Id="{d2e32e99-6553-46e7-b954-e306a5ee30f5}">
+      <Declaration><![CDATA[METHOD PUBLIC setText
+VAR_INPUT
+	text :STRING ;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^.text := text;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PrincipalClient2" Id="{b5e7a9bb-5c42-41eb-8b4d-222ead27472d}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PrincipalClient2
+VAR
+	facade1 : FacadePrinterNormal(text:= 'text 1', color:= TRUE , sheet:= 'A1', documentType:='PDF');
+         
+    facade2 : FacadePrinterNormal(text:= 'text 2', color:= FALSE , sheet:= 'A2', documentType:='Excel');
+	                  
+    i3 : printer;
+	
+	startdemo : BOOL;
+	
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF  startdemo THEN
+	
+	startdemo := FALSE;
+
+	facade1.print();
+			
+	facade2.print();
+			 
+	i3.setSheet('A3');
+    i3.setColor(TRUE);
+    i3.setDocumenttype('RTF');
+    i3.setText('text 3');
+    i3.printDocument();
+	
+END_IF
+
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
