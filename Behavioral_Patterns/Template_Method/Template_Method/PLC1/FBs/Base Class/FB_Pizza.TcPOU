@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_Pizza" Id="{4288fbe1-b507-4b53-980c-9e831d454702}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FB_Pizza
 VAR
@@ -86,7 +86,7 @@ END_VAR
     </Method>
     <Method Name="makePizza" Id="{c8d5e093-559d-4613-80fd-868bbbf84c5d}">
       <Declaration><![CDATA[METHOD FINAL makePizza
-VAR_INPUT
+VAR_IN_OUT
 	bExecute: BOOL;
 END_VAR]]></Declaration>
       <Implementation>
@@ -95,6 +95,7 @@ END_VAR]]></Declaration>
 		tonPizzaTimer(IN := bExecute, PT := T#2S); 
 		IF tonPizzaTimer.Q THEN
 			tonPizzaTimer(IN := FALSE, PT := T#2S); 
+			bExecute := FALSE;
 			rollDough();
 			_PizzaState := 10;
 		END_IF
@@ -160,89 +161,5 @@ END_VAR
         	msgFmtStr := 'Rolling the Pizza Dough...', '');]]></ST>
       </Implementation>
     </Method>
-    <LineIds Name="FB_Pizza">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pizza.addCheese">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pizza.addMeat">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pizza.addVegetables">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pizza.bakePizza">
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pizza.boxPizza">
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pizza.customerWantsCheese">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pizza.customerWantsMeat">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pizza.customerWantsVegetables">
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pizza.makePizza">
-      <LineId Id="87" Count="0" />
-      <LineId Id="39" Count="0" />
-      <LineId Id="96" Count="0" />
-      <LineId Id="89" Count="0" />
-      <LineId Id="122" Count="0" />
-      <LineId Id="90" Count="0" />
-      <LineId Id="95" Count="0" />
-      <LineId Id="91" Count="0" />
-      <LineId Id="57" Count="1" />
-      <LineId Id="97" Count="1" />
-      <LineId Id="121" Count="0" />
-      <LineId Id="59" Count="1" />
-      <LineId Id="47" Count="1" />
-      <LineId Id="99" Count="0" />
-      <LineId Id="61" Count="0" />
-      <LineId Id="49" Count="0" />
-      <LineId Id="111" Count="0" />
-      <LineId Id="100" Count="0" />
-      <LineId Id="120" Count="0" />
-      <LineId Id="65" Count="2" />
-      <LineId Id="50" Count="0" />
-      <LineId Id="101" Count="0" />
-      <LineId Id="72" Count="0" />
-      <LineId Id="51" Count="0" />
-      <LineId Id="112" Count="0" />
-      <LineId Id="102" Count="0" />
-      <LineId Id="119" Count="0" />
-      <LineId Id="68" Count="1" />
-      <LineId Id="52" Count="0" />
-      <LineId Id="71" Count="0" />
-      <LineId Id="103" Count="0" />
-      <LineId Id="73" Count="1" />
-      <LineId Id="113" Count="0" />
-      <LineId Id="115" Count="0" />
-      <LineId Id="104" Count="0" />
-      <LineId Id="118" Count="0" />
-      <LineId Id="77" Count="0" />
-      <LineId Id="75" Count="0" />
-      <LineId Id="106" Count="0" />
-      <LineId Id="80" Count="0" />
-      <LineId Id="53" Count="0" />
-      <LineId Id="114" Count="0" />
-      <LineId Id="116" Count="0" />
-      <LineId Id="105" Count="0" />
-      <LineId Id="117" Count="0" />
-      <LineId Id="78" Count="1" />
-      <LineId Id="107" Count="0" />
-      <LineId Id="88" Count="0" />
-      <LineId Id="84" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_Pizza.rollDough">
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>
