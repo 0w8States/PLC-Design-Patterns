@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<?xml version="1.0"?>
 <TcTargetDesc>
 	<TargetVersion>
 		<Version>3</Version>
 		<Revision>1</Revision>
-		<Build>4022</Build>
-		<Subbuild>28</Subbuild>
+		<Build>4024</Build>
+		<Subbuild>35</Subbuild>
 	</TargetVersion>
 </TcTargetDesc>

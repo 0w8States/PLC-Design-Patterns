@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4022.18">
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
   <POU Name="FB_TempSensor" Id="{d20820a4-0d8a-43f0-b4e4-a3d10b2764cf}" SpecialFunc="None">
     <Declaration><![CDATA[FUNCTION_BLOCK FB_TempSensor IMPLEMENTS I_TempSensor
 VAR_INPUT
@@ -48,20 +48,5 @@ END_VAR
         </Implementation>
       </Get>
     </Property>
-    <LineIds Name="FB_TempSensor">
-      <LineId Id="9" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TempSensor.P_DegreesC.Get">
-      <LineId Id="2" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TempSensor.P_DegreesC.Set">
-      <LineId Id="2" Count="0" />
-    </LineIds>
-    <LineIds Name="FB_TempSensor.P_DegreesF.Get">
-      <LineId Id="2" Count="0" />
-      <LineId Id="6" Count="0" />
-      <LineId Id="5" Count="0" />
-    </LineIds>
   </POU>
 </TcPlcObject>

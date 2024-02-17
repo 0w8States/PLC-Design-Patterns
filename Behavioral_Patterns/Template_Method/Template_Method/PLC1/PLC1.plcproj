@@ -13,10 +13,10 @@
     <Implicit_Jitter_Distribution>{9bba409c-72ba-4bb3-b3dd-f563853b2459}</Implicit_Jitter_Distribution>
     <LibraryReferences>{5305c7a0-7b17-45d1-bf0e-c73cfb68531d}</LibraryReferences>
     <CombineIds>true</CombineIds>
-    <Released>true</Released>
+    <Released>false</Released>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ClassDiagram.TcCD">
+    <Compile Include="Class Diagram.TcCD">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="FBs\Base Class\FB_Pizza.TcPOU">
@@ -36,12 +36,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="DUTs" />
     <Folder Include="FBs\Base Class" />
     <Folder Include="FBs\Sub Classes" />
-    <Folder Include="GVLs" />
     <Folder Include="FBs" />
-    <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
