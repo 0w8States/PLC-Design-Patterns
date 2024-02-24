@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="MAIN" Id="{a4f1767e-4acc-4b93-b2f0-631d28e4380e}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM MAIN
+VAR
+	Colors 		: ARRAY [1..Param.iMaxArray] OF STRING  := ['black', 'white', 'blue', 'green', 'brown' ];
+	Patents 	: ARRAY [1..Param.iMaxArray] OF STRING  := ['patent11', 'patent22', 'patent33', 'patent44', 'patent55'];
+	Owners 		: ARRAY [1..Param.iMaxArray] OF STRING  := ['Victor', 'Jesus', 'Alex', 'Hugo', 'David'];
+	
+	flyweightFactory : FlyweightFactory;
+	
+	bExecute : BOOL;
+		
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[
+IF bExecute THEN
+	
+	flyweightFactory.ListCars(Colors, Patents, Owners);
+	
+	bExecute := FALSE;
+	
+END_IF
+]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>

@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="FlyweightFactory" Id="{ed95b631-e350-40c1-8a49-e3b7d2fb528b}" SpecialFunc="None">
+    <Declaration><![CDATA[FUNCTION_BLOCK PUBLIC FlyweightFactory
+VAR
+	pCar : POINTER TO Car;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="FB_exit" Id="{273b177d-7a52-4b2e-9ed3-430eebf8cbe9}">
+      <Declaration><![CDATA[
+METHOD FB_exit : BOOL
+VAR_INPUT
+	bInCopyCode : BOOL; // if TRUE, the exit method is called for exiting an instance that is copied afterwards (online change).
+END_VAR
+VAR
+	i : INT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+//FOR i := 1 TO Param.iMaxArray BY 1 DO
+	
+	IF (pCar <> 0) THEN
+		
+    	__DELETE(pCar);
+ 
+	END_IF
+	
+//END_FOR]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ListCars" Id="{d9c15eba-ef0c-42d6-b3b7-e21fe7784d26}">
+      <Declaration><![CDATA[
+METHOD PUBLIC ListCars
+VAR_INPUT
+	Color 	: ARRAY [1..Param.iMaxArray] OF STRING;
+	Patent 	: ARRAY [1..Param.iMaxArray] OF STRING;
+	Owner 	: ARRAY [1..Param.iMaxArray] OF STRING;
+END_VAR
+VAR
+	i : INT;
+END_VAR
+
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+IF (pCar = 0) THEN
+				
+	pCar := __NEW(Car);
+	
+END_IF		
+
+FOR i := 1 TO Param.iMaxArray BY 1 DO
+	
+//	IF (pVehicle = 0) THEN
+				
+//		pVehicle := __NEW(Auto);
+		
+		pCar^.setColor(Color[i]);
+
+		pCar^.setPatent(Patent[i]);	
+
+		pCar^.setOwner(Owner[i]);				
+		
+ 		ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_HINT, msgFmtStr := 'Data Car: %s', strArg := pCar^.ShowDetails());
+		
+//		IF (pVehicle <> 0) THEN
+		
+//    		__DELETE(pVehicle);
+ 
+//		END_IF
+		
+//	END_IF
+	
+END_FOR]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

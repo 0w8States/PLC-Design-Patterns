@@ -17,6 +17,9 @@
     <LibraryReferences>{53f96476-d69b-4f9d-8e0f-8a51b08f13bd}</LibraryReferences>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="Class Diagram_Visitor.TcCD">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="FBs\Exporters\FB_XmlExporter.TcPOU">
       <SubType>Code</SubType>
     </Compile>
@@ -50,8 +53,6 @@
     <Folder Include="FBs\System Modules" />
     <Folder Include="ITFs" />
     <Folder Include="FBs" />
-    <Folder Include="DUTs" />
-    <Folder Include="VISUs" />
     <Folder Include="POUs" />
   </ItemGroup>
   <ItemGroup>
