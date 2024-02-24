@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="I_Car" Id="{1b96b8e8-9a65-49bb-8085-4bf3ad7410e1}">
+    <Declaration><![CDATA[INTERFACE I_Car
+]]></Declaration>
+    <Method Name="ShowDetails" Id="{cf005e4d-18a0-4fd2-912e-9e852cc9ebf7}">
+      <Declaration><![CDATA[METHOD PUBLIC ShowDetails : STRING
+
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

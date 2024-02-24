@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Car" Id="{a73f2103-9645-4a3b-a073-dedb121232e1}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation'}
+FUNCTION_BLOCK Car IMPLEMENTS I_Car
+VAR
+	_Color : STRING;
+	_Patent : STRING;
+	_Owner : STRING;
+END_VAR]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="setColor" Id="{0bf56c6d-4167-4de9-9da9-fb262873e4ba}">
+      <Declaration><![CDATA[METHOD setColor
+VAR_INPUT
+	Color : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^._Color := Color;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setOwner" Id="{5a10baa8-1d5f-4164-b45b-600932976025}">
+      <Declaration><![CDATA[METHOD setOwner
+VAR_INPUT
+	Owner : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[ THIS^._Owner := Owner;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="setPatent" Id="{4c40430a-77dc-4411-bc74-fbeda01b5a27}">
+      <Declaration><![CDATA[METHOD setPatent
+VAR_INPUT
+	Patent : STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[THIS^._Patent := Patent;]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="ShowDetails" Id="{ea9b9502-f0fc-4ff4-9211-e75e468e3985}">
+      <Declaration><![CDATA[
+METHOD ShowDetails : STRING
+VAR
+	sPatent : STRING;
+	sColor	: STRING;
+	sOwner	: STRING;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[
+sPatent := CONCAT(STR1:='Patent: ' , STR2:= THIS^._Patent);
+sColor 	:= CONCAT(STR1:=', Color: ' , STR2:= THIS^._Color);
+sOwner 	:= CONCAT(STR1:=', Owner: ' , STR2:= THIS^._Owner);
+
+ShowDetails := CONCAT(STR1:= sPatent , STR2:= CONCAT(STR1:= sColor , STR2:= sOwner));
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>
