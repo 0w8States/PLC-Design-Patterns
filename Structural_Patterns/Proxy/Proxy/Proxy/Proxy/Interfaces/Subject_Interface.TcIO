@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <Itf Name="Subject_Interface" Id="{9b176648-f559-43a2-83ce-c145c4e85927}">
+    <Declaration><![CDATA[INTERFACE Subject_Interface
+]]></Declaration>
+    <Method Name="Get_Method" Id="{43ef36d3-139e-4bf2-9c1f-5b8936d55187}">
+      <Declaration><![CDATA[METHOD Get_Method : INT
+]]></Declaration>
+    </Method>
+    <Method Name="Set_Method" Id="{3c1b6c87-b1d5-4e04-802e-e3fea42eb71f}">
+      <Declaration><![CDATA[METHOD Set_Method
+VAR_INPUT
+	///Value to be set passed as an argument
+	num: INT;
+END_VAR
+]]></Declaration>
+    </Method>
+  </Itf>
+</TcPlcObject>

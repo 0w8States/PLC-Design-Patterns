@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Realsubject" Id="{b98cd672-9806-4c71-939e-f49997b14c1b}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation' := ''}
+FUNCTION_BLOCK Realsubject IMPLEMENTS Subject_Interface
+VAR
+	///Variable to get and set values
+	iProp: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="Get_Method" Id="{e5d61f1d-ce40-49a3-b00d-81878706227a}">
+      <Declaration><![CDATA[METHOD Get_Method : INT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Asks for the value of the object's iProp variable and passes it to the caller
+
+Get_Method := THIS^.iProp; ]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Set_Method" Id="{d1c85d57-484f-4462-b13a-610d0968786b}">
+      <Declaration><![CDATA[METHOD Set_Method
+VAR_INPUT
+	///Value to be set on the iProp varible of realSubjectInstance
+	num: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Stores the value of the caller object on iProp variable. 
+
+THIS^.iProp := num;]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

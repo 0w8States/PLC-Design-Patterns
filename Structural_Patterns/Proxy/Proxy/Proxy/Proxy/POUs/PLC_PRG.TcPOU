@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="PLC_PRG" Id="{7f1dd219-7e6d-42e9-9663-696063bc4a70}" SpecialFunc="None">
+    <Declaration><![CDATA[PROGRAM PLC_PRG
+VAR
+	///Instance of Realsubject but this one is Local to prove on a local and a global object
+	localSubjectInstance: Realsubject;
+	///Pointer to the local subject. Needed to instantiate its own Proxy. 
+	ptrLocalSubject: POINTER TO Realsubject := ADR(localSubjectInstance);
+	///Null pointer to the RealSubject class to verify that the other pointers are valid pointers and not null
+	ptrNullRealSubject: POINTER TO Realsubject;
+	///Pointer needed to create the Connection bridge "Proxy" between the client and the subject 
+	ptrProxy: POINTER TO Proxy;
+	///Variable to store the password set by the client to perform the connection
+	iTempPasswordLocal: INT;
+	///Variable to store the INT passed by the client to be SET on the subject
+	iSetValueLocal: INT;
+	///Boolean value to that gets toggled when the client send a SET request.
+	///It is toggled again after the Proxy's response
+	bWriteRequest: BOOL;
+	///Boolean value to that gets toggled when the client send a GET request.
+	///It is toggled again after the Proxy's response
+	bReadRequest: BOOL;
+	///Variable to store locally if the request was a Write or Read request.
+	///TRUE for a Write request and FALSE for a Read request
+	bReadWriteLocal: BOOL;
+END_VAR
+VAR_INPUT
+	///Variable to store the response log from the Proxy on a SET request
+	sTempSetLog: STRING := 'Waiting for a request';
+	///Variable to store the response log from the Proxy on a GET request
+	sTempGetLog: STRING := 'Waiting for a request';
+	///Variable to store the LAST GET response value locally
+	iGetValueLocal: INT;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[//The Visualization element can send a GET/SET request with all its parameters.
+//Once the request is received by the PLC_PRG, the PLC_PRG creates the Proxy object to delegate the request and subject's connection to it.
+//The default password value for the request is: 1234. It is specified in the static field .iRealPassword of the Proxy class
+
+//El elemento Visualización puede enviar una solicitud GET/SET con todos sus parámetros.
+// Una vez que PLC_PRG recibe la solicitud, PLC_PRG crea el objeto Proxy para delegar la solicitud y la conexión del sujeto a ella.
+//El valor de contraseña predeterminado para la solicitud es: 1234. Se especifica en el campo estático .iRealPassword de la clase Proxy
+
+//If a WRITE or SET request is received
+IF	bWriteRequest
+	THEN
+	//We specify TRUE bReadWriteLocal because it is a SET request
+	bReadWriteLocal := TRUE;
+	//First we verify if the pointer to RealSubject to be used is a valid pointer
+	IF ptrLocalSubject <> ptrNullRealSubject
+		//If so, 
+		THEN
+		//The Proxy object is created with all its parameters passed by the PLC_PRG local variables.
+		//As there is no "Method Overloading" options is CODESYS (Or at least the constructor cannot be overloaded) the constructor must receive and handle all the possible scenarios
+		// .ptrToRealSubject is a Pointer to the RealSubject instance that we try to conncect to
+		// .iTempPassword is the password passed by the client in the visualization element
+		// .iSetValue is the value passed by the client to be SET on the RealSubject. If the request is a GET request, this value has no effect on the output of the connection.
+		// .bReadWrite is the boolean value that specifies if the request is a SET or GET request
+		
+		//El objeto Proxy se crea con todos sus parámetros pasados ​​por las variables locales PLC_PRG.
+		//Como no hay opciones de "Sobrecarga de métodos" en CODESYS (O al menos el constructor no se puede sobrecargar) el constructor debe recibir y manejar todos los escenarios posibles
+		// .ptrToRealSubject es un puntero a la instancia de RealSubject a la que intentamos conectarnos
+		// .iTempPassword es la contraseña pasada por el cliente en el elemento de visualización
+		// .iSetValue es el valor pasado por el cliente para establecerlo en RealSubject. Si la solicitud es una solicitud GET, este valor no tiene ningún efecto en la salida de la conexión.
+		// .bReadWrite es el valor booleano que especifica si la solicitud es una solicitud SET o GET		
+		
+		ptrProxy := __NEW( Proxy( ptrToRealSubject := ptrLocalSubject, iTempPassword :=  iTempPasswordLocal, iSetValue := iSetValueLocal, bReadWrite := bReadWriteLocal));
+		//Once the Proxy has made the response, the memory is released by deleting the Proxy object
+		__DELETE(ptrProxy);
+	END_IF
+	
+	//We delete the local value of last password for security reasons. This way for every request the client must input a password
+	iTempPasswordLocal := 0;
+	//Once the WRITE request has been handled, we toggle the variable to avoid double requests
+	bWriteRequest := FALSE;
+END_IF
+
+//If a READ or GET request is received
+IF	bReadRequest
+	THEN
+	//We specify FALSE bReadWriteLocal because it is a GET request
+	bReadWriteLocal := FALSE;
+	//First we verify if the pointer to RealSubject to be used is a valid pointer
+	IF ptrLocalSubject <> ptrNullRealSubject
+		//If so,
+		THEN
+		//The Proxy object is created with all its parameters passed by the PLC_PRG local variables.
+		//As there is no "Method Overloading" options is CODESYS (Or at least the constructor cannot be overloaded) the constructor must receive and handle all the possible scenarios
+		// .ptrToRealSubject is a Pointer to the RealSubject instance that we try to conncect to
+		// .iTempPassword is the password passed by the client in the visualization element
+		// .iSetValue is the value passed by the client to be SET on the RealSubject. If the request is a GET request, this value has no effect on the output of the connection.
+		// .bReadWrite is the boolean value that specifies if the request is a SET or GET request
+		
+		//El objeto Proxy se crea con todos sus parámetros pasados ​​por las variables locales PLC_PRG.
+		//Como no hay opciones de "Sobrecarga de métodos" en CODESYS (O al menos el constructor no se puede sobrecargar) el constructor debe recibir y manejar todos los escenarios posibles
+		// .ptrToRealSubject es un puntero a la instancia de RealSubject a la que intentamos conectarnos
+		// .iTempPassword es la contraseña pasada por el cliente en el elemento de visualización
+		// .iSetValue es el valor pasado por el cliente para establecerlo en RealSubject. Si la solicitud es una solicitud GET, este valor no tiene ningún efecto en la salida de la conexión.
+		// .bReadWrite es el valor booleano que especifica si la solicitud es una solicitud SET o GET
+		
+		ptrProxy := __NEW(Proxy(ptrToRealSubject := ptrLocalSubject, iTempPassword :=  iTempPasswordLocal, iSetValue := 0, bReadWrite := bReadWriteLocal));
+		//Once the Proxy has made the response, the memory is released by deleting the Proxy object
+		__DELETE(ptrProxy);	
+	END_IF
+	
+	//We delete the local value of last password for security reasons. This way for every request the client must input a password
+	iTempPasswordLocal := 0;
+	//Once the READ request has been handled, we toggle the variable to avoid double requests
+	bReadRequest := FALSE;
+END_IF]]></ST>
+    </Implementation>
+  </POU>
+</TcPlcObject>
