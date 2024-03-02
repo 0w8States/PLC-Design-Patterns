@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TcPlcObject Version="1.1.0.1" ProductVersion="3.1.4024.12">
+  <POU Name="Proxy" Id="{95b051c1-6231-4a1d-8cd6-3b176a14c557}" SpecialFunc="None">
+    <Declaration><![CDATA[{attribute 'enable_dynamic_creation' := ''}
+FUNCTION_BLOCK Proxy IMPLEMENTS Subject_Interface
+VAR
+	///Pointer to store the reference to the subject being protected
+	refToRealSubject: POINTER TO Realsubject;
+	///Last value of password entered by the client in the visualization element
+	iTempPassword: INT;
+END_VAR
+VAR_STAT
+	///Default password value for the request to be accepted
+	iRealPassword: INT := 1234;
+END_VAR
+]]></Declaration>
+    <Implementation>
+      <ST><![CDATA[]]></ST>
+    </Implementation>
+    <Method Name="fb_init" Id="{1327e92f-7b7e-4067-9d60-7c17a8b9cb58}">
+      <Declaration><![CDATA[METHOD fb_init
+VAR_INPUT
+	/// TRUE: the Retain-variables are initialized (reset warm / reset cold)
+	bInitRetains: BOOL;
+	/// TRUE  the instance will be copied to the copy-code afterward (online change)
+	bInCopyCode: BOOL;
+	///Pointer to the RealSubject instance 
+	ptrToRealSubject: POINTER TO Realsubject;
+	///Local variable to store the password passed by the client with the password of the Proxy
+	iTempPassword: INT;
+	///Local variable to be used in WRITE request, it is the value to be set if the request is accepted
+	iSetValue: INT;
+	///Boolean value that specifies if the request is a WRITE or READ request
+	bReadWrite: BOOL;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Stores the address of the subject on a field in th Proxy.
+THIS^.refToRealSubject := ptrToRealSubject;
+//Stores the password value of the client on a field in the Proxy
+THIS^.iTempPassword := iTempPassword;
+
+//For security reasons, the Password passed by the client and the Proxi's connection password are compared
+IF	THIS^.iTempPassword = THIS^.iRealPassword 
+	//If the password sent by the client is correct,
+	THEN
+	//We verify is the request is a SET or GET request
+	IF bReadWrite
+		//If the request is a SET request: boolean value TRUE
+		THEN
+		//The Proxy passes the request to the subject
+		THIS^.Set_Method(iSetValue);
+		//Once the request is completed, the Proxy responds to the client that the request has been accepted
+		PLC_PRG.sTempSetLog := 'Request "SET" accepted';
+		//If the request is a GET request: boolean value FALSE
+		ELSE
+		//The Proxy passes the request to the subject
+		PLC_PRG.iGetValueLocal:= THIS^.Get_Method();
+		//Once the request is completed, the Proxy responds to the client that the request has been accepted
+		PLC_PRG.sTempGetLog := 'Request "GET" accepted';
+	END_IF
+	
+	//If the password sent by the client is incorrect
+	ELSE 
+	//We verify is the request is a SET or GET request
+	IF bReadWrite
+		//If the request is a SET request: boolean value TRUE
+		THEN
+		//The Proxy handles the bad request and response to the client without the subject intervention
+		PLC_PRG.sTempSetLog := 'Request denied. Wrong password.';
+		//If the request is a GET request: boolean value FALSE
+		ELSE
+		//The Proxy handles the bad request and response to the client without the subject intervention
+		PLC_PRG.sTempGetLog := 'Request denied. Wrong password.';
+	END_IF
+
+END_IF]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Get_Method" Id="{0faafaf3-5c99-4ce7-85f2-a9997699c3e3}">
+      <Declaration><![CDATA[METHOD Get_Method : INT
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Calls the Get_Method of the subject through the proxy to read the iProp value of the subject 
+// thanks to the pointer reference saved in the field refToRealSubject of the proxy object. 
+
+Get_Method := THIS^.refToRealSubject^.Get_Method();
+
+]]></ST>
+      </Implementation>
+    </Method>
+    <Method Name="Set_Method" Id="{bf9d501c-434c-4bc2-b338-4f2f21baee2b}">
+      <Declaration><![CDATA[METHOD Set_Method
+VAR_INPUT
+	///Value to be set to the subject passed as an input argument
+	num: INT;
+END_VAR
+]]></Declaration>
+      <Implementation>
+        <ST><![CDATA[//Calls the Set_Method of the subject through the proxy to write the iProp field of the subject 
+// thanks to the pointer reference saved in the field refToRealSubject of the proxy object.
+
+THIS^.refToRealSubject^.Set_Method(num);
+]]></ST>
+      </Implementation>
+    </Method>
+  </POU>
+</TcPlcObject>

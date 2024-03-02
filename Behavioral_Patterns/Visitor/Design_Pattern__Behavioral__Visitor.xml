@@ -1,0 +1,1489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.13.21" creationDateTime="2024-03-02T09:50:58.6036755" />
+  <contentHeader name="PLC1" modificationDateTime="2024-03-02T09:50:58.6095294">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes />
+    <pous />
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/application" handleUnknown="implementation">
+      <resource name="PLC1">
+        <task name="PlcTask" interval="PT0S" priority="20">
+          <pouInstance name="MAIN" typeName="">
+            <documentation>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+            </documentation>
+          </pouInstance>
+          <addData>
+            <data name="http://www.3s-software.com/plcopenxml/tasksettings" handleUnknown="implementation">
+              <TaskSettings KindOfTask="Cyclic" Interval="10000" IntervalUnit="us">
+                <Watchdog Enabled="false" TimeUnit="ms" />
+              </TaskSettings>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+              <ObjectId>d5185600-4930-42d6-9173-742a1c4846f6</ObjectId>
+            </data>
+          </addData>
+        </task>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interface" handleUnknown="implementation">
+            <Interface name="I_SysModules" ObjectId="073f48fb-e2af-4b1a-a74f-362700c31e24">
+              <Methods>
+                <Method name="accept" ObjectId="506d095f-0bbc-48c7-a516-c48bc525fbd6">
+                  <interface>
+                    <inputVars>
+                      <variable name="iVisitor">
+                        <type>
+                          <derived name="I_Visitor" />
+                        </type>
+                      </variable>
+                    </inputVars>
+                  </interface>
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD accept
+VAR_INPUT
+	iVisitor : I_Visitor;
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                  <addData />
+                </Method>
+              </Methods>
+              <InterfaceAsPlainText>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">INTERFACE I_SysModules
+</xhtml>
+              </InterfaceAsPlainText>
+              <addData />
+            </Interface>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/interface" handleUnknown="implementation">
+            <Interface name="I_Visitor" ObjectId="ca293700-6744-4e91-b2aa-c10eff183998">
+              <Methods>
+                <Method name="visitConveyor" ObjectId="674d8e4c-61e3-4817-b84b-3ea9ba4e51d1">
+                  <interface>
+                    <inputVars>
+                      <variable name="fbConveyor">
+                        <type>
+                          <derived name="FB_Conveyor" />
+                        </type>
+                      </variable>
+                    </inputVars>
+                  </interface>
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD visitConveyor
+VAR_INPUT
+	fbConveyor : FB_Conveyor;
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                  <addData />
+                </Method>
+                <Method name="visitHeater" ObjectId="3c75bc6f-c2b0-4f18-aa1e-655777d0dd14">
+                  <interface>
+                    <inputVars>
+                      <variable name="fbHeater">
+                        <type>
+                          <derived name="FB_Heater" />
+                        </type>
+                      </variable>
+                    </inputVars>
+                  </interface>
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD visitHeater
+VAR_INPUT
+	fbHeater : FB_Heater;
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                  <addData />
+                </Method>
+                <Method name="visitIPC" ObjectId="85bdd0c6-6121-41ee-a678-4ee8c40079f0">
+                  <interface>
+                    <inputVars>
+                      <variable name="fbIPC">
+                        <type>
+                          <derived name="FB_IPCDiagnostics" />
+                        </type>
+                      </variable>
+                    </inputVars>
+                  </interface>
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD visitIPC
+VAR_INPUT
+	fbIPC : FB_IPCDiagnostics;
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                  <addData />
+                </Method>
+              </Methods>
+              <InterfaceAsPlainText>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">INTERFACE I_Visitor
+</xhtml>
+              </InterfaceAsPlainText>
+              <addData />
+            </Interface>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="MAIN" pouType="program">
+              <interface>
+                <localVars>
+                  <variable name="fbHeater">
+                    <type>
+                      <array>
+                        <dimension lower="0" upper="2" />
+                        <baseType>
+                          <derived name="FB_Heater" />
+                        </baseType>
+                      </array>
+                    </type>
+                    <documentation>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml"> Program Objects</xhtml>
+                    </documentation>
+                  </variable>
+                  <variable name="fbConveyor">
+                    <type>
+                      <array>
+                        <dimension lower="0" upper="1" />
+                        <baseType>
+                          <derived name="FB_Conveyor" />
+                        </baseType>
+                      </array>
+                    </type>
+                  </variable>
+                  <variable name="fbIPCDiagnostics">
+                    <type>
+                      <derived name="FB_IPCDiagnostics" />
+                    </type>
+                  </variable>
+                  <variable name="iModules">
+                    <type>
+                      <array>
+                        <dimension lower="0" upper="5" />
+                        <baseType>
+                          <derived name="I_SysModules" />
+                        </baseType>
+                      </array>
+                    </type>
+                    <initialValue>
+                      <arrayValue>
+                        <value>
+                          <simpleValue value="fbHeater[0]" />
+                        </value>
+                        <value>
+                          <simpleValue value="fbHeater[1]" />
+                        </value>
+                        <value>
+                          <simpleValue value="fbHeater[2]" />
+                        </value>
+                        <value>
+                          <simpleValue value="fbConveyor[0]" />
+                        </value>
+                        <value>
+                          <simpleValue value="fbConveyor[1]" />
+                        </value>
+                        <value>
+                          <simpleValue value="fbIPCDiagnostics" />
+                        </value>
+                      </arrayValue>
+                    </initialValue>
+                  </variable>
+                  <variable name="exportVisitor">
+                    <type>
+                      <derived name="FB_SysLogExporter" />
+                    </type>
+                    <documentation>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml"> Visitor Object Control</xhtml>
+                    </documentation>
+                  </variable>
+                  <variable name="exportXML">
+                    <type>
+                      <derived name="FB_XmlExporter" />
+                    </type>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/inputassignments" handleUnknown="implementation">
+                        <InputAssignments>
+                          <InputAssignment>
+                            <Value>'C:\TwinCAT\Visitor.xml'</Value>
+                          </InputAssignment>
+                          <InputAssignment>
+                            <Value>'CX-12345'</Value>
+                          </InputAssignment>
+                        </InputAssignments>
+                      </data>
+                      <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                        <Attributes>
+                          <Attribute Name="old_input_assignments" Value="" />
+                        </Attributes>
+                      </data>
+                    </addData>
+                  </variable>
+                  <variable name="bLogExport">
+                    <type>
+                      <BOOL />
+                    </type>
+                    <documentation>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml"> Demo Program Control</xhtml>
+                    </documentation>
+                  </variable>
+                  <variable name="bXmlExport">
+                    <type>
+                      <BOOL />
+                    </type>
+                  </variable>
+                  <variable name="bExecSave">
+                    <type>
+                      <BOOL />
+                    </type>
+                  </variable>
+                  <variable name="i">
+                    <type>
+                      <INT />
+                    </type>
+                  </variable>
+                </localVars>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">// Export the Syslog
+IF bLogExport THEN
+	bLogExport := FALSE;
+	FOR i := 0 TO 5 DO
+		iModules[i].accept(exportVisitor);
+	END_FOR
+END_IF
+
+// Export for XML
+IF bXmlExport THEN
+	bXmlExport := FALSE;
+	FOR i := 0 TO 5 DO
+		iModules[i].accept(exportXML);
+	END_FOR
+	bExecSave := TRUE;
+END_IF
+
+IF exportXML.saveDoc(bExec := bExecSave) THEN
+	bExecSave := FALSE;
+END_IF
+</xhtml>
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">PROGRAM MAIN
+VAR
+	// Program Objects
+	fbHeater			: ARRAY[0..2] OF FB_Heater;
+	fbConveyor 			: ARRAY[0..1] OF FB_Conveyor;
+	fbIPCDiagnostics 	: FB_IPCDiagnostics;
+	iModules 			: ARRAY[0..5] OF I_SysModules := [fbHeater[0], fbHeater[1], fbHeater[2], fbConveyor[0],  fbConveyor[1], fbIPCDiagnostics];
+	
+	// Visitor Object Control
+	exportVisitor 		: FB_SysLogExporter;
+	exportXML			: FB_XmlExporter('C:\TwinCAT\Visitor.xml', 'CX-12345');
+	
+	// Demo Program Control
+	bLogExport			: BOOL;
+	bXmlExport			: BOOL;
+	bExecSave			: BOOL;
+	i					: INT;
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>21a0115b-fd40-4499-9081-23e2d41ae653</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="FB_XmlExporter" pouType="functionBlock">
+              <interface>
+                <localVars>
+                  <variable name="sFilePath">
+                    <type>
+                      <string />
+                    </type>
+                  </variable>
+                  <variable name="sMachineName">
+                    <type>
+                      <string />
+                    </type>
+                  </variable>
+                  <variable name="fbXml">
+                    <type>
+                      <derived name="FB_XmlDomParser" />
+                    </type>
+                  </variable>
+                  <variable name="objRoot">
+                    <type>
+                      <derived name="SXmlNode" />
+                    </type>
+                  </variable>
+                  <variable name="objMachines">
+                    <type>
+                      <derived name="SXmlNode" />
+                    </type>
+                  </variable>
+                  <variable name="objMachine">
+                    <type>
+                      <derived name="SXmlNode" />
+                    </type>
+                  </variable>
+                  <variable name="objModules">
+                    <type>
+                      <derived name="SXmlNode" />
+                    </type>
+                  </variable>
+                  <variable name="objModule">
+                    <type>
+                      <derived name="SXmlNode" />
+                    </type>
+                  </variable>
+                  <variable name="objAttribute">
+                    <type>
+                      <derived name="SXmlAttribute" />
+                    </type>
+                  </variable>
+                  <variable name="sXmlString">
+                    <type>
+                      <string length="1000" />
+                    </type>
+                  </variable>
+                  <variable name="nLength">
+                    <type>
+                      <UDINT />
+                    </type>
+                  </variable>
+                </localVars>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+                    <Inheritance>
+                      <Implements>I_Visitor</Implements>
+                    </Inheritance>
+                  </data>
+                </addData>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="FB_init" ObjectId="15e38765-0cd2-4b17-be90-7ba5cc98ff8f">
+                    <interface>
+                      <returnType>
+                        <BOOL />
+                      </returnType>
+                      <inputVars>
+                        <variable name="bInitRetains">
+                          <type>
+                            <BOOL />
+                          </type>
+                          <documentation>
+                            <xhtml xmlns="http://www.w3.org/1999/xhtml"> if TRUE, the retain variables are initialized (warm start / cold start)</xhtml>
+                          </documentation>
+                        </variable>
+                        <variable name="bInCopyCode">
+                          <type>
+                            <BOOL />
+                          </type>
+                          <documentation>
+                            <xhtml xmlns="http://www.w3.org/1999/xhtml"> if TRUE, the instance afterwards gets moved into the copy code (online change)</xhtml>
+                          </documentation>
+                        </variable>
+                        <variable name="sFilePath">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                        <variable name="sMachineName">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                      </inputVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">THIS^.sFilePath := sFilePath;
+THIS^.sMachineName := sMachineName;
+
+(* Create an empty XML document *)
+objRoot := fbXml.GetDocumentNode();
+
+(* Create a new XML node 'Machines' and add to the empty document *)
+objMachines := fbXml.AppendNode(objRoot, 'Machines');
+
+(* Create a new XML node 'Machine' and add an attribute to this node. Append node to 'Machines' *)
+objMachine := fbXml.AppendNode(objMachines, 'Machine');
+objAttribute := fbXml.AppendAttribute(objMachine, 'Name', sMachineName);
+
+(* Create a new XML node 'Controllers' and add to the 'Machine' node *)
+objModules := fbXml.AppendNode(objMachine, sMachineName);</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD FB_init : BOOL
+VAR_INPUT
+	bInitRetains 	: BOOL; // if TRUE, the retain variables are initialized (warm start / cold start)
+	bInCopyCode 	: BOOL;  // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	sFilePath 		: STRING;
+	sMachineName 	: STRING;
+END_VAR
+</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="saveDoc" ObjectId="4fc9e43a-ced5-41a4-bc3d-412d89a81282">
+                    <interface>
+                      <returnType>
+                        <BOOL />
+                      </returnType>
+                      <inputVars>
+                        <variable name="bExec">
+                          <type>
+                            <BOOL />
+                          </type>
+                        </variable>
+                      </inputVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">(* Retrieve XML document and store in a variable of data type STRING(1000) *)
+nLength := fbXml.CopyDocument(sXmlString, SIZEOF(sXmlString));
+
+SaveDoc := fbXml.SaveDocumentToFile(sFile := THIS^.sFilePath, bExec := bExec);</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD saveDoc : BOOL
+VAR_INPUT
+	bExec : BOOL;
+END_VAR
+</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="visitConveyor" ObjectId="af97bba4-9f2e-4c00-856d-420f78bb4ce6">
+                    <interface>
+                      <inputVars>
+                        <variable name="fbConveyor">
+                          <type>
+                            <derived name="FB_Conveyor" />
+                          </type>
+                        </variable>
+                      </inputVars>
+                      <localVars>
+                        <variable name="Path">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                        <variable name="Position">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                        <variable name="Velocity">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                        <variable name="Status">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                      </localVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">Path := fbConveyor.pPath;
+Position := TO_STRING(fbConveyor.pPosition);
+Velocity := TO_STRING(fbConveyor.pVelocity);
+Status := fbConveyor.pStatus;
+
+objModule := fbXml.AppendChild(objModules, 'Conveyor', Path, FALSE);
+objAttribute := fbXml.AppendAttribute(objModule, 'Position', Position);
+objAttribute := fbXml.AppendAttribute(objModule, 'Velocity', Velocity);
+objAttribute := fbXml.AppendAttribute(objModule, 'Status', Status);</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD visitConveyor
+VAR_INPUT
+	fbConveyor : FB_Conveyor;
+END_VAR
+VAR
+	Path : STRING;
+	Position : STRING;
+	Velocity : STRING;
+	Status : STRING;
+END_VAR</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="visitHeater" ObjectId="68b548cf-8b07-42ac-9479-ceb46d8930d2">
+                    <interface>
+                      <inputVars>
+                        <variable name="fbHeater">
+                          <type>
+                            <derived name="FB_Heater" />
+                          </type>
+                        </variable>
+                      </inputVars>
+                      <localVars>
+                        <variable name="Path">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                        <variable name="Temp">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                        <variable name="Status">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                      </localVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">Path := fbHeater.pPath;
+Temp := TO_STRING(fbHeater.pTemp);
+Status := fbHeater.pStatus;
+
+objModule := fbXml.AppendChild(objModules, 'Heater', Path, FALSE);
+objAttribute := fbXml.AppendAttribute(objModule, 'Temperature', Temp);
+objAttribute := fbXml.AppendAttribute(objModule, 'Status', Status);</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD visitHeater
+VAR_INPUT
+	fbHeater : FB_Heater;
+END_VAR
+VAR
+	Path : STRING;
+	Temp : STRING;
+	Status : STRING;
+END_VAR</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="visitIPC" ObjectId="4911e7a1-6792-4142-b475-3f5a98a66235">
+                    <interface>
+                      <inputVars>
+                        <variable name="fbIPC">
+                          <type>
+                            <derived name="FB_IPCDiagnostics" />
+                          </type>
+                        </variable>
+                      </inputVars>
+                      <localVars>
+                        <variable name="Path">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                        <variable name="CPU_Temp">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                        <variable name="CPU_Usage">
+                          <type>
+                            <string />
+                          </type>
+                        </variable>
+                      </localVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">Path := fbIPC.pPath;
+CPU_Temp := TO_STRING(fbIPC.pCPU_Temp);
+CPU_Usage := TO_STRING(fbIPC.pCPU_Usage);
+
+objModule := fbXml.AppendChild(objModules, 'IPC_Diagnostics', Path, FALSE);
+objAttribute := fbXml.AppendAttribute(objModule, 'CPU_Temperature', CPU_Temp);
+objAttribute := fbXml.AppendAttribute(objModule, 'CPU_Usage', CPU_Usage);</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD visitIPC
+VAR_INPUT
+	fbIPC : FB_IPCDiagnostics;
+END_VAR
+VAR
+	Path : STRING;
+	CPU_Temp : STRING;
+	CPU_Usage : STRING;
+END_VAR
+
+</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_XmlExporter IMPLEMENTS I_Visitor
+VAR
+	sFilePath 		: STRING;
+	sMachineName 	: STRING;	
+
+	fbXml			: FB_XmlDomParser;
+	objRoot 		: SXmlNode;
+	objMachines 	: SXmlNode;
+	objMachine		: SXmlNode;
+	objModules		: SXmlNode;
+	objModule		: SXmlNode;
+	objAttribute 	: SXmlAttribute;
+	sXmlString		: STRING(1000);
+	nLength   		: UDINT;
+END_VAR
+
+</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>d408ed05-7a03-4686-bc22-858828b6daea</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="FB_SysLogExporter" pouType="functionBlock">
+              <interface>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+                    <Inheritance>
+                      <Implements>I_Visitor</Implements>
+                    </Inheritance>
+                  </data>
+                </addData>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="visitConveyor" ObjectId="0484067d-9c5e-4b40-ab70-934765cdac38">
+                    <interface>
+                      <inputVars>
+                        <variable name="fbConveyor">
+                          <type>
+                            <derived name="FB_Conveyor" />
+                          </type>
+                        </variable>
+                      </inputVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := '', strArg := '');
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := 'PLC Msg. *** Printing Messages For: %s', strArg := fbConveyor.pPath);
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbConveyor.pPath,':: Status := %s'), strArg := TO_STRING(fbConveyor.pStatus));
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbConveyor.pPath,':: Velocity := %s'), strArg := TO_STRING(fbConveyor.pVelocity));
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbConveyor.pPath,':: Position := %s'), strArg := TO_STRING(fbConveyor.pPosition));</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD visitConveyor
+VAR_INPUT
+	fbConveyor : FB_Conveyor;
+END_VAR
+</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="visitHeater" ObjectId="eb907004-7ed4-41c6-95f0-edd3c6e91274">
+                    <interface>
+                      <inputVars>
+                        <variable name="fbHeater">
+                          <type>
+                            <derived name="FB_Heater" />
+                          </type>
+                        </variable>
+                      </inputVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := '', strArg := '');
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := 'PLC Msg. *** Printing Messages For: %s', strArg := fbHeater.pPath);
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbHeater.pPath,':: Status := %s'), strArg := TO_STRING(fbHeater.pStatus));
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbHeater.pPath,':: Temperature := %s'), strArg := TO_STRING(fbHeater.pTemp));
+</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD visitHeater
+VAR_INPUT
+	fbHeater : FB_Heater;
+END_VAR
+</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="visitIPC" ObjectId="b9910925-b6f1-49cd-8635-32e88c1bc861">
+                    <interface>
+                      <inputVars>
+                        <variable name="fbIPC">
+                          <type>
+                            <derived name="FB_IPCDiagnostics" />
+                          </type>
+                        </variable>
+                      </inputVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := '', strArg := '');
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := 'PLC Msg. *** Printing Messages For: %s', strArg := fbIPC.pPath);
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbIPC.pPath,':: CPU Usage := %s'), strArg := TO_STRING(fbIPC.pCPU_Usage));
+ADSLOGSTR( msgCtrlMask := ADSLOG_MSGTYPE_LOG, msgFmtStr := CONCAT(fbIPC.pPath,':: CPU Temperature (F) := %s'), strArg := TO_STRING(fbIPC.pCPU_Temp));</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD visitIPC
+VAR_INPUT
+	fbIPC : FB_IPCDiagnostics;
+END_VAR
+
+</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_SysLogExporter IMPLEMENTS I_Visitor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>0dee553f-9ccd-492f-99ce-bf5953c98bd3</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="FB_Conveyor" pouType="functionBlock">
+              <interface>
+                <localVars>
+                  <variable name="lrVelocity">
+                    <type>
+                      <LREAL />
+                    </type>
+                    <initialValue>
+                      <simpleValue value="500.0" />
+                    </initialValue>
+                  </variable>
+                  <variable name="lrPosition">
+                    <type>
+                      <LREAL />
+                    </type>
+                    <initialValue>
+                      <simpleValue value="127.0" />
+                    </initialValue>
+                  </variable>
+                  <variable name="sStatus">
+                    <type>
+                      <string />
+                    </type>
+                    <initialValue>
+                      <simpleValue value="'Running'" />
+                    </initialValue>
+                  </variable>
+                  <variable name="sPath">
+                    <type>
+                      <string />
+                    </type>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                        <Attributes>
+                          <Attribute Name="instance-path" Value="" />
+                          <Attribute Name="noinit" Value="" />
+                        </Attributes>
+                      </data>
+                    </addData>
+                  </variable>
+                </localVars>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+                    <Inheritance>
+                      <Implements>I_SysModules</Implements>
+                    </Inheritance>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                    <Attributes>
+                      <Attribute Name="reflection" Value="" />
+                    </Attributes>
+                  </data>
+                </addData>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="accept" ObjectId="ad644b27-f57e-48e9-8c13-9777963bd95d">
+                    <interface>
+                      <inputVars>
+                        <variable name="iVisitor">
+                          <type>
+                            <derived name="I_Visitor" />
+                          </type>
+                        </variable>
+                      </inputVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">iVisitor.visitConveyor(THIS^);</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD accept
+VAR_INPUT
+	iVisitor : I_Visitor;
+END_VAR
+</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="pPath" ObjectId="b88b05de-b5ac-469c-900b-57ca27b7def2">
+                    <interface>
+                      <returnType>
+                        <string />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">pPath := THIS^.sPath;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY pPath : STRING</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="pPosition" ObjectId="526e0903-aef9-4bd7-b0de-d71d0bcc9aad">
+                    <interface>
+                      <returnType>
+                        <LREAL />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">pPosition := THIS^.lrPosition;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY pPosition : LREAL</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="pStatus" ObjectId="943cd835-d7c6-4a4a-ba91-5152ad7df583">
+                    <interface>
+                      <returnType>
+                        <string />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">pStatus := THIS^.sStatus;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY pStatus : STRING</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="pVelocity" ObjectId="7571d87d-5b2c-4377-a28e-1c5f9068818e">
+                    <interface>
+                      <returnType>
+                        <LREAL />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">pVelocity := THIS^.lrPosition;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY pVelocity : LREAL</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">{attribute 'reflection'} 
+FUNCTION_BLOCK FB_Conveyor IMPLEMENTS I_SysModules
+VAR
+	lrVelocity 	: LREAL := 500.00;
+	lrPosition 	: LREAL := 127.00;
+	sStatus		: STRING := 'Running';
+	
+	{attribute 'instance-path'} 
+    {attribute 'noinit'} 
+    sPath : STRING; 
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>1f67fa7b-2adf-4297-b10d-34e2348c19bc</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="FB_Heater" pouType="functionBlock">
+              <interface>
+                <localVars>
+                  <variable name="lrCurrentTemp">
+                    <type>
+                      <LREAL />
+                    </type>
+                    <initialValue>
+                      <simpleValue value="72.0" />
+                    </initialValue>
+                  </variable>
+                  <variable name="sStatus">
+                    <type>
+                      <string />
+                    </type>
+                    <initialValue>
+                      <simpleValue value="'Heating...'" />
+                    </initialValue>
+                  </variable>
+                  <variable name="sPath">
+                    <type>
+                      <string />
+                    </type>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                        <Attributes>
+                          <Attribute Name="instance-path" Value="" />
+                          <Attribute Name="noinit" Value="" />
+                        </Attributes>
+                      </data>
+                    </addData>
+                  </variable>
+                </localVars>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+                    <Inheritance>
+                      <Implements>I_SysModules</Implements>
+                    </Inheritance>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                    <Attributes>
+                      <Attribute Name="reflection" Value="" />
+                    </Attributes>
+                  </data>
+                </addData>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="accept" ObjectId="219d35d4-b079-4f05-9455-c0331a726c1f">
+                    <interface>
+                      <inputVars>
+                        <variable name="iVisitor">
+                          <type>
+                            <derived name="I_Visitor" />
+                          </type>
+                        </variable>
+                      </inputVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">iVisitor.visitHeater(THIS^);</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD accept
+VAR_INPUT
+	iVisitor : I_Visitor;
+END_VAR
+</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="pPath" ObjectId="c56d2ee8-fc14-4b91-b359-971aabafdd9d">
+                    <interface>
+                      <returnType>
+                        <string />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">pPath := THIS^.sPath;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY pPath : STRING</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="pStatus" ObjectId="dc6254ab-ed74-4917-a741-e37379d1bf61">
+                    <interface>
+                      <returnType>
+                        <string />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">pStatus := THIS^.sStatus;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY pStatus : STRING</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="pTemp" ObjectId="b9c50f6e-9cc5-4b5b-b278-c291c84a7d2b">
+                    <interface>
+                      <returnType>
+                        <LREAL />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">pTemp := THIS^.lrCurrentTemp;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY pTemp : LREAL</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">{attribute 'reflection'} 
+FUNCTION_BLOCK FB_Heater IMPLEMENTS I_SysModules
+VAR
+	lrCurrentTemp : LREAL := 72.0;
+	sStatus		  : STRING := 'Heating...';
+	
+	{attribute 'instance-path'} 
+    {attribute 'noinit'} 
+    sPath : STRING; 
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>1f9185b3-e3ce-4e45-a157-5f473ef16cdb</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="FB_IPCDiagnostics" pouType="functionBlock">
+              <interface>
+                <localVars>
+                  <variable name="nCpuTemperature">
+                    <type>
+                      <INT />
+                    </type>
+                    <initialValue>
+                      <simpleValue value="75" />
+                    </initialValue>
+                    <documentation>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml"> CPU temperature [°F]</xhtml>
+                    </documentation>
+                  </variable>
+                  <variable name="nCpuUsage">
+                    <type>
+                      <INT />
+                    </type>
+                    <initialValue>
+                      <simpleValue value="5" />
+                    </initialValue>
+                    <documentation>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml"> CPU usage [%]</xhtml>
+                    </documentation>
+                  </variable>
+                  <variable name="sPath">
+                    <type>
+                      <string />
+                    </type>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                        <Attributes>
+                          <Attribute Name="instance-path" Value="" />
+                          <Attribute Name="noinit" Value="" />
+                        </Attributes>
+                      </data>
+                    </addData>
+                  </variable>
+                </localVars>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+                    <Inheritance>
+                      <Implements>I_SysModules</Implements>
+                    </Inheritance>
+                  </data>
+                  <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                    <Attributes>
+                      <Attribute Name="reflection" Value="" />
+                    </Attributes>
+                  </data>
+                </addData>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="accept" ObjectId="dea57fa9-4cb0-49ab-b208-c1b1b2cddc11">
+                    <interface>
+                      <inputVars>
+                        <variable name="iVisitor">
+                          <type>
+                            <derived name="I_Visitor" />
+                          </type>
+                        </variable>
+                      </inputVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">iVisitor.visitIPC(THIS^);</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD accept
+VAR_INPUT
+	iVisitor : I_Visitor;
+END_VAR
+</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="pCPU_Temp" ObjectId="472bdcca-bfb7-47fc-a956-db1deb7ad691">
+                    <interface>
+                      <returnType>
+                        <INT />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">pCPU_Temp := THIS^.nCpuTemperature;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY pCPU_Temp : INT</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="pCPU_Usage" ObjectId="2a4155f8-1d71-414c-bdd2-b4128803e0a8">
+                    <interface>
+                      <returnType>
+                        <INT />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">pCPU_Usage := THIS^.nCpuUsage;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY pCPU_Usage : INT</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="pPath" ObjectId="a7b72c3a-26f7-4006-8cf0-41ee057228c4">
+                    <interface>
+                      <returnType>
+                        <string />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">pPath := THIS^.sPath;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY pPath : STRING</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">{attribute 'reflection'} 
+FUNCTION_BLOCK FB_IPCDiagnostics IMPLEMENTS I_SysModules
+VAR
+	nCpuTemperature	: INT := 75;	// CPU temperature [°F]
+	nCpuUsage       : INT := 5;    // CPU usage [%]
+	
+	
+	{attribute 'instance-path'} 
+    {attribute 'noinit'} 
+    sPath : STRING; 
+END_VAR</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>03aa6bb3-78ca-4569-b572-44f1a01ac209</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/libraries" handleUnknown="implementation">
+            <Libraries>
+              <Library Name="#Tc2_Standard" Namespace="Tc2_Standard" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Tc2_Standard, * (Beckhoff Automation GmbH)" />
+              <Library Name="#Tc2_System" Namespace="Tc2_System" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Tc2_System, * (Beckhoff Automation GmbH)">
+                <Parameters>
+                  <Parameter Name="PARAM.TABLE_UPPER_BOUND" Value="15" />
+                  <Parameter Name="PARAM.STRING_LENGTH_EXP" Value="255" />
+                  <Parameter Name="PARAM.STRING_LENGTH_ADDRESS" Value="20" />
+                  <Parameter Name="PARAM.STRING_LENGTH_COMMENT" Value="255" />
+                  <Parameter Name="PARAM.STRING_LENGTH_OUTSTRING" Value="255" />
+                  <Parameter Name="PARAM.TABLE_SHOW_VALID_ITEMS" Value="FALSE" />
+                </Parameters>
+              </Library>
+              <Library Name="#Tc3_IPCDiag" Namespace="Tc3_IPCDiag" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Tc3_IPCDiag, * (Beckhoff Automation GmbH)" />
+              <Library Name="#Tc3_JsonXml" Namespace="Tc3_JsonXml" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Tc3_JsonXml, * (Beckhoff Automation GmbH)" />
+              <Library Name="#Tc3_Module" Namespace="Tc3_Module" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Tc3_Module, * (Beckhoff Automation GmbH)" />
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>53f96476-d69b-4f9d-8e0f-8a51b08f13bd</ObjectId>
+                </data>
+              </addData>
+            </Libraries>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>99d6ddfc-f991-45db-8582-cdce19d5e8e0</ObjectId>
+          </data>
+        </addData>
+      </resource>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="PLC1" ObjectId="99d6ddfc-f991-45db-8582-cdce19d5e8e0">
+          <Object Name="Library Manager" ObjectId="53f96476-d69b-4f9d-8e0f-8a51b08f13bd" />
+          <Folder Name="FBs">
+            <Folder Name="Exporters">
+              <Object Name="FB_XmlExporter" ObjectId="d408ed05-7a03-4686-bc22-858828b6daea">
+                <Object Name="FB_init" ObjectId="15e38765-0cd2-4b17-be90-7ba5cc98ff8f" />
+                <Object Name="saveDoc" ObjectId="4fc9e43a-ced5-41a4-bc3d-412d89a81282" />
+                <Object Name="visitConveyor" ObjectId="af97bba4-9f2e-4c00-856d-420f78bb4ce6" />
+                <Object Name="visitHeater" ObjectId="68b548cf-8b07-42ac-9479-ceb46d8930d2" />
+                <Object Name="visitIPC" ObjectId="4911e7a1-6792-4142-b475-3f5a98a66235" />
+              </Object>
+              <Object Name="FB_SysLogExporter" ObjectId="0dee553f-9ccd-492f-99ce-bf5953c98bd3">
+                <Object Name="visitConveyor" ObjectId="0484067d-9c5e-4b40-ab70-934765cdac38" />
+                <Object Name="visitHeater" ObjectId="eb907004-7ed4-41c6-95f0-edd3c6e91274" />
+                <Object Name="visitIPC" ObjectId="b9910925-b6f1-49cd-8635-32e88c1bc861" />
+              </Object>
+            </Folder>
+            <Folder Name="System Modules">
+              <Object Name="FB_Conveyor" ObjectId="1f67fa7b-2adf-4297-b10d-34e2348c19bc">
+                <Object Name="accept" ObjectId="ad644b27-f57e-48e9-8c13-9777963bd95d" />
+                <Object Name="pPath" ObjectId="b88b05de-b5ac-469c-900b-57ca27b7def2" />
+                <Object Name="pPosition" ObjectId="526e0903-aef9-4bd7-b0de-d71d0bcc9aad" />
+                <Object Name="pStatus" ObjectId="943cd835-d7c6-4a4a-ba91-5152ad7df583" />
+                <Object Name="pVelocity" ObjectId="7571d87d-5b2c-4377-a28e-1c5f9068818e" />
+              </Object>
+              <Object Name="FB_Heater" ObjectId="1f9185b3-e3ce-4e45-a157-5f473ef16cdb">
+                <Object Name="accept" ObjectId="219d35d4-b079-4f05-9455-c0331a726c1f" />
+                <Object Name="pPath" ObjectId="c56d2ee8-fc14-4b91-b359-971aabafdd9d" />
+                <Object Name="pStatus" ObjectId="dc6254ab-ed74-4917-a741-e37379d1bf61" />
+                <Object Name="pTemp" ObjectId="b9c50f6e-9cc5-4b5b-b278-c291c84a7d2b" />
+              </Object>
+              <Object Name="FB_IPCDiagnostics" ObjectId="03aa6bb3-78ca-4569-b572-44f1a01ac209">
+                <Object Name="accept" ObjectId="dea57fa9-4cb0-49ab-b208-c1b1b2cddc11" />
+                <Object Name="pCPU_Temp" ObjectId="472bdcca-bfb7-47fc-a956-db1deb7ad691" />
+                <Object Name="pCPU_Usage" ObjectId="2a4155f8-1d71-414c-bdd2-b4128803e0a8" />
+                <Object Name="pPath" ObjectId="a7b72c3a-26f7-4006-8cf0-41ee057228c4" />
+              </Object>
+            </Folder>
+          </Folder>
+          <Folder Name="ITFs">
+            <Object Name="I_SysModules" ObjectId="073f48fb-e2af-4b1a-a74f-362700c31e24">
+              <Object Name="accept" ObjectId="506d095f-0bbc-48c7-a516-c48bc525fbd6" />
+            </Object>
+            <Object Name="I_Visitor" ObjectId="ca293700-6744-4e91-b2aa-c10eff183998">
+              <Object Name="visitConveyor" ObjectId="674d8e4c-61e3-4817-b84b-3ea9ba4e51d1" />
+              <Object Name="visitHeater" ObjectId="3c75bc6f-c2b0-4f18-aa1e-655777d0dd14" />
+              <Object Name="visitIPC" ObjectId="85bdd0c6-6121-41ee-a678-4ee8c40079f0" />
+            </Object>
+          </Folder>
+          <Object Name="PlcTask" ObjectId="d5185600-4930-42d6-9173-742a1c4846f6" />
+          <Folder Name="POUs">
+            <Object Name="MAIN" ObjectId="21a0115b-fd40-4499-9081-23e2d41ae653" />
+          </Folder>
+        </Object>
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>

@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Refactors>
+  <Renames>
+    <RenamedType>
+      <Type guid="7f1dd219-7e6d-42e9-9663-696063bc4a70">PLC_PRG</Type>
+      <From>PLC_PRG</From>
+      <To>Client</To>
+    </RenamedType>
+  </Renames>
+</Refactors>

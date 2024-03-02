@@ -1,0 +1,586 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<project xmlns="http://www.plcopen.org/xml/tc6_0200">
+  <fileHeader companyName="Beckhoff Automation GmbH" productName="TwinCAT PLC Control" productVersion="3.5.13.21" creationDateTime="2024-03-02T13:23:33.6408234" />
+  <contentHeader name="PLC1" modificationDateTime="2024-03-02T13:23:33.6471123">
+    <coordinateInfo>
+      <fbd>
+        <scaling x="1" y="1" />
+      </fbd>
+      <ld>
+        <scaling x="1" y="1" />
+      </ld>
+      <sfc>
+        <scaling x="1" y="1" />
+      </sfc>
+    </coordinateInfo>
+    <addData>
+      <data name="http://www.3s-software.com/plcopenxml/projectinformation" handleUnknown="implementation">
+        <ProjectInformation />
+      </data>
+    </addData>
+  </contentHeader>
+  <types>
+    <dataTypes />
+    <pous />
+  </types>
+  <instances>
+    <configurations />
+  </instances>
+  <addData>
+    <data name="http://www.3s-software.com/plcopenxml/application" handleUnknown="implementation">
+      <resource name="PLC1">
+        <task name="PlcTask" interval="PT0S" priority="20">
+          <pouInstance name="MAIN" typeName="">
+            <documentation>
+              <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+            </documentation>
+          </pouInstance>
+          <addData>
+            <data name="http://www.3s-software.com/plcopenxml/tasksettings" handleUnknown="implementation">
+              <TaskSettings KindOfTask="Cyclic" Interval="10000" IntervalUnit="us">
+                <Watchdog Enabled="false" TimeUnit="ms" />
+              </TaskSettings>
+            </data>
+            <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+              <ObjectId>85c6248f-002b-4b8d-a929-efa0c9f36f3a</ObjectId>
+            </data>
+          </addData>
+        </task>
+        <addData>
+          <data name="http://www.3s-software.com/plcopenxml/interface" handleUnknown="implementation">
+            <Interface name="I_TempSensor" ObjectId="a3014177-8552-4fbc-b769-cfbd5546c312">
+              <Properties>
+                <Property name="P_DegreesC" ObjectId="9731390f-d712-4ca9-89b0-b76b5a51722f">
+                  <interface>
+                    <returnType>
+                      <REAL />
+                    </returnType>
+                  </interface>
+                  <GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                    </InterfaceAsPlainText>
+                  </GetAccessor>
+                  <SetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                    </InterfaceAsPlainText>
+                  </SetAccessor>
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY P_DegreesC : real</xhtml>
+                  </InterfaceAsPlainText>
+                  <addData />
+                </Property>
+                <Property name="P_DegreesF" ObjectId="ac113eaa-529b-4dbe-b267-6677b9066c97">
+                  <interface>
+                    <returnType>
+                      <REAL />
+                    </returnType>
+                  </interface>
+                  <GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                    </InterfaceAsPlainText>
+                  </GetAccessor>
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY P_DegreesF : real</xhtml>
+                  </InterfaceAsPlainText>
+                  <addData />
+                </Property>
+              </Properties>
+              <InterfaceAsPlainText>
+                <xhtml xmlns="http://www.w3.org/1999/xhtml">INTERFACE I_TempSensor
+</xhtml>
+              </InterfaceAsPlainText>
+              <addData />
+            </Interface>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="MAIN" pouType="program">
+              <interface>
+                <localVars>
+                  <variable name="fbSensor1">
+                    <type>
+                      <derived name="FB_PT100" />
+                    </type>
+                  </variable>
+                  <variable name="fbMotor1">
+                    <type>
+                      <derived name="FB_Motor" />
+                    </type>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/inputassignments" handleUnknown="implementation">
+                        <InputAssignments>
+                          <InputAssignment>
+                            <Name>TempSensor</Name>
+                            <Value>fbSensor1</Value>
+                          </InputAssignment>
+                        </InputAssignments>
+                      </data>
+                      <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                        <Attributes>
+                          <Attribute Name="old_input_assignments" Value="" />
+                        </Attributes>
+                      </data>
+                    </addData>
+                  </variable>
+                  <variable name="fbSensor2">
+                    <type>
+                      <derived name="FB_PT1000" />
+                    </type>
+                  </variable>
+                  <variable name="fbMotor2">
+                    <type>
+                      <derived name="FB_Motor" />
+                    </type>
+                    <addData>
+                      <data name="http://www.3s-software.com/plcopenxml/inputassignments" handleUnknown="implementation">
+                        <InputAssignments>
+                          <InputAssignment>
+                            <Value>fbSensor2</Value>
+                          </InputAssignment>
+                        </InputAssignments>
+                      </data>
+                      <data name="http://www.3s-software.com/plcopenxml/attributes" handleUnknown="implementation">
+                        <Attributes>
+                          <Attribute Name="old_input_assignments" Value="" />
+                        </Attributes>
+                      </data>
+                    </addData>
+                  </variable>
+                </localVars>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">// Motors
+fbSensor1();
+fbMotor1();	
+fbSensor2();
+fbMotor2();	
+</xhtml>
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">PROGRAM MAIN
+VAR
+	fbSensor1		: FB_PT100;
+	fbMotor1		: FB_Motor(TempSensor := fbSensor1);
+	fbSensor2		: FB_PT1000;
+	fbMotor2		: FB_Motor(fbSensor2);
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>4397753d-6707-4ee1-9ec6-9f41f8444ae4</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="FB_Motor" pouType="functionBlock">
+              <interface>
+                <localVars>
+                  <variable name="TempSensor">
+                    <type>
+                      <derived name="I_TempSensor" />
+                    </type>
+                  </variable>
+                  <variable name="nTemperature">
+                    <type>
+                      <REAL />
+                    </type>
+                  </variable>
+                </localVars>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">nTemperature := TempSensor.P_DegreesC;</xhtml>
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/method" handleUnknown="implementation">
+                  <Method name="FB_Init" ObjectId="2aa0dc3d-6dbf-49a8-be50-28e892b9218f">
+                    <interface>
+                      <returnType>
+                        <BOOL />
+                      </returnType>
+                      <inputVars>
+                        <variable name="bInitRetains">
+                          <type>
+                            <BOOL />
+                          </type>
+                          <documentation>
+                            <xhtml xmlns="http://www.w3.org/1999/xhtml"> if TRUE, the retain variables are initialized (reset warm / reset cold)</xhtml>
+                          </documentation>
+                        </variable>
+                        <variable name="bInCopyCode">
+                          <type>
+                            <BOOL />
+                          </type>
+                          <documentation>
+                            <xhtml xmlns="http://www.w3.org/1999/xhtml"> if TRUE, the instance afterwards gets moved into the copy code (online change)</xhtml>
+                          </documentation>
+                        </variable>
+                        <variable name="TempSensor">
+                          <type>
+                            <derived name="I_TempSensor" />
+                          </type>
+                        </variable>
+                      </inputVars>
+                    </interface>
+                    <body>
+                      <ST>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">this^.TempSensor := TempSensor;</xhtml>
+                      </ST>
+                    </body>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">METHOD FB_Init : BOOL
+VAR_INPUT
+    bInitRetains 		: BOOL ; // if TRUE, the retain variables are initialized (reset warm / reset cold)
+    bInCopyCode  		: BOOL ; // if TRUE, the instance afterwards gets moved into the copy code (online change)
+	TempSensor			: I_TempSensor;
+END_VAR
+</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Method>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_Motor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	TempSensor					: I_TempSensor;
+	nTemperature 				: REAL;
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>6caff27d-6c1b-44a6-a830-e43bb9eb0ae4</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="FB_PT100" pouType="functionBlock">
+              <interface>
+                <localVars>
+                  <variable name="A">
+                    <type>
+                      <REAL />
+                    </type>
+                  </variable>
+                  <variable name="B">
+                    <type>
+                      <REAL />
+                    </type>
+                  </variable>
+                  <variable name="C">
+                    <type>
+                      <REAL />
+                    </type>
+                  </variable>
+                </localVars>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+                    <Inheritance>
+                      <Extends>FB_TempSensor</Extends>
+                    </Inheritance>
+                  </data>
+                </addData>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">(*
+	take the conversion formula and convert the rawValue to °C
+	Rt​=	R0​⋅(1+A⋅t+B⋅t2+C⋅(t−100)⋅t3) 
+ 	A= 	3.9083⋅10−3
+	B= 	−5.7750⋅10−7
+	C=	−4.1830⋅10	for t​&lt;​0°C
+		−120.0		for t​≥​0°C
+*)
+_degrees := rawValue + 100.0;
+</xhtml>
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_PT100 EXTENDS FB_TempSensor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	A							: REAL;
+	B							: REAL;
+	C							: REAL;
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>4cddf425-4391-4091-a74f-15d20369c1a0</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="FB_PT1000" pouType="functionBlock">
+              <interface>
+                <localVars>
+                  <variable name="A">
+                    <type>
+                      <REAL />
+                    </type>
+                  </variable>
+                  <variable name="B">
+                    <type>
+                      <REAL />
+                    </type>
+                  </variable>
+                  <variable name="C">
+                    <type>
+                      <REAL />
+                    </type>
+                  </variable>
+                </localVars>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+                    <Inheritance>
+                      <Extends>FB_TempSensor</Extends>
+                    </Inheritance>
+                  </data>
+                </addData>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml">(*
+	take the conversion formula and convert the rawValue to °C
+	Rt​=	R0​⋅(1+A⋅t+B⋅t2+C⋅(t−100)⋅t3) 
+ 	A= 	3.9083⋅10−3
+	B= 	−5.7750⋅10−7
+	C=	−4.1830⋅10	for t​&lt;​0°C
+		−120.0		for t​≥​0°C
+*)
+_degrees := rawValue + 1000.0;
+</xhtml>
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_PT1000 EXTENDS FB_TempSensor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	A							: REAL;
+	B							: REAL;
+	C							: REAL;
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>c0c66743-b10d-45bf-ad67-6e8c1b0f5e19</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/pou" handleUnknown="implementation">
+            <pou name="FB_TempSensor" pouType="functionBlock">
+              <interface>
+                <localVars>
+                  <variable name="rawValue" address="%I*">
+                    <type>
+                      <REAL />
+                    </type>
+                    <documentation>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml"> resistance measurement value of sensor</xhtml>
+                    </documentation>
+                  </variable>
+                  <variable name="_degrees">
+                    <type>
+                      <REAL />
+                    </type>
+                    <documentation>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml"> celcius</xhtml>
+                    </documentation>
+                  </variable>
+                </localVars>
+                <addData>
+                  <data name="http://www.3s-software.com/plcopenxml/pouinheritance" handleUnknown="implementation">
+                    <Inheritance>
+                      <Implements>I_TempSensor</Implements>
+                    </Inheritance>
+                  </data>
+                </addData>
+              </interface>
+              <body>
+                <ST>
+                  <xhtml xmlns="http://www.w3.org/1999/xhtml" />
+                </ST>
+              </body>
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="P_DegreesC" ObjectId="cc668bef-8853-461c-9e1d-9e2a4d945482">
+                    <interface>
+                      <returnType>
+                        <REAL />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">P_DegreesC := _degrees;
+</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <SetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">_degrees := P_DegreesC;</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">
+VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </SetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY P_DegreesC : real</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/property" handleUnknown="implementation">
+                  <Property name="P_DegreesF" ObjectId="cfabb4a4-d863-4c51-958b-ee2d28da9778">
+                    <interface>
+                      <returnType>
+                        <REAL />
+                      </returnType>
+                    </interface>
+                    <GetAccessor>
+                      <interface />
+                      <body>
+                        <ST>
+                          <xhtml xmlns="http://www.w3.org/1999/xhtml">P_DegreesF := _degrees / 232566 * 2 + 32;
+
+</xhtml>
+                        </ST>
+                      </body>
+                      <InterfaceAsPlainText>
+                        <xhtml xmlns="http://www.w3.org/1999/xhtml">VAR
+END_VAR
+</xhtml>
+                      </InterfaceAsPlainText>
+                      <addData />
+                    </GetAccessor>
+                    <InterfaceAsPlainText>
+                      <xhtml xmlns="http://www.w3.org/1999/xhtml">PROPERTY P_DegreesF : real</xhtml>
+                    </InterfaceAsPlainText>
+                    <addData />
+                  </Property>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/interfaceasplaintext" handleUnknown="implementation">
+                  <InterfaceAsPlainText>
+                    <xhtml xmlns="http://www.w3.org/1999/xhtml">FUNCTION_BLOCK FB_TempSensor IMPLEMENTS I_TempSensor
+VAR_INPUT
+END_VAR
+VAR_OUTPUT
+END_VAR
+VAR
+	rawValue			AT %I*	: REAL;		// resistance measurement value of sensor
+	_degrees					: REAL;		// celcius
+END_VAR
+</xhtml>
+                  </InterfaceAsPlainText>
+                </data>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>d20820a4-0d8a-43f0-b4e4-a3d10b2764cf</ObjectId>
+                </data>
+              </addData>
+            </pou>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/libraries" handleUnknown="implementation">
+            <Libraries>
+              <Library Name="#Tc2_Standard" Namespace="Tc2_Standard" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Tc2_Standard, * (Beckhoff Automation GmbH)" />
+              <Library Name="#Tc2_System" Namespace="Tc2_System" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Tc2_System, * (Beckhoff Automation GmbH)">
+                <Parameters>
+                  <Parameter Name="PARAM.TABLE_UPPER_BOUND" Value="15" />
+                  <Parameter Name="PARAM.STRING_LENGTH_EXP" Value="255" />
+                  <Parameter Name="PARAM.STRING_LENGTH_ADDRESS" Value="20" />
+                  <Parameter Name="PARAM.STRING_LENGTH_COMMENT" Value="255" />
+                  <Parameter Name="PARAM.STRING_LENGTH_OUTSTRING" Value="255" />
+                  <Parameter Name="PARAM.TABLE_SHOW_VALID_ITEMS" Value="FALSE" />
+                </Parameters>
+              </Library>
+              <Library Name="#Tc3_Module" Namespace="Tc3_Module" HideWhenReferencedAsDependency="false" PublishSymbolsInContainer="false" SystemLibrary="false" LinkAllContent="false" DefaultResolution="Tc3_Module, * (Beckhoff Automation GmbH)" />
+              <addData>
+                <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+                  <ObjectId>73b11df9-8b34-4d8c-b51b-ec779b0d220f</ObjectId>
+                </data>
+              </addData>
+            </Libraries>
+          </data>
+          <data name="http://www.3s-software.com/plcopenxml/objectid" handleUnknown="discard">
+            <ObjectId>711defd8-9b03-4780-b31b-33fbb7dab8b2</ObjectId>
+          </data>
+        </addData>
+      </resource>
+    </data>
+    <data name="http://www.3s-software.com/plcopenxml/projectstructure" handleUnknown="discard">
+      <ProjectStructure>
+        <Object Name="PLC1" ObjectId="711defd8-9b03-4780-b31b-33fbb7dab8b2">
+          <Object Name="Library Manager" ObjectId="73b11df9-8b34-4d8c-b51b-ec779b0d220f" />
+          <Folder Name="FBs">
+            <Folder Name="Motors">
+              <Object Name="FB_Motor" ObjectId="6caff27d-6c1b-44a6-a830-e43bb9eb0ae4">
+                <Object Name="FB_Init" ObjectId="2aa0dc3d-6dbf-49a8-be50-28e892b9218f" />
+              </Object>
+            </Folder>
+            <Folder Name="Temperature sensor">
+              <Object Name="FB_PT100" ObjectId="4cddf425-4391-4091-a74f-15d20369c1a0" />
+              <Object Name="FB_PT1000" ObjectId="c0c66743-b10d-45bf-ad67-6e8c1b0f5e19" />
+              <Object Name="FB_TempSensor" ObjectId="d20820a4-0d8a-43f0-b4e4-a3d10b2764cf">
+                <Object Name="P_DegreesC" ObjectId="cc668bef-8853-461c-9e1d-9e2a4d945482" />
+                <Object Name="P_DegreesF" ObjectId="cfabb4a4-d863-4c51-958b-ee2d28da9778" />
+              </Object>
+            </Folder>
+          </Folder>
+          <Folder Name="ITFs">
+            <Object Name="I_TempSensor" ObjectId="a3014177-8552-4fbc-b769-cfbd5546c312">
+              <Object Name="P_DegreesC" ObjectId="9731390f-d712-4ca9-89b0-b76b5a51722f" />
+              <Object Name="P_DegreesF" ObjectId="ac113eaa-529b-4dbe-b267-6677b9066c97" />
+            </Object>
+          </Folder>
+          <Object Name="PlcTask" ObjectId="85c6248f-002b-4b8d-a929-efa0c9f36f3a" />
+          <Folder Name="POUs">
+            <Object Name="MAIN" ObjectId="4397753d-6707-4ee1-9ec6-9f41f8444ae4" />
+          </Folder>
+        </Object>
+      </ProjectStructure>
+    </data>
+  </addData>
+</project>
