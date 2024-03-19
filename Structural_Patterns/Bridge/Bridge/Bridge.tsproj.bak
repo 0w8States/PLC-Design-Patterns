@@ -13,7 +13,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{1EBD82EC-6518-4668-8C3B-36C75C451C05}" Name="Bridge" PrjFilePath="Bridge\Bridge.plcproj" TmcFilePath="Bridge\Bridge.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{552FBD2C-362A-1EC6-9C73-2C1356218E0C}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Bridge\Bridge.tmc" TmcHash="{0B8C06FC-80D7-BB5C-805C-36992766BB8C}">
 					<Name>Bridge Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
