@@ -34,7 +34,7 @@ END_VAR
 	root.ResetSize();
  
 	dir1.AddChild(archive1);
-// 	dir1.AddChild(archive6);
+ 	dir1.AddChild(archive6);
  	dir2.AddChild(archive2);
  	dir3.AddChild(archive3);
  	dir3.AddChild(archive4);
@@ -43,7 +43,7 @@ END_VAR
  	root.AddChild(dir1);
  	root.AddChild(dir2);
  	root.AddChild(archive5);
-// 	root.AddChild(archive7);
+ 	root.AddChild(archive7);
 	
 	sMsg := CONCAT(STR1:= root.Name , STR2:= CONCAT(STR1:= ' is: ' , STR2:= TO_STRING(root.GetSize) ) );
 	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG, msgFmtStr:= 'The size of the directory %s ' , strArg:= sMsg);

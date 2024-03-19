@@ -13,7 +13,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{4ABDFC43-B3AE-4A20-81E8-7F6618CEAB87}" Name="Composite" PrjFilePath="Composite\Composite.plcproj" TmcFilePath="Composite\Composite.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{DE7679F0-0B7E-D825-B72F-B38D013A840F}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Composite\Composite.tmc" TmcHash="{B9C617D1-5388-2BE1-A84D-B0E0F7D2D2AE}">
 					<Name>Composite Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
