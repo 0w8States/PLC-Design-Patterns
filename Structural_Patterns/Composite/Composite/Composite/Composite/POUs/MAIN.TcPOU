@@ -33,27 +33,31 @@ END_VAR
 	dir3.ResetSize();
 	root.ResetSize();
  
-	dir1.AddChild(archive1);
- 	dir1.AddChild(archive6);
- 	dir2.AddChild(archive2);
- 	dir3.AddChild(archive3);
- 	dir3.AddChild(archive4);
- 	dir1.AddChild(dir3);
+	dir1.AddChild(archive1); // 10
+ 	dir1.AddChild(archive6); // 122
+ 	dir2.AddChild(archive2); // 30
+ 	dir3.AddChild(archive3); // 120
+ 	dir3.AddChild(archive4); // 800
+ 	dir1.AddChild(dir3); // 120+800
 
- 	root.AddChild(dir1);
- 	root.AddChild(dir2);
- 	root.AddChild(archive5);
- 	root.AddChild(archive7);
+ 	root.AddChild(dir1); // dir1 = 120+800+10+122 = 1052
+ 	root.AddChild(dir2); // dir2 = 30
+ 	root.AddChild(archive5); // 340
+ 	root.AddChild(archive7); // 391
 	
+	// root = 1052+30+340+391 = 1813
 	sMsg := CONCAT(STR1:= root.Name , STR2:= CONCAT(STR1:= ' is: ' , STR2:= TO_STRING(root.GetSize) ) );
 	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG, msgFmtStr:= 'The size of the directory %s ' , strArg:= sMsg);
 	
+	// dir1 = 10+122+120+800 = 1052
 	sMsg := CONCAT(STR1:= dir1.Name , STR2:= CONCAT(STR1:= ' is: ' , STR2:= TO_STRING(dir1.GetSize) ) );
 	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG, msgFmtStr:= 'The size of the directory %s ' , strArg:= sMsg);
 	
+	// dir2 = 30
 	sMsg := CONCAT(STR1:= dir2.Name , STR2:= CONCAT(STR1:= ' is: ' , STR2:= TO_STRING(dir2.GetSize) ) );
 	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG, msgFmtStr:= 'The size of the directory %s ' , strArg:= sMsg);
 	
+	// dir3 = 120+800 = 922
 	sMsg := CONCAT(STR1:= dir3.Name , STR2:= CONCAT(STR1:= ' is: ' , STR2:= TO_STRING(dir3.GetSize) ) );
 	ADSLOGSTR(msgCtrlMask:= ADSLOG_MSGTYPE_LOG, msgFmtStr:= 'The size of the directory %s ' , strArg:= sMsg);	
 	

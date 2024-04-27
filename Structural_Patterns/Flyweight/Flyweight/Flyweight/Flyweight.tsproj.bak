@@ -13,7 +13,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{795A1817-5A77-4574-9384-6082723E25B6}" Name="Flyweight" PrjFilePath="Flyweight\Flyweight.plcproj" TmcFilePath="Flyweight\Flyweight.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x001e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Flyweight\Flyweight.tmc" TmcHash="{7570421F-54D1-0DA4-D910-C2E611A6AF79}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Flyweight\Flyweight.tmc" TmcHash="{4106D72F-7B4F-503F-355A-0F59CA9A22D0}">
 					<Name>Flyweight Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>

@@ -33,5 +33,16 @@ END_VAR
 THIS^.iProp := num;]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="Realsubject">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Realsubject.Get_Method">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Realsubject.Set_Method">
+      <LineId Id="3" Count="1" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

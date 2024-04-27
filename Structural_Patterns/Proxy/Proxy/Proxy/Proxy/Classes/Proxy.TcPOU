@@ -41,19 +41,19 @@ THIS^.refToRealSubject := ptrToRealSubject;
 THIS^.iTempPassword := iTempPassword;
 
 //For security reasons, the Password passed by the client and the Proxi's connection password are compared
-IF	THIS^.iTempPassword = THIS^.iRealPassword 
+IF	THIS^.iTempPassword = THIS^.iRealPassword THEN
 	//If the password sent by the client is correct,
-	THEN
+	
 	//We verify is the request is a SET or GET request
-	IF bReadWrite
+	IF bReadWrite THEN
 		//If the request is a SET request: boolean value TRUE
-		THEN
+		
 		//The Proxy passes the request to the subject
 		THIS^.Set_Method(iSetValue);
 		//Once the request is completed, the Proxy responds to the client that the request has been accepted
 		PLC_PRG.sTempSetLog := 'Request "SET" accepted';
 		//If the request is a GET request: boolean value FALSE
-		ELSE
+	ELSE
 		//The Proxy passes the request to the subject
 		PLC_PRG.iGetValueLocal:= THIS^.Get_Method();
 		//Once the request is completed, the Proxy responds to the client that the request has been accepted
@@ -61,15 +61,15 @@ IF	THIS^.iTempPassword = THIS^.iRealPassword
 	END_IF
 	
 	//If the password sent by the client is incorrect
-	ELSE 
+ELSE 
 	//We verify is the request is a SET or GET request
-	IF bReadWrite
+	IF bReadWrite THEN
 		//If the request is a SET request: boolean value TRUE
-		THEN
+		
 		//The Proxy handles the bad request and response to the client without the subject intervention
 		PLC_PRG.sTempSetLog := 'Request denied. Wrong password.';
 		//If the request is a GET request: boolean value FALSE
-		ELSE
+	ELSE
 		//The Proxy handles the bad request and response to the client without the subject intervention
 		PLC_PRG.sTempGetLog := 'Request denied. Wrong password.';
 	END_IF
@@ -104,5 +104,20 @@ THIS^.refToRealSubject^.Set_Method(num);
 ]]></ST>
       </Implementation>
     </Method>
+    <LineIds Name="Proxy">
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Proxy.fb_init">
+      <LineId Id="3" Count="38" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Proxy.Get_Method">
+      <LineId Id="3" Count="4" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
+    <LineIds Name="Proxy.Set_Method">
+      <LineId Id="3" Count="3" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

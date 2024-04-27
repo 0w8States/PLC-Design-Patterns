@@ -8,5 +8,8 @@ END_VAR
     <Implementation>
       <ST><![CDATA[PLC_PRG();]]></ST>
     </Implementation>
+    <LineIds Name="MAIN">
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

@@ -13,7 +13,7 @@
 		</System>
 		<Plc>
 			<Project GUID="{2AB9BC9F-8AAD-4936-8AED-2D7212ED2517}" Name="Decorator" PrjFilePath="Decorator\Decorator.plcproj" TmcFilePath="Decorator\Decorator.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcHash="{69809FA3-61DF-19CE-2884-754B7BAA90E1}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Decorator\Decorator.tmc" TmcHash="{2744BB59-8F74-5ECC-A42C-4E45B05545CF}">
 					<Name>Decorator Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
