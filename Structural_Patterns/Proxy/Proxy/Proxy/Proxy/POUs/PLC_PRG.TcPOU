@@ -44,14 +44,14 @@ END_VAR
 //El valor de contraseña predeterminado para la solicitud es: 1234. Se especifica en el campo estático .iRealPassword de la clase Proxy
 
 //If a WRITE or SET request is received
-IF	bWriteRequest
-	THEN
+IF	bWriteRequest THEN
+	
 	//We specify TRUE bReadWriteLocal because it is a SET request
 	bReadWriteLocal := TRUE;
 	//First we verify if the pointer to RealSubject to be used is a valid pointer
-	IF ptrLocalSubject <> ptrNullRealSubject
+	IF ptrLocalSubject <> ptrNullRealSubject THEN
 		//If so, 
-		THEN
+		
 		//The Proxy object is created with all its parameters passed by the PLC_PRG local variables.
 		//As there is no "Method Overloading" options is CODESYS (Or at least the constructor cannot be overloaded) the constructor must receive and handle all the possible scenarios
 		// .ptrToRealSubject is a Pointer to the RealSubject instance that we try to conncect to
@@ -78,14 +78,14 @@ IF	bWriteRequest
 END_IF
 
 //If a READ or GET request is received
-IF	bReadRequest
-	THEN
+IF	bReadRequest THEN
+	
 	//We specify FALSE bReadWriteLocal because it is a GET request
 	bReadWriteLocal := FALSE;
 	//First we verify if the pointer to RealSubject to be used is a valid pointer
-	IF ptrLocalSubject <> ptrNullRealSubject
+	IF ptrLocalSubject <> ptrNullRealSubject THEN
 		//If so,
-		THEN
+		
 		//The Proxy object is created with all its parameters passed by the PLC_PRG local variables.
 		//As there is no "Method Overloading" options is CODESYS (Or at least the constructor cannot be overloaded) the constructor must receive and handle all the possible scenarios
 		// .ptrToRealSubject is a Pointer to the RealSubject instance that we try to conncect to
@@ -111,5 +111,9 @@ IF	bReadRequest
 	bReadRequest := FALSE;
 END_IF]]></ST>
     </Implementation>
+    <LineIds Name="PLC_PRG">
+      <LineId Id="3" Count="73" />
+      <LineId Id="2" Count="0" />
+    </LineIds>
   </POU>
 </TcPlcObject>

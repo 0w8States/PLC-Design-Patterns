@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
-<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.35">
+<TcSmProject xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.beckhoff.com/schemas/2012/07/TcSmProject" TcSmVersion="1.0" TcVersion="3.1.4024.56">
 	<Project ProjectGUID="{D5558FE2-0DBF-46A8-90F0-E03F34AEB262}" Target64Bit="true" ShowHideConfigurations="#x3c7">
 		<System>
-			<Settings MaxCpus="8" NonWinCpus="2">
-				<Cpu CpuId="6"/>
+			<Settings MaxCpus="32" NonWinCpus="1">
+				<Cpu CpuId="31"/>
 			</Settings>
 			<Tasks>
 				<Task Id="3" Priority="20" CycleTime="100000" AmsPort="350" AdtTasks="true">
@@ -13,12 +13,12 @@
 		</System>
 		<Plc>
 			<Project GUID="{1086795E-E022-47F0-B3D0-0D699ED1254F}" Name="Proxy" PrjFilePath="Proxy\Proxy.plcproj" TmcFilePath="Proxy\Proxy.tmc" ReloadTmc="true" AmsPort="851" FileArchiveSettings="#x000e" SymbolicMapping="true">
-				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Proxi\Proxi.tmc" TmcHash="{28A482FF-AC65-A105-6D11-859366B77D8B}">
+				<Instance Id="#x08502000" TcSmClass="TComPlcObjDef" KeepUnrestoredLinks="2" TmcPath="Proxy\Proxy.tmc" TmcHash="{0EEE6EF6-F58B-4A5A-58BC-0DEBEF74B394}">
 					<Name>Proxy Instance</Name>
 					<CLSID ClassFactory="TcPlc30">{08500001-0000-0000-F000-000000000064}</CLSID>
 					<Contexts>
 						<Context>
-							<Id NeedCalleeCall="true">0</Id>
+							<Id>0</Id>
 							<Name>PlcTask</Name>
 							<ManualConfig>
 								<OTCID>#x02010030</OTCID>
